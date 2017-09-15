@@ -27,9 +27,9 @@ components:
             description: A query against a Dataset.
             properties:
                 logic:
-                    $ref: '#/components/x-simple-types/logic'
+                    $ref: '#/components/x-hidden-types/logic'
                 simple:
-                    $ref: '#/components/x-simple-types/simple'
+                    $ref: '#/components/x-hidden-types/simple'
                 id:
                     type: array
                     items:
@@ -84,9 +84,9 @@ components:
             description: A filter against the value of a boolean-typed field.
             properties:
                 logic:
-                    $ref: '#/components/x-simple-types/logic'
+                    $ref: '#/components/x-hidden-types/logic'
                 exists:
-                    $ref: '#/components/x-simple-types/exists'
+                    $ref: '#/components/x-hidden-types/exists'
                 equal:
                     type: boolean
                     nullable: true
@@ -104,9 +104,9 @@ components:
             description: An equality or range filter against a single field.
             properties:
                 logic:
-                    $ref: '#/components/x-simple-types/logic'
+                    $ref: '#/components/x-hidden-types/logic'
                 exists:
-                    $ref: '#/components/x-simple-types/exists'
+                    $ref: '#/components/x-hidden-types/exists'
                 equal:
                     type: string
                     nullable: true
@@ -181,6 +181,9 @@ components:
             properties:
                 type:
                     type: string
+                    enum:
+                    - system
+                    - system.chemical
                     description: Internal system type for this object.
                 uid:
                     type: string
@@ -259,10 +262,9 @@ components:
                     default: null
                     description: Licenses that apply to the data in this record.
                 tags:
-                    $ref: '#/components/x-simple-types/tags'
+                    $ref: '#/components/x-hidden-types/tags'
         ChemicalSystem:
             type: object
-            title: ChemicalSystem
             description: A physical system that contains chemical information.
             allOf:
             - $ref: '#/components/schemas/System'
@@ -362,7 +364,7 @@ components:
                     default: null
                     description:
                 tags:
-                    $ref: '#/components/x-simple-types/tags'
+                    $ref: '#/components/x-hidden-types/tags'
         Reference:
             type: object
             description:
@@ -390,7 +392,7 @@ components:
                     default: null
                     description: The URL at which the producer can be accessed.
                 tags:
-                    $ref: '#/components/x-simple-types/tags'
+                    $ref: '#/components/x-hidden-types/tags'
         Value:
             type: object
             description:
