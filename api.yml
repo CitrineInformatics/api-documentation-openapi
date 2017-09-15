@@ -262,6 +262,7 @@ components:
                     $ref: '#/components/x-simple-types/tags'
         ChemicalSystem:
             type: object
+            title: ChemicalSystem
             description: A physical system that contains chemical information.
             allOf:
             - $ref: '#/components/schemas/System'
