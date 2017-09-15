@@ -164,7 +164,17 @@ components:
         System:
             type: object
             description: A generic representation of a physical system.
+            discriminator:
+                propertyName: type
+                mapping:
+                    system: System
+                    system.chemical: ChemicalSystem
+            required:
+            - type
             properties:
+                type:
+                    type: string
+                    description: Internal system type for this object.
                 uid:
                     type: string
                     nullable: true
@@ -246,8 +256,21 @@ components:
         ChemicalSystem:
             type: object
             description: A physical system that contains chemical information.
-            properties:
-
+            allOf:
+            - $ref: '#/components/schemas/System'
+            - properties:
+                chemicalFormula:
+                    type: string
+                    nullable: true
+                    default: null
+                    description: The chemical formula of the system.
+                composition:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/Composition'
+                    nullable: true
+                    default: null
+                    description: The list of chemical elements in the system and their amounts.
         Classification:
             type: object
             description:
@@ -300,32 +323,32 @@ components:
             type: object
             description:
             properties:
-                actual_mass_percent:
+                actualMassPercent:
                     type:
                     nullable: true
                     default: null
                     description:
-                actual_volume_percent:
+                actualVolumePercent:
                     type:
                     nullable: true
                     default: null
                     description:
-                actual_number_percent:
+                actualNumberPercent:
                     type:
                     nullable: true
                     default: null
                     description:
-                ideal_mass_percent:
+                idealMassPercent:
                     type:
                     nullable: true
                     default: null
                     description:
-                ideal_volume_percent:
+                idealVolumePercent:
                     type:
                     nullable: true
                     default: null
                     description:
-                ideal_number_percent:
+                idealNumberPercent:
                     type:
                     nullable: true
                     default: null
@@ -368,10 +391,15 @@ components:
             type: object
             description:
             properties:
-    x-simple-types:
+    x-hidden-types:
         logic:
             type: string
-            enum: [SHOULD, MUST, MUST_NOT, OPTIONAL, null]
+            enum:
+            - SHOULD
+            - MUST
+            - MUST_NOT
+            - OPTIONAL
+            - null
             nullable: true
             default: null
             description: When multiple queries appear in a list, the logic defines the way in which each will be interpreted. "SHOULD" is equivalent to boolean _OR_ logic. "MUST" is eqivalent to boolean _AND_ logic. "MUST_NOT" is equivalent to boolean _NOT_ logic. "OPTIONAL" does not have an effect on whether a record matches; the specific query element is ignored during the primary search for records in scope. However, "OPTIONAL" queries are executed on subsequent steps such as extractions and data statistics gathering. When logic is set to a null value, it is interpreted as "SHOULD".
