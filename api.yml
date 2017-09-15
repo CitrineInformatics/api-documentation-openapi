@@ -166,31 +166,31 @@ components:
             description: A generic representation of a physical system.
             properties:
                 uid:
-                    type:
+                    type: string
                     nullable: true
                     default: null
-                    description:
+                    description: An ID for this system that is unique within the dataset that contains it on Citrination.
                 names:
                     type: array
                     items:
                         type: string
                     nullable: true
                     default: null
-                    description:
+                    description: Common names of the system.
                 ids:
                     type: array
                     items:
                         $ref: '#/components/schemas/Id'
                     nullable: true
                     default: null
-                    description:
+                    description: Any identifiers (named labels) that apply to the system.
                 classifications:
                     type: array
                     items:
                         $ref: '#/components/schemas/Classification'
                     nullable: true
                     default: null
-                    description:
+                    description: Any classifications (unambiguous categories) that apply to the system.
                 source:
                     nullable: true
                     default: null
@@ -199,13 +199,54 @@ components:
                     nullable: true
                     default: null
                     $ref: '#/components/schemas/Quantity'
+                properties:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/Property'
+                    nullable: true
+                    default: null
+                    description: Observations made on the system.
+                preparation:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/ProcessStep'
+                    nullable: true
+                    default: null
+                    description: An ordered list of steps used to produce the system.
+                subSystems:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/System'
+                    nullable: true
+                    default: null
+                    description: Any sub-systems of this system.
+                references:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/Reference'
+                    nullable: true
+                    default: null
+                    description: Published references for this sytem.
+                contacts:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/Person'
+                    nullable: true
+                    default: null
+                    description: People to contact for information about the system.
+                licenses:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/License'
+                    nullable: true
+                    default: null
+                    description: Licenses that apply to the data in this record.
+                tags:
+                    $ref: '#/components/x-simple-types/tags'
         ChemicalSystem:
             type: object
             description: A physical system that contains chemical information.
             properties:
-
-                how do deal with polymorphism
-
 
         Classification:
             type: object
@@ -290,6 +331,7 @@ components:
                     default: null
                     description:
                 tags:
+                    $ref: '#/components/x-simple-types/tags'
         Reference:
             type: object
             description:
@@ -317,12 +359,7 @@ components:
                     default: null
                     description: The URL at which the producer can be accessed.
                 tags:
-                    type: array
-                    items:
-                        type: string
-                    nullable: true
-                    default: null
-                    description: Any number of tags to apply to the source.
+                    $ref: '#/components/x-simple-types/tags'
         Value:
             type: object
             description:
@@ -348,3 +385,10 @@ components:
             nullable: true
             default: null
             description: A string that is run against all fields in this object and their children. Strings are tokenized on whitespace unless surrounded by quotes. For example, _GaN "band gap"_ tokenizes to _GaN_ and _band gap_ where each token must match the entire phrase in a record. Tokens are executed with boolean OR logic. Therefore, _GaN "band gap"_ matches records that contain _GaN_ or _band gap_. Since simple filters are, in this way, extremely inclusive operations, it is typically recommended that relevancy scoring be turned on for the query so that the records that match the most values are ranked the highest.
+        tags:
+            type: array
+            items:
+                type: string
+            nullable: true
+            default: null
+            description: Any number of tags to apply to the object.
