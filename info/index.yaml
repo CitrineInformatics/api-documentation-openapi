@@ -1,0 +1,11 @@
+title: Citrination
+version: 1.0.0
+description: API for access to Citrination
+termsOfService: https://citrination.com/tos
+contact:
+    name: Citrine Informatics
+    email: admin@citrine.io
+    url: https://citrine.io
+license:
+    name: Apache License Version 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
