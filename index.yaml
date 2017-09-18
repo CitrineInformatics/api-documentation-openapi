@@ -21,7 +21,7 @@ components:
       type: apiKey
       in: header
       name: X-API-Key
-  schemes:
+  schemas:
     DatasetReturningQuery:
       type: object
       description: A query that returns information about datasets.

@@ -1,6 +1,6 @@
 securitySchemes:
     $ref: ./securitySchemes/index.yaml
-schemes:
+schemas:
     $ref: ./schemas/index.yaml
 x-hiddenSchemas:
     $ref: ./hiddenSchemas/index.yaml
