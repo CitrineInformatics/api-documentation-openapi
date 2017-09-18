@@ -1,9 +1,10 @@
 swagger: 2.0
 info:
     $ref: ./info/index.yaml
-schemes: 'https'
-host: 'citrination.com'
-basePath: 'api'
+schemes:
+    - https
+host: citrination.com
+basePath: /api
 consumes:
     - application/json
 produces:

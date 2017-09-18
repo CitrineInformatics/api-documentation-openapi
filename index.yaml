@@ -11,9 +11,10 @@ info:
   license:
     name: Apache License Version 2.0
     url: 'https://www.apache.org/licenses/LICENSE-2.0'
-schemes: https
+schemes:
+  - https
 host: citrination.com
-basePath: api
+basePath: /api
 consumes:
   - application/json
 produces:
