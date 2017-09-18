@@ -5,7 +5,7 @@ DatasetReturningQuery:
         query:
             type: array
             items:
-                $ref: '#/DataQuery'
+                $ref: '#/components/schemas/DataQuery'
             nullable: true
             default: null
             description: Queries against datasets and/or records.
@@ -44,55 +44,55 @@ DatasetQuery:
     description: A query against a Dataset.
     properties:
         logic:
-            $ref: '#/logic'
+            $ref: '#/components/schemas/logic'
         simple:
-            $ref: '#/simple'
+            $ref: '#/components/schemas/simple'
         id:
             type: array
             items:
-                $ref: '#/Filter'
+                $ref: '#/components/schemas/Filter'
             nullable: true
             default: null
             description: Queries against the ID of a dataset.
         isFeatured:
             type: array
             items:
-                $ref: '#/BooleanFilter'
+                $ref: '#/components/schemas/BooleanFilter'
             nullable: true
             default: null
             description: Queries against the isFeatured field of a dataset.
         name:
             type: array
             items:
-                $ref: '#/Filter'
+                $ref: '#/components/schemas/Filter'
             nullable: true
             default: null
             description: Queries against the name of a dataset.
         description:
             type: array
             items:
-                $ref: '#/Filter'
+                $ref: '#/components/schemas/Filter'
             nullable: true
             default: null
             description: Queries against the description of a dataset.
         owner:
             type: array
             items:
-                $ref: '#/Filter'
+                $ref: '#/components/schemas/Filter'
             nullable: true
             default: null
             description: Queries against the name of the owner of a dataset.
         email:
             type: array
             items:
-                $ref: '#/Filter'
+                $ref: '#/components/schemas/Filter'
             nullable: true
             default: null
             description: Queries against the email address of the owner of a dataset.
         query:
             type: array
             items:
-                $ref: '#/DatasetQuery'
+                $ref: '#/components/schemas/DatasetQuery'
             nullable: true
             default: null
             description: Nested dataset queries. Queries can nest as deeply as needed in order to create complex combinations of boolean logical operations.
@@ -105,9 +105,9 @@ BooleanFilter:
     description: A filter against the value of a boolean-typed field.
     properties:
         logic:
-            $ref: '#/logic'
+            $ref: '#/components/schemas/logic'
         exists:
-            $ref: '#/exists'
+            $ref: '#/components/schemas/exists'
         equal:
             type: boolean
             nullable: true
@@ -116,7 +116,7 @@ BooleanFilter:
         filter:
             type: array
             items:
-                $ref: '#/BooleanFilter'
+                $ref: '#/components/schemas/BooleanFilter'
             nullable: true
             default: null
             description: Nested boolean filters. Filters can nest as deeply as needed in order to create complex combinations of boolean logical operations.
@@ -125,9 +125,9 @@ Filter:
     description: An equality or range filter against a single field.
     properties:
         logic:
-            $ref: '#/logic'
+            $ref: '#/components/schemas/logic'
         exists:
-            $ref: '#/exists'
+            $ref: '#/components/schemas/exists'
         equal:
             type: string
             nullable: true
@@ -151,7 +151,7 @@ Filter:
         filter:
             type: array
             items:
-                $ref: '#/Filter'
+                $ref: '#/components/schemas/Filter'
             nullable: true
             default: null
             description: Nested filters. Filters can nest as deeply as needed in order to create complex combinations of boolean logical operations.
@@ -221,74 +221,74 @@ System:
         ids:
             type: array
             items:
-                $ref: '#/Id'
+                $ref: '#/components/schemas/Id'
             nullable: true
             default: null
             description: Any identifiers (named labels) that apply to the system.
         classifications:
             type: array
             items:
-                $ref: '#/Classification'
+                $ref: '#/components/schemas/Classification'
             nullable: true
             default: null
             description: Any classifications (unambiguous categories) that apply to the system.
         source:
             nullable: true
             default: null
-            $ref: '#/Source'
+            $ref: '#/components/schemas/Source'
         quantity:
             nullable: true
             default: null
-            $ref: '#/Quantity'
+            $ref: '#/components/schemas/Quantity'
         properties:
             type: array
             items:
-                $ref: '#/Property'
+                $ref: '#/components/schemas/Property'
             nullable: true
             default: null
             description: Observations made on the system.
         preparation:
             type: array
             items:
-                $ref: '#/ProcessStep'
+                $ref: '#/components/schemas/ProcessStep'
             nullable: true
             default: null
             description: An ordered list of steps used to produce the system.
         subSystems:
             type: array
             items:
-                $ref: '#/System'
+                $ref: '#/components/schemas/System'
             nullable: true
             default: null
             description: Any sub-systems of this system.
         references:
             type: array
             items:
-                $ref: '#/Reference'
+                $ref: '#/components/schemas/Reference'
             nullable: true
             default: null
             description: Published references for this sytem.
         contacts:
             type: array
             items:
-                $ref: '#/Person'
+                $ref: '#/components/schemas/Person'
             nullable: true
             default: null
             description: People to contact for information about the system.
         licenses:
             type: array
             items:
-                $ref: '#/License'
+                $ref: '#/components/schemas/License'
             nullable: true
             default: null
             description: Licenses that apply to the data in this record.
         tags:
-            $ref: '#/tags'
+            $ref: '#/components/schemas/tags'
 ChemicalSystem:
     type: object
     description: A physical system that contains chemical information.
     allOf:
-    - $ref: '#/System'
+    - $ref: '#/components/schemas/System'
     - properties:
         chemicalFormula:
             type: string
@@ -298,7 +298,7 @@ ChemicalSystem:
         composition:
             type: array
             items:
-                $ref: '#/Composition'
+                $ref: '#/components/schemas/Composition'
             nullable: true
             default: null
             description: The list of chemical elements in the system and their amounts.
@@ -385,7 +385,7 @@ Quantity:
             default: null
             description:
         tags:
-            $ref: '#/tags'
+            $ref: '#/components/schemas/tags'
 Reference:
     type: object
     description:
@@ -413,7 +413,7 @@ Source:
             default: null
             description: The URL at which the producer can be accessed.
         tags:
-            $ref: '#/tags'
+            $ref: '#/components/schemas/tags'
 Value:
     type: object
     description:

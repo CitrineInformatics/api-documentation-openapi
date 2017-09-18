@@ -29,14 +29,7 @@ components:
         query:
           type: array
           items:
-            type: object
-            description: A query against dataset metadata and/or PIFs
-            properties:
-              logic: null
-              simple: null
-              dataset: null
-              system: null
-              query: null
+            $ref: '#/components/schemas/DataQuery'
           nullable: true
           default: null
           description: Queries against datasets and/or records.
@@ -83,532 +76,55 @@ components:
       description: A query against a Dataset.
       properties:
         logic:
-          type: string
-          enum:
-            - SHOULD
-            - MUST
-            - MUST_NOT
-            - OPTIONAL
-            - null
-          nullable: true
-          default: null
-          description: >-
-            When multiple queries appear in a list, the logic defines the way in
-            which each will be interpreted. "SHOULD" is equivalent to boolean
-            _OR_ logic. "MUST" is eqivalent to boolean _AND_ logic. "MUST_NOT"
-            is equivalent to boolean _NOT_ logic. "OPTIONAL" does not have an
-            effect on whether a record matches; the specific query element is
-            ignored during the primary search for records in scope. However,
-            "OPTIONAL" queries are executed on subsequent steps such as
-            extractions and data statistics gathering. When logic is set to a
-            null value, it is interpreted as "SHOULD".
+          $ref: '#/components/schemas/logic'
         simple:
-          type: string
-          nullable: true
-          default: null
-          description: >-
-            A string that is run against all fields in this object and their
-            children. Strings are tokenized on whitespace unless surrounded by
-            quotes. For example, _GaN "band gap"_ tokenizes to _GaN_ and _band
-            gap_ where each token must match the entire phrase in a record.
-            Tokens are executed with boolean OR logic. Therefore, _GaN "band
-            gap"_ matches records that contain _GaN_ or _band gap_. Since simple
-            filters are, in this way, extremely inclusive operations, it is
-            typically recommended that relevancy scoring be turned on for the
-            query so that the records that match the most values are ranked the
-            highest.
+          $ref: '#/components/schemas/simple'
         id:
           type: array
           items:
-            type: object
-            description: An equality or range filter against a single field.
-            properties:
-              logic:
-                type: string
-                enum:
-                  - SHOULD
-                  - MUST
-                  - MUST_NOT
-                  - OPTIONAL
-                  - null
-                nullable: true
-                default: null
-                description: >-
-                  When multiple queries appear in a list, the logic defines the
-                  way in which each will be interpreted. "SHOULD" is equivalent
-                  to boolean _OR_ logic. "MUST" is eqivalent to boolean _AND_
-                  logic. "MUST_NOT" is equivalent to boolean _NOT_ logic.
-                  "OPTIONAL" does not have an effect on whether a record
-                  matches; the specific query element is ignored during the
-                  primary search for records in scope. However, "OPTIONAL"
-                  queries are executed on subsequent steps such as extractions
-                  and data statistics gathering. When logic is set to a null
-                  value, it is interpreted as "SHOULD".
-              exists:
-                type: boolean
-                nullable: true
-                default: null
-                description: >-
-                  When set to true, the field must exist and have a non-null
-                  value. When set to false, the field must not exist or, if it
-                  does exist, must have a null value.
-              equal:
-                type: string
-                nullable: true
-                default: null
-                description: >-
-                  The string the match. This is executed as a phrase query
-                  meaning that the exact phrase in this string must be present
-                  in a record to match.
-              min:
-                type: string
-                nullable: true
-                default: null
-                description: >-
-                  If the input value is non-numeric, or the field being searched
-                  does not support numbers, then this is the lexographical
-                  minimum of values to match. If the input value is numeric and
-                  the field being searched supports numbers, then this is the
-                  minimum numeric value to match.
-              max:
-                type: string
-                nullable: true
-                default: null
-                description: >-
-                  If the input value is non-numeric, or the field being searched
-                  does not support numbers, then this is the lexographical
-                  maximum of values to match. If the input value is numeric and
-                  the field being searched supports numbers, then this is the
-                  maximum numeric value to match.
-              exact:
-                type: boolean
-                nullable: true
-                default: null
-                description: >-
-                  When the value in the in _equal_ field must match exactly the
-                  entire value in the field being searched. For example, with
-                  _equal_ set to "gap" and _exact_ set to false, the filter will
-                  match against a field that contains "band gap". However, with
-                  _equal_ set to "gap" and _exact_ set to false, the filter will
-                  not match "band gap"; it will only match against a field that
-                  contains only the word "gap".
-              filter:
-                type: array
-                items:
-                  $ref: '#/Filter'
-                nullable: true
-                default: null
-                description: >-
-                  Nested filters. Filters can nest as deeply as needed in order
-                  to create complex combinations of boolean logical operations.
+            $ref: '#/components/schemas/Filter'
           nullable: true
           default: null
           description: Queries against the ID of a dataset.
         isFeatured:
           type: array
           items:
-            type: object
-            description: A filter against the value of a boolean-typed field.
-            properties:
-              logic:
-                type: string
-                enum:
-                  - SHOULD
-                  - MUST
-                  - MUST_NOT
-                  - OPTIONAL
-                  - null
-                nullable: true
-                default: null
-                description: >-
-                  When multiple queries appear in a list, the logic defines the
-                  way in which each will be interpreted. "SHOULD" is equivalent
-                  to boolean _OR_ logic. "MUST" is eqivalent to boolean _AND_
-                  logic. "MUST_NOT" is equivalent to boolean _NOT_ logic.
-                  "OPTIONAL" does not have an effect on whether a record
-                  matches; the specific query element is ignored during the
-                  primary search for records in scope. However, "OPTIONAL"
-                  queries are executed on subsequent steps such as extractions
-                  and data statistics gathering. When logic is set to a null
-                  value, it is interpreted as "SHOULD".
-              exists:
-                type: boolean
-                nullable: true
-                default: null
-                description: >-
-                  When set to true, the field must exist and have a non-null
-                  value. When set to false, the field must not exist or, if it
-                  does exist, must have a null value.
-              equal:
-                type: boolean
-                nullable: true
-                default: null
-                description: True to match true values. False to match false values.
-              filter:
-                type: array
-                items:
-                  $ref: '#/BooleanFilter'
-                nullable: true
-                default: null
-                description: >-
-                  Nested boolean filters. Filters can nest as deeply as needed
-                  in order to create complex combinations of boolean logical
-                  operations.
+            $ref: '#/components/schemas/BooleanFilter'
           nullable: true
           default: null
           description: Queries against the isFeatured field of a dataset.
         name:
           type: array
           items:
-            type: object
-            description: An equality or range filter against a single field.
-            properties:
-              logic:
-                type: string
-                enum:
-                  - SHOULD
-                  - MUST
-                  - MUST_NOT
-                  - OPTIONAL
-                  - null
-                nullable: true
-                default: null
-                description: >-
-                  When multiple queries appear in a list, the logic defines the
-                  way in which each will be interpreted. "SHOULD" is equivalent
-                  to boolean _OR_ logic. "MUST" is eqivalent to boolean _AND_
-                  logic. "MUST_NOT" is equivalent to boolean _NOT_ logic.
-                  "OPTIONAL" does not have an effect on whether a record
-                  matches; the specific query element is ignored during the
-                  primary search for records in scope. However, "OPTIONAL"
-                  queries are executed on subsequent steps such as extractions
-                  and data statistics gathering. When logic is set to a null
-                  value, it is interpreted as "SHOULD".
-              exists:
-                type: boolean
-                nullable: true
-                default: null
-                description: >-
-                  When set to true, the field must exist and have a non-null
-                  value. When set to false, the field must not exist or, if it
-                  does exist, must have a null value.
-              equal:
-                type: string
-                nullable: true
-                default: null
-                description: >-
-                  The string the match. This is executed as a phrase query
-                  meaning that the exact phrase in this string must be present
-                  in a record to match.
-              min:
-                type: string
-                nullable: true
-                default: null
-                description: >-
-                  If the input value is non-numeric, or the field being searched
-                  does not support numbers, then this is the lexographical
-                  minimum of values to match. If the input value is numeric and
-                  the field being searched supports numbers, then this is the
-                  minimum numeric value to match.
-              max:
-                type: string
-                nullable: true
-                default: null
-                description: >-
-                  If the input value is non-numeric, or the field being searched
-                  does not support numbers, then this is the lexographical
-                  maximum of values to match. If the input value is numeric and
-                  the field being searched supports numbers, then this is the
-                  maximum numeric value to match.
-              exact:
-                type: boolean
-                nullable: true
-                default: null
-                description: >-
-                  When the value in the in _equal_ field must match exactly the
-                  entire value in the field being searched. For example, with
-                  _equal_ set to "gap" and _exact_ set to false, the filter will
-                  match against a field that contains "band gap". However, with
-                  _equal_ set to "gap" and _exact_ set to false, the filter will
-                  not match "band gap"; it will only match against a field that
-                  contains only the word "gap".
-              filter:
-                type: array
-                items:
-                  $ref: '#/Filter'
-                nullable: true
-                default: null
-                description: >-
-                  Nested filters. Filters can nest as deeply as needed in order
-                  to create complex combinations of boolean logical operations.
+            $ref: '#/components/schemas/Filter'
           nullable: true
           default: null
           description: Queries against the name of a dataset.
         description:
           type: array
           items:
-            type: object
-            description: An equality or range filter against a single field.
-            properties:
-              logic:
-                type: string
-                enum:
-                  - SHOULD
-                  - MUST
-                  - MUST_NOT
-                  - OPTIONAL
-                  - null
-                nullable: true
-                default: null
-                description: >-
-                  When multiple queries appear in a list, the logic defines the
-                  way in which each will be interpreted. "SHOULD" is equivalent
-                  to boolean _OR_ logic. "MUST" is eqivalent to boolean _AND_
-                  logic. "MUST_NOT" is equivalent to boolean _NOT_ logic.
-                  "OPTIONAL" does not have an effect on whether a record
-                  matches; the specific query element is ignored during the
-                  primary search for records in scope. However, "OPTIONAL"
-                  queries are executed on subsequent steps such as extractions
-                  and data statistics gathering. When logic is set to a null
-                  value, it is interpreted as "SHOULD".
-              exists:
-                type: boolean
-                nullable: true
-                default: null
-                description: >-
-                  When set to true, the field must exist and have a non-null
-                  value. When set to false, the field must not exist or, if it
-                  does exist, must have a null value.
-              equal:
-                type: string
-                nullable: true
-                default: null
-                description: >-
-                  The string the match. This is executed as a phrase query
-                  meaning that the exact phrase in this string must be present
-                  in a record to match.
-              min:
-                type: string
-                nullable: true
-                default: null
-                description: >-
-                  If the input value is non-numeric, or the field being searched
-                  does not support numbers, then this is the lexographical
-                  minimum of values to match. If the input value is numeric and
-                  the field being searched supports numbers, then this is the
-                  minimum numeric value to match.
-              max:
-                type: string
-                nullable: true
-                default: null
-                description: >-
-                  If the input value is non-numeric, or the field being searched
-                  does not support numbers, then this is the lexographical
-                  maximum of values to match. If the input value is numeric and
-                  the field being searched supports numbers, then this is the
-                  maximum numeric value to match.
-              exact:
-                type: boolean
-                nullable: true
-                default: null
-                description: >-
-                  When the value in the in _equal_ field must match exactly the
-                  entire value in the field being searched. For example, with
-                  _equal_ set to "gap" and _exact_ set to false, the filter will
-                  match against a field that contains "band gap". However, with
-                  _equal_ set to "gap" and _exact_ set to false, the filter will
-                  not match "band gap"; it will only match against a field that
-                  contains only the word "gap".
-              filter:
-                type: array
-                items:
-                  $ref: '#/Filter'
-                nullable: true
-                default: null
-                description: >-
-                  Nested filters. Filters can nest as deeply as needed in order
-                  to create complex combinations of boolean logical operations.
+            $ref: '#/components/schemas/Filter'
           nullable: true
           default: null
           description: Queries against the description of a dataset.
         owner:
           type: array
           items:
-            type: object
-            description: An equality or range filter against a single field.
-            properties:
-              logic:
-                type: string
-                enum:
-                  - SHOULD
-                  - MUST
-                  - MUST_NOT
-                  - OPTIONAL
-                  - null
-                nullable: true
-                default: null
-                description: >-
-                  When multiple queries appear in a list, the logic defines the
-                  way in which each will be interpreted. "SHOULD" is equivalent
-                  to boolean _OR_ logic. "MUST" is eqivalent to boolean _AND_
-                  logic. "MUST_NOT" is equivalent to boolean _NOT_ logic.
-                  "OPTIONAL" does not have an effect on whether a record
-                  matches; the specific query element is ignored during the
-                  primary search for records in scope. However, "OPTIONAL"
-                  queries are executed on subsequent steps such as extractions
-                  and data statistics gathering. When logic is set to a null
-                  value, it is interpreted as "SHOULD".
-              exists:
-                type: boolean
-                nullable: true
-                default: null
-                description: >-
-                  When set to true, the field must exist and have a non-null
-                  value. When set to false, the field must not exist or, if it
-                  does exist, must have a null value.
-              equal:
-                type: string
-                nullable: true
-                default: null
-                description: >-
-                  The string the match. This is executed as a phrase query
-                  meaning that the exact phrase in this string must be present
-                  in a record to match.
-              min:
-                type: string
-                nullable: true
-                default: null
-                description: >-
-                  If the input value is non-numeric, or the field being searched
-                  does not support numbers, then this is the lexographical
-                  minimum of values to match. If the input value is numeric and
-                  the field being searched supports numbers, then this is the
-                  minimum numeric value to match.
-              max:
-                type: string
-                nullable: true
-                default: null
-                description: >-
-                  If the input value is non-numeric, or the field being searched
-                  does not support numbers, then this is the lexographical
-                  maximum of values to match. If the input value is numeric and
-                  the field being searched supports numbers, then this is the
-                  maximum numeric value to match.
-              exact:
-                type: boolean
-                nullable: true
-                default: null
-                description: >-
-                  When the value in the in _equal_ field must match exactly the
-                  entire value in the field being searched. For example, with
-                  _equal_ set to "gap" and _exact_ set to false, the filter will
-                  match against a field that contains "band gap". However, with
-                  _equal_ set to "gap" and _exact_ set to false, the filter will
-                  not match "band gap"; it will only match against a field that
-                  contains only the word "gap".
-              filter:
-                type: array
-                items:
-                  $ref: '#/Filter'
-                nullable: true
-                default: null
-                description: >-
-                  Nested filters. Filters can nest as deeply as needed in order
-                  to create complex combinations of boolean logical operations.
+            $ref: '#/components/schemas/Filter'
           nullable: true
           default: null
           description: Queries against the name of the owner of a dataset.
         email:
           type: array
           items:
-            type: object
-            description: An equality or range filter against a single field.
-            properties:
-              logic:
-                type: string
-                enum:
-                  - SHOULD
-                  - MUST
-                  - MUST_NOT
-                  - OPTIONAL
-                  - null
-                nullable: true
-                default: null
-                description: >-
-                  When multiple queries appear in a list, the logic defines the
-                  way in which each will be interpreted. "SHOULD" is equivalent
-                  to boolean _OR_ logic. "MUST" is eqivalent to boolean _AND_
-                  logic. "MUST_NOT" is equivalent to boolean _NOT_ logic.
-                  "OPTIONAL" does not have an effect on whether a record
-                  matches; the specific query element is ignored during the
-                  primary search for records in scope. However, "OPTIONAL"
-                  queries are executed on subsequent steps such as extractions
-                  and data statistics gathering. When logic is set to a null
-                  value, it is interpreted as "SHOULD".
-              exists:
-                type: boolean
-                nullable: true
-                default: null
-                description: >-
-                  When set to true, the field must exist and have a non-null
-                  value. When set to false, the field must not exist or, if it
-                  does exist, must have a null value.
-              equal:
-                type: string
-                nullable: true
-                default: null
-                description: >-
-                  The string the match. This is executed as a phrase query
-                  meaning that the exact phrase in this string must be present
-                  in a record to match.
-              min:
-                type: string
-                nullable: true
-                default: null
-                description: >-
-                  If the input value is non-numeric, or the field being searched
-                  does not support numbers, then this is the lexographical
-                  minimum of values to match. If the input value is numeric and
-                  the field being searched supports numbers, then this is the
-                  minimum numeric value to match.
-              max:
-                type: string
-                nullable: true
-                default: null
-                description: >-
-                  If the input value is non-numeric, or the field being searched
-                  does not support numbers, then this is the lexographical
-                  maximum of values to match. If the input value is numeric and
-                  the field being searched supports numbers, then this is the
-                  maximum numeric value to match.
-              exact:
-                type: boolean
-                nullable: true
-                default: null
-                description: >-
-                  When the value in the in _equal_ field must match exactly the
-                  entire value in the field being searched. For example, with
-                  _equal_ set to "gap" and _exact_ set to false, the filter will
-                  match against a field that contains "band gap". However, with
-                  _equal_ set to "gap" and _exact_ set to false, the filter will
-                  not match "band gap"; it will only match against a field that
-                  contains only the word "gap".
-              filter:
-                type: array
-                items:
-                  $ref: '#/Filter'
-                nullable: true
-                default: null
-                description: >-
-                  Nested filters. Filters can nest as deeply as needed in order
-                  to create complex combinations of boolean logical operations.
+            $ref: '#/components/schemas/Filter'
           nullable: true
           default: null
           description: Queries against the email address of the owner of a dataset.
         query:
           type: array
           items:
-            $ref: '#/DatasetQuery'
+            $ref: '#/components/schemas/DatasetQuery'
           nullable: true
           default: null
           description: >-
@@ -621,33 +137,9 @@ components:
       description: A filter against the value of a boolean-typed field.
       properties:
         logic:
-          type: string
-          enum:
-            - SHOULD
-            - MUST
-            - MUST_NOT
-            - OPTIONAL
-            - null
-          nullable: true
-          default: null
-          description: >-
-            When multiple queries appear in a list, the logic defines the way in
-            which each will be interpreted. "SHOULD" is equivalent to boolean
-            _OR_ logic. "MUST" is eqivalent to boolean _AND_ logic. "MUST_NOT"
-            is equivalent to boolean _NOT_ logic. "OPTIONAL" does not have an
-            effect on whether a record matches; the specific query element is
-            ignored during the primary search for records in scope. However,
-            "OPTIONAL" queries are executed on subsequent steps such as
-            extractions and data statistics gathering. When logic is set to a
-            null value, it is interpreted as "SHOULD".
+          $ref: '#/components/schemas/logic'
         exists:
-          type: boolean
-          nullable: true
-          default: null
-          description: >-
-            When set to true, the field must exist and have a non-null value.
-            When set to false, the field must not exist or, if it does exist,
-            must have a null value.
+          $ref: '#/components/schemas/exists'
         equal:
           type: boolean
           nullable: true
@@ -656,7 +148,7 @@ components:
         filter:
           type: array
           items:
-            $ref: '#/BooleanFilter'
+            $ref: '#/components/schemas/BooleanFilter'
           nullable: true
           default: null
           description: >-
@@ -667,33 +159,9 @@ components:
       description: An equality or range filter against a single field.
       properties:
         logic:
-          type: string
-          enum:
-            - SHOULD
-            - MUST
-            - MUST_NOT
-            - OPTIONAL
-            - null
-          nullable: true
-          default: null
-          description: >-
-            When multiple queries appear in a list, the logic defines the way in
-            which each will be interpreted. "SHOULD" is equivalent to boolean
-            _OR_ logic. "MUST" is eqivalent to boolean _AND_ logic. "MUST_NOT"
-            is equivalent to boolean _NOT_ logic. "OPTIONAL" does not have an
-            effect on whether a record matches; the specific query element is
-            ignored during the primary search for records in scope. However,
-            "OPTIONAL" queries are executed on subsequent steps such as
-            extractions and data statistics gathering. When logic is set to a
-            null value, it is interpreted as "SHOULD".
+          $ref: '#/components/schemas/logic'
         exists:
-          type: boolean
-          nullable: true
-          default: null
-          description: >-
-            When set to true, the field must exist and have a non-null value.
-            When set to false, the field must not exist or, if it does exist,
-            must have a null value.
+          $ref: '#/components/schemas/exists'
         equal:
           type: string
           nullable: true
@@ -736,7 +204,7 @@ components:
         filter:
           type: array
           items:
-            $ref: '#/Filter'
+            $ref: '#/components/schemas/Filter'
           nullable: true
           default: null
           description: >-
@@ -814,319 +282,76 @@ components:
         ids:
           type: array
           items:
-            type: object
-            description: null
-            properties: null
+            $ref: '#/components/schemas/Id'
           nullable: true
           default: null
           description: Any identifiers (named labels) that apply to the system.
         classifications:
           type: array
           items:
-            type: object
-            description: null
-            properties: null
+            $ref: '#/components/schemas/Classification'
           nullable: true
           default: null
           description: >-
             Any classifications (unambiguous categories) that apply to the
             system.
         source:
-          type: object
-          description: The source (producer) of a system.
-          properties:
-            producer:
-              type: string
-              nullable: true
-              default: null
-              description: The producing entity of the system.
-            url:
-              type: string
-              nullable: true
-              default: null
-              description: The URL at which the producer can be accessed.
-            tags:
-              type: array
-              items:
-                type: string
-              nullable: true
-              default: null
-              description: Any number of tags to apply to the object.
+          nullable: true
+          default: null
+          $ref: '#/components/schemas/Source'
         quantity:
-          type: object
-          description: null
-          properties:
-            actualMassPercent:
-              type: null
-              nullable: true
-              default: null
-              description: null
-            actualVolumePercent:
-              type: null
-              nullable: true
-              default: null
-              description: null
-            actualNumberPercent:
-              type: null
-              nullable: true
-              default: null
-              description: null
-            idealMassPercent:
-              type: null
-              nullable: true
-              default: null
-              description: null
-            idealVolumePercent:
-              type: null
-              nullable: true
-              default: null
-              description: null
-            idealNumberPercent:
-              type: null
-              nullable: true
-              default: null
-              description: null
-            tags:
-              type: array
-              items:
-                type: string
-              nullable: true
-              default: null
-              description: Any number of tags to apply to the object.
+          nullable: true
+          default: null
+          $ref: '#/components/schemas/Quantity'
         properties:
           type: array
           items:
-            type: object
-            description: null
-            properties: null
+            $ref: '#/components/schemas/Property'
           nullable: true
           default: null
           description: Observations made on the system.
         preparation:
           type: array
           items:
-            type: object
-            description: null
-            properties: null
+            $ref: '#/components/schemas/ProcessStep'
           nullable: true
           default: null
           description: An ordered list of steps used to produce the system.
         subSystems:
           type: array
           items:
-            $ref: '#/System'
+            $ref: '#/components/schemas/System'
           nullable: true
           default: null
           description: Any sub-systems of this system.
         references:
           type: array
           items:
-            type: object
-            description: null
-            properties: null
+            $ref: '#/components/schemas/Reference'
           nullable: true
           default: null
           description: Published references for this sytem.
         contacts:
           type: array
           items:
-            type: object
-            description: null
-            properties: null
+            $ref: '#/components/schemas/Person'
           nullable: true
           default: null
           description: People to contact for information about the system.
         licenses:
           type: array
           items:
-            type: object
-            description: null
-            properties: null
+            $ref: '#/components/schemas/License'
           nullable: true
           default: null
           description: Licenses that apply to the data in this record.
         tags:
-          type: array
-          items:
-            type: string
-          nullable: true
-          default: null
-          description: Any number of tags to apply to the object.
+          $ref: '#/components/schemas/tags'
     ChemicalSystem:
       type: object
       description: A physical system that contains chemical information.
       allOf:
-        - type: object
-          description: A generic representation of a physical system.
-          discriminator:
-            propertyName: type
-            mapping:
-              system: System
-              system.chemical: ChemicalSystem
-          required:
-            - type
-          properties:
-            type:
-              type: string
-              enum:
-                - system
-                - system.chemical
-              description: Internal system type for this object.
-            uid:
-              type: string
-              nullable: true
-              default: null
-              description: >-
-                An ID for this system that is unique within the dataset that
-                contains it on Citrination.
-            names:
-              type: array
-              items:
-                type: string
-              nullable: true
-              default: null
-              description: Common names of the system.
-            ids:
-              type: array
-              items:
-                type: object
-                description: null
-                properties: null
-              nullable: true
-              default: null
-              description: Any identifiers (named labels) that apply to the system.
-            classifications:
-              type: array
-              items:
-                type: object
-                description: null
-                properties: null
-              nullable: true
-              default: null
-              description: >-
-                Any classifications (unambiguous categories) that apply to the
-                system.
-            source:
-              type: object
-              description: The source (producer) of a system.
-              properties:
-                producer:
-                  type: string
-                  nullable: true
-                  default: null
-                  description: The producing entity of the system.
-                url:
-                  type: string
-                  nullable: true
-                  default: null
-                  description: The URL at which the producer can be accessed.
-                tags:
-                  type: array
-                  items:
-                    type: string
-                  nullable: true
-                  default: null
-                  description: Any number of tags to apply to the object.
-            quantity:
-              type: object
-              description: null
-              properties:
-                actualMassPercent:
-                  type: null
-                  nullable: true
-                  default: null
-                  description: null
-                actualVolumePercent:
-                  type: null
-                  nullable: true
-                  default: null
-                  description: null
-                actualNumberPercent:
-                  type: null
-                  nullable: true
-                  default: null
-                  description: null
-                idealMassPercent:
-                  type: null
-                  nullable: true
-                  default: null
-                  description: null
-                idealVolumePercent:
-                  type: null
-                  nullable: true
-                  default: null
-                  description: null
-                idealNumberPercent:
-                  type: null
-                  nullable: true
-                  default: null
-                  description: null
-                tags:
-                  type: array
-                  items:
-                    type: string
-                  nullable: true
-                  default: null
-                  description: Any number of tags to apply to the object.
-            properties:
-              type: array
-              items:
-                type: object
-                description: null
-                properties: null
-              nullable: true
-              default: null
-              description: Observations made on the system.
-            preparation:
-              type: array
-              items:
-                type: object
-                description: null
-                properties: null
-              nullable: true
-              default: null
-              description: An ordered list of steps used to produce the system.
-            subSystems:
-              type: array
-              items:
-                $ref: '#/System'
-              nullable: true
-              default: null
-              description: Any sub-systems of this system.
-            references:
-              type: array
-              items:
-                type: object
-                description: null
-                properties: null
-              nullable: true
-              default: null
-              description: Published references for this sytem.
-            contacts:
-              type: array
-              items:
-                type: object
-                description: null
-                properties: null
-              nullable: true
-              default: null
-              description: People to contact for information about the system.
-            licenses:
-              type: array
-              items:
-                type: object
-                description: null
-                properties: null
-              nullable: true
-              default: null
-              description: Licenses that apply to the data in this record.
-            tags:
-              type: array
-              items:
-                type: string
-              nullable: true
-              default: null
-              description: Any number of tags to apply to the object.
+        - $ref: '#/components/schemas/System'
         - properties:
             chemicalFormula:
               type: string
@@ -1136,9 +361,7 @@ components:
             composition:
               type: array
               items:
-                type: object
-                description: null
-                properties: null
+                $ref: '#/components/schemas/Composition'
               nullable: true
               default: null
               description: The list of chemical elements in the system and their amounts.
@@ -1225,12 +448,7 @@ components:
           default: null
           description: null
         tags:
-          type: array
-          items:
-            type: string
-          nullable: true
-          default: null
-          description: Any number of tags to apply to the object.
+          $ref: '#/components/schemas/tags'
     Reference:
       type: object
       description: null
@@ -1258,12 +476,7 @@ components:
           default: null
           description: The URL at which the producer can be accessed.
         tags:
-          type: array
-          items:
-            type: string
-          nullable: true
-          default: null
-          description: Any number of tags to apply to the object.
+          $ref: '#/components/schemas/tags'
     Value:
       type: object
       description: null
