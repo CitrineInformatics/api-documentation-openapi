@@ -6,7 +6,7 @@ allOf:
         query:
             type: array
             items:
-                $ref: ../../core/query/DataQuery
+                $ref: ../../core/query/DataQuery.yaml
             nullable: true
             default: null
             description: Queries against the content of datasets and/or PIF records.

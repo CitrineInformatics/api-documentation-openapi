@@ -95,7 +95,517 @@ definitions:
           query:
             type: array
             items:
-              $ref: ../../core/query/DataQuery
+              type: object
+              description: A query against dataset metadata and/or PIFs
+              properties:
+                logic:
+                  type: string
+                  enum:
+                    - SHOULD
+                    - MUST
+                    - MUST_NOT
+                    - OPTIONAL
+                    - null
+                  nullable: true
+                  default: null
+                  description: >-
+                    When multiple queries appear in a list, the logic defines
+                    the way in which each will be interpreted. "SHOULD" is
+                    equivalent to boolean _OR_ logic. "MUST" is eqivalent to
+                    boolean _AND_ logic. "MUST_NOT" is equivalent to boolean
+                    _NOT_ logic. "OPTIONAL" does not have an effect on whether a
+                    record matches; the specific query element is ignored during
+                    the primary search for records in scope. However, "OPTIONAL"
+                    queries are executed on subsequent steps such as extractions
+                    and data statistics gathering. When logic is set to a null
+                    value, it is interpreted as "SHOULD".
+                simple:
+                  type: string
+                  nullable: true
+                  default: null
+                  description: >-
+                    A string that is run against all fields in this object and
+                    their children. Strings are tokenized on whitespace unless
+                    surrounded by quotes. For example, _GaN "band gap"_
+                    tokenizes to _GaN_ and _band gap_ where each token must
+                    match the entire phrase in a record. Tokens are executed
+                    with boolean OR logic. Therefore, _GaN "band gap"_ matches
+                    records that contain _GaN_ or _band gap_. Since simple
+                    filters are, in this way, extremely inclusive operations, it
+                    is typically recommended that relevancy scoring be turned on
+                    for the query so that the records that match the most values
+                    are ranked the highest.
+                dataset:
+                  type: array
+                  items:
+                    type: object
+                    description: A query against a Dataset.
+                    properties:
+                      logic:
+                        type: string
+                        enum:
+                          - SHOULD
+                          - MUST
+                          - MUST_NOT
+                          - OPTIONAL
+                          - null
+                        nullable: true
+                        default: null
+                        description: >-
+                          When multiple queries appear in a list, the logic
+                          defines the way in which each will be interpreted.
+                          "SHOULD" is equivalent to boolean _OR_ logic. "MUST"
+                          is eqivalent to boolean _AND_ logic. "MUST_NOT" is
+                          equivalent to boolean _NOT_ logic. "OPTIONAL" does not
+                          have an effect on whether a record matches; the
+                          specific query element is ignored during the primary
+                          search for records in scope. However, "OPTIONAL"
+                          queries are executed on subsequent steps such as
+                          extractions and data statistics gathering. When logic
+                          is set to a null value, it is interpreted as "SHOULD".
+                      simple:
+                        type: string
+                        nullable: true
+                        default: null
+                        description: >-
+                          A string that is run against all fields in this object
+                          and their children. Strings are tokenized on
+                          whitespace unless surrounded by quotes. For example,
+                          _GaN "band gap"_ tokenizes to _GaN_ and _band gap_
+                          where each token must match the entire phrase in a
+                          record. Tokens are executed with boolean OR logic.
+                          Therefore, _GaN "band gap"_ matches records that
+                          contain _GaN_ or _band gap_. Since simple filters are,
+                          in this way, extremely inclusive operations, it is
+                          typically recommended that relevancy scoring be turned
+                          on for the query so that the records that match the
+                          most values are ranked the highest.
+                      id:
+                        type: array
+                        items:
+                          type: object
+                          description: An equality or range filter against a single field.
+                          properties:
+                            logic:
+                              $ref: '$ref: '
+                            exists:
+                              $ref: '$ref: '
+                            equal:
+                              type: string
+                              nullable: true
+                              default: null
+                              description: >-
+                                The string the match. This is executed as a
+                                phrase query meaning that the exact phrase in
+                                this string must be present in a record to
+                                match.
+                            min:
+                              type: string
+                              nullable: true
+                              default: null
+                              description: >-
+                                If the input value is non-numeric, or the field
+                                being searched does not support numbers, then
+                                this is the lexographical minimum of values to
+                                match. If the input value is numeric and the
+                                field being searched supports numbers, then this
+                                is the minimum numeric value to match.
+                            max:
+                              type: string
+                              nullable: true
+                              default: null
+                              description: >-
+                                If the input value is non-numeric, or the field
+                                being searched does not support numbers, then
+                                this is the lexographical maximum of values to
+                                match. If the input value is numeric and the
+                                field being searched supports numbers, then this
+                                is the maximum numeric value to match.
+                            exact:
+                              type: boolean
+                              nullable: true
+                              default: null
+                              description: >-
+                                When the value in the in _equal_ field must
+                                match exactly the entire value in the field
+                                being searched. For example, with _equal_ set to
+                                "gap" and _exact_ set to false, the filter will
+                                match against a field that contains "band gap".
+                                However, with _equal_ set to "gap" and _exact_
+                                set to false, the filter will not match "band
+                                gap"; it will only match against a field that
+                                contains only the word "gap".
+                            filter:
+                              type: array
+                              items:
+                                $ref: '#/components/schemas/Filter'
+                              nullable: true
+                              default: null
+                              description: >-
+                                Nested filters. Filters can nest as deeply as
+                                needed in order to create complex combinations
+                                of boolean logical operations.
+                        nullable: true
+                        default: null
+                        description: Queries against the ID of a dataset.
+                      isFeatured:
+                        type: array
+                        items:
+                          type: object
+                          description: A filter against the value of a boolean-typed field.
+                          properties:
+                            logic:
+                              $ref: '$ref: '
+                            exists:
+                              $ref: '$ref: '
+                            equal:
+                              type: boolean
+                              nullable: true
+                              default: null
+                              description: >-
+                                True to match true values. False to match false
+                                values.
+                            filter:
+                              type: array
+                              items:
+                                $ref: '#/components/schemas/BooleanFilter'
+                              nullable: true
+                              default: null
+                              description: >-
+                                Nested boolean filters. Filters can nest as
+                                deeply as needed in order to create complex
+                                combinations of boolean logical operations.
+                        nullable: true
+                        default: null
+                        description: Queries against the isFeatured field of a dataset.
+                      name:
+                        type: array
+                        items:
+                          type: object
+                          description: An equality or range filter against a single field.
+                          properties:
+                            logic:
+                              $ref: '$ref: '
+                            exists:
+                              $ref: '$ref: '
+                            equal:
+                              type: string
+                              nullable: true
+                              default: null
+                              description: >-
+                                The string the match. This is executed as a
+                                phrase query meaning that the exact phrase in
+                                this string must be present in a record to
+                                match.
+                            min:
+                              type: string
+                              nullable: true
+                              default: null
+                              description: >-
+                                If the input value is non-numeric, or the field
+                                being searched does not support numbers, then
+                                this is the lexographical minimum of values to
+                                match. If the input value is numeric and the
+                                field being searched supports numbers, then this
+                                is the minimum numeric value to match.
+                            max:
+                              type: string
+                              nullable: true
+                              default: null
+                              description: >-
+                                If the input value is non-numeric, or the field
+                                being searched does not support numbers, then
+                                this is the lexographical maximum of values to
+                                match. If the input value is numeric and the
+                                field being searched supports numbers, then this
+                                is the maximum numeric value to match.
+                            exact:
+                              type: boolean
+                              nullable: true
+                              default: null
+                              description: >-
+                                When the value in the in _equal_ field must
+                                match exactly the entire value in the field
+                                being searched. For example, with _equal_ set to
+                                "gap" and _exact_ set to false, the filter will
+                                match against a field that contains "band gap".
+                                However, with _equal_ set to "gap" and _exact_
+                                set to false, the filter will not match "band
+                                gap"; it will only match against a field that
+                                contains only the word "gap".
+                            filter:
+                              type: array
+                              items:
+                                $ref: '#/components/schemas/Filter'
+                              nullable: true
+                              default: null
+                              description: >-
+                                Nested filters. Filters can nest as deeply as
+                                needed in order to create complex combinations
+                                of boolean logical operations.
+                        nullable: true
+                        default: null
+                        description: Queries against the name of a dataset.
+                      description:
+                        type: array
+                        items:
+                          type: object
+                          description: An equality or range filter against a single field.
+                          properties:
+                            logic:
+                              $ref: '$ref: '
+                            exists:
+                              $ref: '$ref: '
+                            equal:
+                              type: string
+                              nullable: true
+                              default: null
+                              description: >-
+                                The string the match. This is executed as a
+                                phrase query meaning that the exact phrase in
+                                this string must be present in a record to
+                                match.
+                            min:
+                              type: string
+                              nullable: true
+                              default: null
+                              description: >-
+                                If the input value is non-numeric, or the field
+                                being searched does not support numbers, then
+                                this is the lexographical minimum of values to
+                                match. If the input value is numeric and the
+                                field being searched supports numbers, then this
+                                is the minimum numeric value to match.
+                            max:
+                              type: string
+                              nullable: true
+                              default: null
+                              description: >-
+                                If the input value is non-numeric, or the field
+                                being searched does not support numbers, then
+                                this is the lexographical maximum of values to
+                                match. If the input value is numeric and the
+                                field being searched supports numbers, then this
+                                is the maximum numeric value to match.
+                            exact:
+                              type: boolean
+                              nullable: true
+                              default: null
+                              description: >-
+                                When the value in the in _equal_ field must
+                                match exactly the entire value in the field
+                                being searched. For example, with _equal_ set to
+                                "gap" and _exact_ set to false, the filter will
+                                match against a field that contains "band gap".
+                                However, with _equal_ set to "gap" and _exact_
+                                set to false, the filter will not match "band
+                                gap"; it will only match against a field that
+                                contains only the word "gap".
+                            filter:
+                              type: array
+                              items:
+                                $ref: '#/components/schemas/Filter'
+                              nullable: true
+                              default: null
+                              description: >-
+                                Nested filters. Filters can nest as deeply as
+                                needed in order to create complex combinations
+                                of boolean logical operations.
+                        nullable: true
+                        default: null
+                        description: Queries against the description of a dataset.
+                      owner:
+                        type: array
+                        items:
+                          type: object
+                          description: An equality or range filter against a single field.
+                          properties:
+                            logic:
+                              $ref: '$ref: '
+                            exists:
+                              $ref: '$ref: '
+                            equal:
+                              type: string
+                              nullable: true
+                              default: null
+                              description: >-
+                                The string the match. This is executed as a
+                                phrase query meaning that the exact phrase in
+                                this string must be present in a record to
+                                match.
+                            min:
+                              type: string
+                              nullable: true
+                              default: null
+                              description: >-
+                                If the input value is non-numeric, or the field
+                                being searched does not support numbers, then
+                                this is the lexographical minimum of values to
+                                match. If the input value is numeric and the
+                                field being searched supports numbers, then this
+                                is the minimum numeric value to match.
+                            max:
+                              type: string
+                              nullable: true
+                              default: null
+                              description: >-
+                                If the input value is non-numeric, or the field
+                                being searched does not support numbers, then
+                                this is the lexographical maximum of values to
+                                match. If the input value is numeric and the
+                                field being searched supports numbers, then this
+                                is the maximum numeric value to match.
+                            exact:
+                              type: boolean
+                              nullable: true
+                              default: null
+                              description: >-
+                                When the value in the in _equal_ field must
+                                match exactly the entire value in the field
+                                being searched. For example, with _equal_ set to
+                                "gap" and _exact_ set to false, the filter will
+                                match against a field that contains "band gap".
+                                However, with _equal_ set to "gap" and _exact_
+                                set to false, the filter will not match "band
+                                gap"; it will only match against a field that
+                                contains only the word "gap".
+                            filter:
+                              type: array
+                              items:
+                                $ref: '#/components/schemas/Filter'
+                              nullable: true
+                              default: null
+                              description: >-
+                                Nested filters. Filters can nest as deeply as
+                                needed in order to create complex combinations
+                                of boolean logical operations.
+                        nullable: true
+                        default: null
+                        description: Queries against the name of the owner of a dataset.
+                      email:
+                        type: array
+                        items:
+                          type: object
+                          description: An equality or range filter against a single field.
+                          properties:
+                            logic:
+                              $ref: '$ref: '
+                            exists:
+                              $ref: '$ref: '
+                            equal:
+                              type: string
+                              nullable: true
+                              default: null
+                              description: >-
+                                The string the match. This is executed as a
+                                phrase query meaning that the exact phrase in
+                                this string must be present in a record to
+                                match.
+                            min:
+                              type: string
+                              nullable: true
+                              default: null
+                              description: >-
+                                If the input value is non-numeric, or the field
+                                being searched does not support numbers, then
+                                this is the lexographical minimum of values to
+                                match. If the input value is numeric and the
+                                field being searched supports numbers, then this
+                                is the minimum numeric value to match.
+                            max:
+                              type: string
+                              nullable: true
+                              default: null
+                              description: >-
+                                If the input value is non-numeric, or the field
+                                being searched does not support numbers, then
+                                this is the lexographical maximum of values to
+                                match. If the input value is numeric and the
+                                field being searched supports numbers, then this
+                                is the maximum numeric value to match.
+                            exact:
+                              type: boolean
+                              nullable: true
+                              default: null
+                              description: >-
+                                When the value in the in _equal_ field must
+                                match exactly the entire value in the field
+                                being searched. For example, with _equal_ set to
+                                "gap" and _exact_ set to false, the filter will
+                                match against a field that contains "band gap".
+                                However, with _equal_ set to "gap" and _exact_
+                                set to false, the filter will not match "band
+                                gap"; it will only match against a field that
+                                contains only the word "gap".
+                            filter:
+                              type: array
+                              items:
+                                $ref: '#/components/schemas/Filter'
+                              nullable: true
+                              default: null
+                              description: >-
+                                Nested filters. Filters can nest as deeply as
+                                needed in order to create complex combinations
+                                of boolean logical operations.
+                        nullable: true
+                        default: null
+                        description: >-
+                          Queries against the email address of the owner of a
+                          dataset.
+                      query:
+                        type: array
+                        items:
+                          $ref: ./DatasetQuery.yaml
+                        nullable: true
+                        default: null
+                        description: >-
+                          Nested dataset queries. Queries can nest as deeply as
+                          needed in order to create complex combinations of
+                          boolean logical operations.
+                  nullable: true
+                  default: null
+                  description: A list of queries to run against the content of datasets.
+                system:
+                  type: array
+                  items:
+                    type: object
+                    description: A query aginst the content of a PIF system.
+                    properties:
+                      logic:
+                        type: string
+                        enum:
+                          - SHOULD
+                          - MUST
+                          - MUST_NOT
+                          - OPTIONAL
+                          - null
+                        nullable: true
+                        default: null
+                        description: >-
+                          When multiple queries appear in a list, the logic
+                          defines the way in which each will be interpreted.
+                          "SHOULD" is equivalent to boolean _OR_ logic. "MUST"
+                          is eqivalent to boolean _AND_ logic. "MUST_NOT" is
+                          equivalent to boolean _NOT_ logic. "OPTIONAL" does not
+                          have an effect on whether a record matches; the
+                          specific query element is ignored during the primary
+                          search for records in scope. However, "OPTIONAL"
+                          queries are executed on subsequent steps such as
+                          extractions and data statistics gathering. When logic
+                          is set to a null value, it is interpreted as "SHOULD".
+                  nullable: true
+                  default: null
+                  description: A list of queries to run against the content of PIFs.
+                query:
+                  type: array
+                  items:
+                    $ref: ./DataQuery.yaml
+                  nullable: true
+                  default: null
+                  description: >-
+                    Nested data queries. Queries can nest as deeply as needed in
+                    order to create complex combinations of boolean logical
+                    operations.
             nullable: true
             default: null
             description: Queries against the content of datasets and/or PIF records.
@@ -208,6 +718,6 @@ definitions:
             nullable: true
             default: null
             description: >-
-              The current set of paginated hits again the query that was
+              The current set of paginated hits against the query that was
               executed.
 
