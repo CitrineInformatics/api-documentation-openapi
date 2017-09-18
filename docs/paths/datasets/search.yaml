@@ -9,9 +9,9 @@ post:
           description: A query for datasets and options for that query.
           required: true
           schema:
-              $ref: ../../../definitions/search/dataset/query/DatasetReturningQuery.yaml
+              $ref: ../../definitions/search/dataset/query/DatasetReturningQuery.yaml
     responses:
         '200':
             description: A search result with datasets that matched the input query.
             schema:
-                $ref: ../../../definitions/search/dataset/result/DatasetSearchResult.yaml
+                $ref: ../../definitions/search/dataset/result/DatasetSearchResult.yaml
