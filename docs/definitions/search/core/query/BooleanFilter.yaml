@@ -1,0 +1,19 @@
+type: object
+description: A filter against the value of a boolean-typed field.
+properties:
+    logic:
+        $ref: '$ref: '#/components/x-hiddenSchemas/logic'
+    exists:
+        $ref: '$ref: '#/components/x-hiddenSchemas/exists'
+    equal:
+        type: boolean
+        nullable: true
+        default: null
+        description: True to match true values. False to match false values.
+    filter:
+        type: array
+        items:
+            $ref: '#/components/schemas/BooleanFilter'
+        nullable: true
+        default: null
+        description: Nested boolean filters. Filters can nest as deeply as needed in order to create complex combinations of boolean logical operations.

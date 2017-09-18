@@ -1,0 +1,31 @@
+type: object
+description: A query that returns information about datasets.
+properties:
+    query:
+        type: array
+        items:
+            $ref: '#/components/schemas/DataQuery'
+        nullable: true
+        default: null
+        description: Queries against datasets and/or records.
+    fromIndex:
+        type: number
+        format: integer
+        nullable: true
+        default: null
+        description: The index of the first record to return. This is used for pagination through results.
+    size:
+        type: number
+        format: integer
+        nullable: true
+        default: null
+        description: The number of records to return. This is used for pagination through results. The number of hits that are returned will never be greater than this number, but may be smaller if there are fewer records in the scope of the query or if the maximum number of records that the server will allow to be returned is exceeded (this is typically 100).
+    randomResults:
+        type: boolean
+        nullable: true
+        default: null
+        description:
+    randomSeed:
+    scoreRelevance:
+    returnMaxScore:
+    countPifs:

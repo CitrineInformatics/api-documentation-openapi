@@ -1,0 +1,56 @@
+type: object
+description: A query against a Dataset.
+properties:
+    logic:
+        $ref: '$ref: '#/components/x-hiddenSchemas/logic'
+    simple:
+        $ref: '$ref: '#/components/x-hiddenSchemas/simple'
+    id:
+        type: array
+        items:
+            $ref: '#/components/schemas/Filter'
+        nullable: true
+        default: null
+        description: Queries against the ID of a dataset.
+    isFeatured:
+        type: array
+        items:
+            $ref: '#/components/schemas/BooleanFilter'
+        nullable: true
+        default: null
+        description: Queries against the isFeatured field of a dataset.
+    name:
+        type: array
+        items:
+            $ref: '#/components/schemas/Filter'
+        nullable: true
+        default: null
+        description: Queries against the name of a dataset.
+    description:
+        type: array
+        items:
+            $ref: '#/components/schemas/Filter'
+        nullable: true
+        default: null
+        description: Queries against the description of a dataset.
+    owner:
+        type: array
+        items:
+            $ref: '#/components/schemas/Filter'
+        nullable: true
+        default: null
+        description: Queries against the name of the owner of a dataset.
+    email:
+        type: array
+        items:
+            $ref: '#/components/schemas/Filter'
+        nullable: true
+        default: null
+        description: Queries against the email address of the owner of a dataset.
+    query:
+        type: array
+        items:
+            $ref: '#/components/schemas/DatasetQuery'
+        nullable: true
+        default: null
+        description: Nested dataset queries. Queries can nest as deeply as needed in order to create complex combinations of boolean logical operations.

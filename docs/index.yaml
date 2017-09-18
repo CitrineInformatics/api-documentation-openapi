@@ -1,9 +1,18 @@
-openapi: "3.0.0"
+swagger: 2.0
 info:
     $ref: ./info/index.yaml
-servers:
-    - url: https://citrination.com/api
+schemes: 'https'
+host: 'citrination.com'
+basePath: 'api'
+consumes:
+    - application/json
+produces:
+    - application/json
 security:
     - ApiKeyAuth: []
-components:
-    $ref: ./components/index.yaml
+securityDefinitions:
+    $ref: ./securityDefinitions/index.yaml
+paths:
+    $ref: ./paths/index.yaml
+definitions:
+    $ref: ./definitions/index.yaml

@@ -1,0 +1,8 @@
+type: object
+description: A query against dataset metadata and/or PIFs
+properties:
+    logic:
+    simple:
+    dataset:
+    system:
+    query:

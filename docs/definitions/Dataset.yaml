@@ -1,0 +1,33 @@
+type: object
+description: Information about a dataset on Citrination. Datasets are folders of files and/or records that have an associated description and owner.
+properties:
+    id:
+        type: string
+        nullable: true
+        default: null
+        description: The unique ID of the dataset.
+    name:
+        type: string
+        nullable: true
+        default: null
+        description: The owner-defined name of the dataset.
+    description:
+        type: string
+        nullable: true
+        default: null
+        description: The owner-defined description of the dataset.
+    owner:
+        type: string
+        nullable: true
+        default: null
+        description: The name of the owner of the dataset.
+    email:
+        type: string
+        nullable: true
+        default: null
+        description: The email address of the owner of the dataset.
+    isFeatured:
+        type: boolean
+        nullable: true
+        default: null
+        description: Whether the dataset is a featured one. A null value implies that the dataset is not featured.

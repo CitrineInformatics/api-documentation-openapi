@@ -1,0 +1,2 @@
+System:
+    $ref: ./pif/system/System.yaml

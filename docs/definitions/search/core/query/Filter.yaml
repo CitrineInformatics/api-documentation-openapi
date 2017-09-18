@@ -1,0 +1,34 @@
+type: object
+description: An equality or range filter against a single field.
+properties:
+    logic:
+        $ref: '$ref: '#/components/x-hiddenSchemas/logic'
+    exists:
+        $ref: '$ref: '#/components/x-hiddenSchemas/exists'
+    equal:
+        type: string
+        nullable: true
+        default: null
+        description: The string the match. This is executed as a phrase query meaning that the exact phrase in this string must be present in a record to match.
+    min:
+        type: string
+        nullable: true
+        default: null
+        description: If the input value is non-numeric, or the field being searched does not support numbers, then this is the lexographical minimum of values to match. If the input value is numeric and the field being searched supports numbers, then this is the minimum numeric value to match.
+    max:
+        type: string
+        nullable: true
+        default: null
+        description: If the input value is non-numeric, or the field being searched does not support numbers, then this is the lexographical maximum of values to match. If the input value is numeric and the field being searched supports numbers, then this is the maximum numeric value to match.
+    exact:
+        type: boolean
+        nullable: true
+        default: null
+        description: When the value in the in _equal_ field must match exactly the entire value in the field being searched. For example, with _equal_ set to "gap" and _exact_ set to false, the filter will match against a field that contains "band gap". However, with _equal_ set to "gap" and _exact_ set to false, the filter will not match "band gap"; it will only match against a field that contains only the word "gap".
+    filter:
+        type: array
+        items:
+            $ref: '#/components/schemas/Filter'
+        nullable: true
+        default: null
+        description: Nested filters. Filters can nest as deeply as needed in order to create complex combinations of boolean logical operations.

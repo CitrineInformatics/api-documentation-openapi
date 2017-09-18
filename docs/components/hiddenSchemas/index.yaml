@@ -1,8 +1,0 @@
-logic:
-    $ref: logic.yaml
-exists:
-    $ref: exists.yaml
-simple:
-    $ref: simple.yaml
-tags:
-    $ref: tags.yaml
