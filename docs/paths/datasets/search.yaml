@@ -14,4 +14,6 @@ post:
         '200':
             description: A search result with datasets that matched the input query.
             schema:
-                $ref: ../../definitions/search/dataset/result/DatasetSearchResult.yaml
+                properties:
+                    results: 
+                        $ref: ../../definitions/search/dataset/result/DatasetSearchResult.yaml
