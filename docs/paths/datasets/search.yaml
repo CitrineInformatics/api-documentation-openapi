@@ -1,6 +1,6 @@
 post:
     description: Search for datasets by the metadata for that dataset or the content of the files and PIFs that it contains.
-    operationId: 'datasets/search'
+    operationId: datasets-search
     tags:
         - search
     parameters:
