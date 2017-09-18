@@ -44,9 +44,9 @@ DatasetQuery:
     description: A query against a Dataset.
     properties:
         logic:
-            $ref: '#/components/schemas/logic'
+            $ref: '$ref: '#/components/x-hiddenSchemes/logic'
         simple:
-            $ref: '#/components/schemas/simple'
+            $ref: '$ref: '#/components/x-hiddenSchemes/simple'
         id:
             type: array
             items:
@@ -105,9 +105,9 @@ BooleanFilter:
     description: A filter against the value of a boolean-typed field.
     properties:
         logic:
-            $ref: '#/components/schemas/logic'
+            $ref: '$ref: '#/components/x-hiddenSchemes/logic'
         exists:
-            $ref: '#/components/schemas/exists'
+            $ref: '$ref: '#/components/x-hiddenSchemes/exists'
         equal:
             type: boolean
             nullable: true
@@ -125,9 +125,9 @@ Filter:
     description: An equality or range filter against a single field.
     properties:
         logic:
-            $ref: '#/components/schemas/logic'
+            $ref: '$ref: '#/components/x-hiddenSchemes/logic'
         exists:
-            $ref: '#/components/schemas/exists'
+            $ref: '$ref: '#/components/x-hiddenSchemes/exists'
         equal:
             type: string
             nullable: true
@@ -283,7 +283,7 @@ System:
             default: null
             description: Licenses that apply to the data in this record.
         tags:
-            $ref: '#/components/schemas/tags'
+            $ref: '$ref: '#/components/x-hiddenSchemes/tags'
 ChemicalSystem:
     type: object
     description: A physical system that contains chemical information.
@@ -385,7 +385,7 @@ Quantity:
             default: null
             description:
         tags:
-            $ref: '#/components/schemas/tags'
+            $ref: '$ref: '#/components/x-hiddenSchemes/tags'
 Reference:
     type: object
     description:
@@ -413,7 +413,7 @@ Source:
             default: null
             description: The URL at which the producer can be accessed.
         tags:
-            $ref: '#/components/schemas/tags'
+            $ref: '$ref: '#/components/x-hiddenSchemes/tags'
 Value:
     type: object
     description:
@@ -422,31 +422,3 @@ Composition:
     type: object
     description:
     properties:
-logic:
-    type: string
-    enum:
-    - SHOULD
-    - MUST
-    - MUST_NOT
-    - OPTIONAL
-    - null
-    nullable: true
-    default: null
-    description: When multiple queries appear in a list, the logic defines the way in which each will be interpreted. "SHOULD" is equivalent to boolean _OR_ logic. "MUST" is eqivalent to boolean _AND_ logic. "MUST_NOT" is equivalent to boolean _NOT_ logic. "OPTIONAL" does not have an effect on whether a record matches; the specific query element is ignored during the primary search for records in scope. However, "OPTIONAL" queries are executed on subsequent steps such as extractions and data statistics gathering. When logic is set to a null value, it is interpreted as "SHOULD".
-exists:
-    type: boolean
-    nullable: true
-    default: null
-    description: When set to true, the field must exist and have a non-null value. When set to false, the field must not exist or, if it does exist, must have a null value.
-simple:
-    type: string
-    nullable: true
-    default: null
-    description: A string that is run against all fields in this object and their children. Strings are tokenized on whitespace unless surrounded by quotes. For example, _GaN "band gap"_ tokenizes to _GaN_ and _band gap_ where each token must match the entire phrase in a record. Tokens are executed with boolean OR logic. Therefore, _GaN "band gap"_ matches records that contain _GaN_ or _band gap_. Since simple filters are, in this way, extremely inclusive operations, it is typically recommended that relevancy scoring be turned on for the query so that the records that match the most values are ranked the highest.
-tags:
-    type: array
-    items:
-        type: string
-    nullable: true
-    default: null
-    description: Any number of tags to apply to the object.

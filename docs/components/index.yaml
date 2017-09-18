@@ -2,3 +2,5 @@ securitySchemes:
     $ref: ./securitySchemes/index.yaml
 schemas:
     $ref: ./schemas/index.yaml
+x-hiddenSchemes:
+    $ref: ./hiddenSchemes/index.yaml
