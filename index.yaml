@@ -21,7 +21,7 @@ components:
       type: apiKey
       in: header
       name: X-API-Key
-  schemas:
+  schemes:
     DatasetReturningQuery:
       type: object
       description: A query that returns information about datasets.
@@ -485,7 +485,7 @@ components:
       type: object
       description: null
       properties: null
-  x-hiddenSchemes:
+  x-hiddenSchemas:
     logic:
       type: string
       enum:

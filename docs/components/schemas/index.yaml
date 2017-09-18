@@ -44,9 +44,9 @@ DatasetQuery:
     description: A query against a Dataset.
     properties:
         logic:
-            $ref: '$ref: '#/components/x-hiddenSchemes/logic'
+            $ref: '$ref: '#/components/x-hiddenSchemas/logic'
         simple:
-            $ref: '$ref: '#/components/x-hiddenSchemes/simple'
+            $ref: '$ref: '#/components/x-hiddenSchemas/simple'
         id:
             type: array
             items:
@@ -105,9 +105,9 @@ BooleanFilter:
     description: A filter against the value of a boolean-typed field.
     properties:
         logic:
-            $ref: '$ref: '#/components/x-hiddenSchemes/logic'
+            $ref: '$ref: '#/components/x-hiddenSchemas/logic'
         exists:
-            $ref: '$ref: '#/components/x-hiddenSchemes/exists'
+            $ref: '$ref: '#/components/x-hiddenSchemas/exists'
         equal:
             type: boolean
             nullable: true
@@ -125,9 +125,9 @@ Filter:
     description: An equality or range filter against a single field.
     properties:
         logic:
-            $ref: '$ref: '#/components/x-hiddenSchemes/logic'
+            $ref: '$ref: '#/components/x-hiddenSchemas/logic'
         exists:
-            $ref: '$ref: '#/components/x-hiddenSchemes/exists'
+            $ref: '$ref: '#/components/x-hiddenSchemas/exists'
         equal:
             type: string
             nullable: true
@@ -283,7 +283,7 @@ System:
             default: null
             description: Licenses that apply to the data in this record.
         tags:
-            $ref: '$ref: '#/components/x-hiddenSchemes/tags'
+            $ref: '$ref: '#/components/x-hiddenSchemas/tags'
 ChemicalSystem:
     type: object
     description: A physical system that contains chemical information.
@@ -385,7 +385,7 @@ Quantity:
             default: null
             description:
         tags:
-            $ref: '$ref: '#/components/x-hiddenSchemes/tags'
+            $ref: '$ref: '#/components/x-hiddenSchemas/tags'
 Reference:
     type: object
     description:
@@ -413,7 +413,7 @@ Source:
             default: null
             description: The URL at which the producer can be accessed.
         tags:
-            $ref: '$ref: '#/components/x-hiddenSchemes/tags'
+            $ref: '$ref: '#/components/x-hiddenSchemas/tags'
 Value:
     type: object
     description:
