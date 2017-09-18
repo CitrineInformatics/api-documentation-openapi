@@ -2,9 +2,9 @@ type: object
 description: An equality or range filter against a single field.
 properties:
     logic:
-        $ref: '$ref: '#/components/x-hiddenSchemas/logic'
+        $ref: ./logic.yaml
     exists:
-        $ref: '$ref: '#/components/x-hiddenSchemas/exists'
+        $ref: ./exists.yaml
     equal:
         type: string
         nullable: true
@@ -28,7 +28,7 @@ properties:
     filter:
         type: array
         items:
-            $ref: '#/components/schemas/Filter'
+            $ref: ./Filter.yaml
         nullable: true
         default: null
         description: Nested filters. Filters can nest as deeply as needed in order to create complex combinations of boolean logical operations.

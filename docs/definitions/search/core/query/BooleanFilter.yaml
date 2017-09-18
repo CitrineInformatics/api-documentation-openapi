@@ -2,9 +2,9 @@ type: object
 description: A filter against the value of a boolean-typed field.
 properties:
     logic:
-        $ref: '$ref: '#/components/x-hiddenSchemas/logic'
+        $ref: ./logic.yaml
     exists:
-        $ref: '$ref: '#/components/x-hiddenSchemas/exists'
+        $ref: ./exists.yaml
     equal:
         type: boolean
         nullable: true
@@ -13,7 +13,7 @@ properties:
     filter:
         type: array
         items:
-            $ref: '#/components/schemas/BooleanFilter'
+            $ref: ./BooleanFilter.yaml
         nullable: true
         default: null
         description: Nested boolean filters. Filters can nest as deeply as needed in order to create complex combinations of boolean logical operations.
