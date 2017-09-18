@@ -27,7 +27,27 @@ securityDefinitions:
     in: header
     name: X-API-Key
 paths:
-  $ref: ./paths/index.yaml
+  /datasets/search:
+    post:
+      description: >-
+        Search for datasets by the metadata for that dataset or the content of
+        the files and PIFs that it contains.
+      operationId: datasets/search
+      tags: search
+      parameters:
+        - name: query
+          in: body
+          description: A query for datasets and options for that query.
+          required: true
+          schema:
+            $ref: >-
+              ../../../definitions/search/dataset/query/DatasetReturningQuery.yaml
+      responses:
+        '200':
+          description: A search result with datasets that matched the input query.
+          schema:
+            $ref: >-
+              ../../../definitions/search/dataset/result/DatasetSearchResult.yaml
 definitions:
   DatasetReturningQuery:
     type: object
