@@ -65,7 +65,7 @@ properties:
     subSystems:
         type: array
         items:
-            $ref: ./System.yaml
+            $ref: System.yaml
         nullable: true
         default: null
         description: Any sub-systems of this system.

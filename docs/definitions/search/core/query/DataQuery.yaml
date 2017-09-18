@@ -2,9 +2,9 @@ type: object
 description: A query against dataset metadata and/or PIFs
 properties:
     logic:
-        $ref: ./logic.yaml
+        $ref: logic.yaml
     simple:
-        $ref: ./simple.yaml
+        $ref: simple.yaml
     dataset:
         type: array
         items:
@@ -22,7 +22,7 @@ properties:
     query:
         type: array
         items:
-            $ref: ./DataQuery.yaml
+            $ref: DataQuery.yaml
         nullable: true
         default: null
         description: Nested data queries. Queries can nest as deeply as needed in order to create complex combinations of boolean logical operations.

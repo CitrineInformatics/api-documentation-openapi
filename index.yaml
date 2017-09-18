@@ -297,7 +297,7 @@ paths:
                                     filter:
                                       type: array
                                       items:
-                                        $ref: ./Filter.yaml
+                                        $ref: Filter.yaml
                                       nullable: true
                                       default: null
                                       description: >-
@@ -361,7 +361,7 @@ paths:
                                     filter:
                                       type: array
                                       items:
-                                        $ref: ./BooleanFilter.yaml
+                                        $ref: BooleanFilter.yaml
                                       nullable: true
                                       default: null
                                       description: >-
@@ -471,7 +471,7 @@ paths:
                                     filter:
                                       type: array
                                       items:
-                                        $ref: ./Filter.yaml
+                                        $ref: Filter.yaml
                                       nullable: true
                                       default: null
                                       description: >-
@@ -579,7 +579,7 @@ paths:
                                     filter:
                                       type: array
                                       items:
-                                        $ref: ./Filter.yaml
+                                        $ref: Filter.yaml
                                       nullable: true
                                       default: null
                                       description: >-
@@ -687,7 +687,7 @@ paths:
                                     filter:
                                       type: array
                                       items:
-                                        $ref: ./Filter.yaml
+                                        $ref: Filter.yaml
                                       nullable: true
                                       default: null
                                       description: >-
@@ -797,7 +797,7 @@ paths:
                                     filter:
                                       type: array
                                       items:
-                                        $ref: ./Filter.yaml
+                                        $ref: Filter.yaml
                                       nullable: true
                                       default: null
                                       description: >-
@@ -813,7 +813,7 @@ paths:
                               query:
                                 type: array
                                 items:
-                                  $ref: ./DatasetQuery.yaml
+                                  $ref: DatasetQuery.yaml
                                 nullable: true
                                 default: null
                                 description: >-
@@ -863,7 +863,7 @@ paths:
                         query:
                           type: array
                           items:
-                            $ref: ./DataQuery.yaml
+                            $ref: DataQuery.yaml
                           nullable: true
                           default: null
                           description: >-
@@ -1236,7 +1236,7 @@ definitions:
                             filter:
                               type: array
                               items:
-                                $ref: ./Filter.yaml
+                                $ref: Filter.yaml
                               nullable: true
                               default: null
                               description: >-
@@ -1295,7 +1295,7 @@ definitions:
                             filter:
                               type: array
                               items:
-                                $ref: ./BooleanFilter.yaml
+                                $ref: BooleanFilter.yaml
                               nullable: true
                               default: null
                               description: >-
@@ -1392,7 +1392,7 @@ definitions:
                             filter:
                               type: array
                               items:
-                                $ref: ./Filter.yaml
+                                $ref: Filter.yaml
                               nullable: true
                               default: null
                               description: >-
@@ -1489,7 +1489,7 @@ definitions:
                             filter:
                               type: array
                               items:
-                                $ref: ./Filter.yaml
+                                $ref: Filter.yaml
                               nullable: true
                               default: null
                               description: >-
@@ -1586,7 +1586,7 @@ definitions:
                             filter:
                               type: array
                               items:
-                                $ref: ./Filter.yaml
+                                $ref: Filter.yaml
                               nullable: true
                               default: null
                               description: >-
@@ -1683,7 +1683,7 @@ definitions:
                             filter:
                               type: array
                               items:
-                                $ref: ./Filter.yaml
+                                $ref: Filter.yaml
                               nullable: true
                               default: null
                               description: >-
@@ -1698,7 +1698,7 @@ definitions:
                       query:
                         type: array
                         items:
-                          $ref: ./DatasetQuery.yaml
+                          $ref: DatasetQuery.yaml
                         nullable: true
                         default: null
                         description: >-
@@ -1742,7 +1742,7 @@ definitions:
                 query:
                   type: array
                   items:
-                    $ref: ./DataQuery.yaml
+                    $ref: DataQuery.yaml
                   nullable: true
                   default: null
                   description: >-

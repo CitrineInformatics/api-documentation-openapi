@@ -50,7 +50,7 @@ properties:
     query:
         type: array
         items:
-            $ref: ./DatasetQuery.yaml
+            $ref: DatasetQuery.yaml
         nullable: true
         default: null
         description: Nested dataset queries. Queries can nest as deeply as needed in order to create complex combinations of boolean logical operations.
