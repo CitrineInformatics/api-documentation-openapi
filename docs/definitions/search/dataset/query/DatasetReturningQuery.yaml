@@ -1,31 +1,17 @@
 type: object
 description: A query that returns information about datasets.
-properties:
-    query:
-        type: array
-        items:
-            $ref: '#/components/schemas/DataQuery'
-        nullable: true
-        default: null
-        description: Queries against datasets and/or records.
-    fromIndex:
-        type: number
-        format: integer
-        nullable: true
-        default: null
-        description: The index of the first record to return. This is used for pagination through results.
-    size:
-        type: number
-        format: integer
-        nullable: true
-        default: null
-        description: The number of records to return. This is used for pagination through results. The number of hits that are returned will never be greater than this number, but may be smaller if there are fewer records in the scope of the query or if the maximum number of records that the server will allow to be returned is exceeded (this is typically 100).
-    randomResults:
-        type: boolean
-        nullable: true
-        default: null
-        description:
-    randomSeed:
-    scoreRelevance:
-    returnMaxScore:
-    countPifs:
+allOf:
+    - $ref: ../../core/query/BaseReturningQuery.yaml
+    - properties:
+        query:
+            type: array
+            items:
+                $ref: ../../core/query/DataQuery
+            nullable: true
+            default: null
+            description: Queries against the content of datasets and/or PIF records.
+        countPifs:
+            type: boolean
+            nullable: true
+            default: null
+            description: Whether to count the number of PIFs in scope of the current query within each dataset. If there are no queries against the content of the PIFs, then this will return the total number of PIFs in the dataset. If there are queries against PIF content, then this will return the number of PIFs in each dataset that matched that query.

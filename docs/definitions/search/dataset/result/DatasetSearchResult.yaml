@@ -1,0 +1,12 @@
+type: object
+description: The result of a single query for datasets on Citrination.
+allOf:
+    - $ref: ../../core/result/BaseSearchResult.yaml
+    - properties:
+        hits:
+            type: array
+            items:
+                $ref: ./DatasetSearchHit.yaml
+            nullable: true
+            default: null
+            description: The current set of paginated hits again the query that was executed.

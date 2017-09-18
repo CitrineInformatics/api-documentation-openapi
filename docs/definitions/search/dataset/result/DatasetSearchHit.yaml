@@ -1,6 +1,12 @@
 type: object
-description: Information about a dataset on Citrination. Datasets are folders of files and/or records that have an associated description and owner.
+description: A single dataset that matched a query run against Citrination.
 properties:
+    score:
+        type: number
+        format: double
+        nullable: true
+        default: null
+        description: The relevancy score for the dataset against the executed query.
     id:
         type: string
         nullable: true
@@ -31,3 +37,11 @@ properties:
         nullable: true
         default: null
         description: Whether the dataset is a featured one. A null value implies that the dataset is not featured.
+    numPifs:
+        type: number
+        format: int64
+        nullable: true
+        default: null
+        description: When requested in the query, this is the number of PIFs that are in the dataset and match any filters on the content of PIF systems.
+    updatedAt:
+        $ref: ../../core/result/updatedAt.yaml
