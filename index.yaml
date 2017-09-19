@@ -137,10 +137,12 @@ paths:
                             subsequent steps such as extractions and data
                             statistics gathering.
 
+                            - null is interpreted as SHOULD.
+
+
                             When multiple queries exist with SHOULD logic, a
                             minimum of 1 must match in order for the overall
-                            query to match. When logic is set to a null value,
-                            it is interpreted as SHOULD.
+                            query to match.
                         simple:
                           type: string
                           nullable: true
@@ -158,6 +160,7 @@ paths:
                             is typically recommended that relevancy scoring be
                             turned on for the query so that the records that
                             match the most values are ranked the highest.
+
 
                             Simple queries execute against all fields in the
                             object in which they are defined as well as all
@@ -197,10 +200,12 @@ paths:
                                   are executed on subsequent steps such as
                                   extractions and data statistics gathering.
 
+                                  - null is interpreted as SHOULD.
+
+
                                   When multiple queries exist with SHOULD logic,
                                   a minimum of 1 must match in order for the
-                                  overall query to match. When logic is set to a
-                                  null value, it is interpreted as SHOULD.
+                                  overall query to match.
                               simple:
                                 type: string
                                 nullable: true
@@ -221,6 +226,7 @@ paths:
                                   be turned on for the query so that the records
                                   that match the most values are ranked the
                                   highest.
+
 
                                   Simple queries execute against all fields in
                                   the object in which they are defined as well
@@ -266,11 +272,12 @@ paths:
                                         on subsequent steps such as extractions
                                         and data statistics gathering.
 
+                                        - null is interpreted as SHOULD.
+
+
                                         When multiple queries exist with SHOULD
                                         logic, a minimum of 1 must match in
                                         order for the overall query to match.
-                                        When logic is set to a null value, it is
-                                        interpreted as SHOULD.
                                     exists:
                                       type: boolean
                                       nullable: true
@@ -387,11 +394,12 @@ paths:
                                         on subsequent steps such as extractions
                                         and data statistics gathering.
 
+                                        - null is interpreted as SHOULD.
+
+
                                         When multiple queries exist with SHOULD
                                         logic, a minimum of 1 must match in
                                         order for the overall query to match.
-                                        When logic is set to a null value, it is
-                                        interpreted as SHOULD.
                                     exists:
                                       type: boolean
                                       nullable: true
@@ -496,11 +504,12 @@ paths:
                                         on subsequent steps such as extractions
                                         and data statistics gathering.
 
+                                        - null is interpreted as SHOULD.
+
+
                                         When multiple queries exist with SHOULD
                                         logic, a minimum of 1 must match in
                                         order for the overall query to match.
-                                        When logic is set to a null value, it is
-                                        interpreted as SHOULD.
                                     exists:
                                       type: boolean
                                       nullable: true
@@ -617,11 +626,12 @@ paths:
                                         on subsequent steps such as extractions
                                         and data statistics gathering.
 
+                                        - null is interpreted as SHOULD.
+
+
                                         When multiple queries exist with SHOULD
                                         logic, a minimum of 1 must match in
                                         order for the overall query to match.
-                                        When logic is set to a null value, it is
-                                        interpreted as SHOULD.
                                     exists:
                                       type: boolean
                                       nullable: true
@@ -738,11 +748,12 @@ paths:
                                         on subsequent steps such as extractions
                                         and data statistics gathering.
 
+                                        - null is interpreted as SHOULD.
+
+
                                         When multiple queries exist with SHOULD
                                         logic, a minimum of 1 must match in
                                         order for the overall query to match.
-                                        When logic is set to a null value, it is
-                                        interpreted as SHOULD.
                                     exists:
                                       type: boolean
                                       nullable: true
@@ -861,11 +872,12 @@ paths:
                                         on subsequent steps such as extractions
                                         and data statistics gathering.
 
+                                        - null is interpreted as SHOULD.
+
+
                                         When multiple queries exist with SHOULD
                                         logic, a minimum of 1 must match in
                                         order for the overall query to match.
-                                        When logic is set to a null value, it is
-                                        interpreted as SHOULD.
                                     exists:
                                       type: boolean
                                       nullable: true
@@ -996,10 +1008,12 @@ paths:
                                   are executed on subsequent steps such as
                                   extractions and data statistics gathering.
 
+                                  - null is interpreted as SHOULD.
+
+
                                   When multiple queries exist with SHOULD logic,
                                   a minimum of 1 must match in order for the
-                                  overall query to match. When logic is set to a
-                                  null value, it is interpreted as SHOULD.
+                                  overall query to match.
                           nullable: true
                           default: null
                           description: >-

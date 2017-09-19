@@ -18,4 +18,7 @@ description: >
 
     - OPTIONAL does not have an effect on whether a record matches; the specific query element is ignored during the primary search for records in scope. However, OPTIONAL queries are executed on subsequent steps such as extractions and data statistics gathering.
 
-    When multiple queries exist with SHOULD logic, a minimum of 1 must match in order for the overall query to match. When logic is set to a null value, it is interpreted as SHOULD.
+    - null is interpreted as SHOULD.
+    
+
+    When multiple queries exist with SHOULD logic, a minimum of 1 must match in order for the overall query to match.
