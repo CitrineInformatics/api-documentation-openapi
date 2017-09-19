@@ -18,7 +18,7 @@ properties:
         nullable: true
         default: null
         description: Nested boolean filters. Filters can nest as deeply as needed in order to create complex combinations of boolean logic.
-examples:
+example:
     simple:
         value:
             equal: true

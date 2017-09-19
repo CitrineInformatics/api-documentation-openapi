@@ -124,9 +124,9 @@ paths:
                             When multiple queries appear in a list, the logic
                             defines the way in which each will be interpreted.
 
-                            * SHOULD is equivalent to boolean OR logic. * MUST
-                            is eqivalent to boolean AND logic. * MUST_NOT is
-                            equivalent to boolean NOT logic. * OPTIONAL does not
+                            - SHOULD is equivalent to boolean OR logic. - MUST
+                            is eqivalent to boolean AND logic. - MUST_NOT is
+                            equivalent to boolean NOT logic. - OPTIONAL does not
                             have an effect on whether a record matches; the
                             specific query element is ignored during the primary
                             search for records in scope. However, OPTIONAL
@@ -145,8 +145,8 @@ paths:
                             A string that is run against all fields in this
                             object and their children. Strings are tokenized on
                             whitespace unless surrounded by quotes. For example,
-                            `GaN "band gap"` tokenizes to [`GaN`, `band gap`]
-                            where each token must match the entire phrase in a
+                            `GaN "band gap"` tokenizes to `GaN` and `band gap`
+                            where each token must match its entire phrase in a
                             record. Tokens are executed with boolean OR logic.
                             Therefore, `GaN "band gap"` matches records that
                             contain `GaN` or `band gap`. Since simple filters
@@ -175,9 +175,9 @@ paths:
                                   logic defines the way in which each will be
                                   interpreted.
 
-                                  * SHOULD is equivalent to boolean OR logic. *
-                                  MUST is eqivalent to boolean AND logic. *
-                                  MUST_NOT is equivalent to boolean NOT logic. *
+                                  - SHOULD is equivalent to boolean OR logic. -
+                                  MUST is eqivalent to boolean AND logic. -
+                                  MUST_NOT is equivalent to boolean NOT logic. -
                                   OPTIONAL does not have an effect on whether a
                                   record matches; the specific query element is
                                   ignored during the primary search for records
@@ -198,8 +198,8 @@ paths:
                                   this object and their children. Strings are
                                   tokenized on whitespace unless surrounded by
                                   quotes. For example, `GaN "band gap"`
-                                  tokenizes to [`GaN`, `band gap`] where each
-                                  token must match the entire phrase in a
+                                  tokenizes to `GaN` and `band gap` where each
+                                  token must match its entire phrase in a
                                   record. Tokens are executed with boolean OR
                                   logic. Therefore, `GaN "band gap"` matches
                                   records that contain `GaN` or `band gap`.
@@ -232,10 +232,10 @@ paths:
                                         the logic defines the way in which each
                                         will be interpreted.
 
-                                        * SHOULD is equivalent to boolean OR
-                                        logic. * MUST is eqivalent to boolean
-                                        AND logic. * MUST_NOT is equivalent to
-                                        boolean NOT logic. * OPTIONAL does not
+                                        - SHOULD is equivalent to boolean OR
+                                        logic. - MUST is eqivalent to boolean
+                                        AND logic. - MUST_NOT is equivalent to
+                                        boolean NOT logic. - OPTIONAL does not
                                         have an effect on whether a record
                                         matches; the specific query element is
                                         ignored during the primary search for
@@ -348,10 +348,10 @@ paths:
                                         the logic defines the way in which each
                                         will be interpreted.
 
-                                        * SHOULD is equivalent to boolean OR
-                                        logic. * MUST is eqivalent to boolean
-                                        AND logic. * MUST_NOT is equivalent to
-                                        boolean NOT logic. * OPTIONAL does not
+                                        - SHOULD is equivalent to boolean OR
+                                        logic. - MUST is eqivalent to boolean
+                                        AND logic. - MUST_NOT is equivalent to
+                                        boolean NOT logic. - OPTIONAL does not
                                         have an effect on whether a record
                                         matches; the specific query element is
                                         ignored during the primary search for
@@ -394,7 +394,7 @@ paths:
                                         Nested boolean filters. Filters can nest
                                         as deeply as needed in order to create
                                         complex combinations of boolean logic.
-                                  examples:
+                                  example:
                                     simple:
                                       value:
                                         equal: true
@@ -452,10 +452,10 @@ paths:
                                         the logic defines the way in which each
                                         will be interpreted.
 
-                                        * SHOULD is equivalent to boolean OR
-                                        logic. * MUST is eqivalent to boolean
-                                        AND logic. * MUST_NOT is equivalent to
-                                        boolean NOT logic. * OPTIONAL does not
+                                        - SHOULD is equivalent to boolean OR
+                                        logic. - MUST is eqivalent to boolean
+                                        AND logic. - MUST_NOT is equivalent to
+                                        boolean NOT logic. - OPTIONAL does not
                                         have an effect on whether a record
                                         matches; the specific query element is
                                         ignored during the primary search for
@@ -568,10 +568,10 @@ paths:
                                         the logic defines the way in which each
                                         will be interpreted.
 
-                                        * SHOULD is equivalent to boolean OR
-                                        logic. * MUST is eqivalent to boolean
-                                        AND logic. * MUST_NOT is equivalent to
-                                        boolean NOT logic. * OPTIONAL does not
+                                        - SHOULD is equivalent to boolean OR
+                                        logic. - MUST is eqivalent to boolean
+                                        AND logic. - MUST_NOT is equivalent to
+                                        boolean NOT logic. - OPTIONAL does not
                                         have an effect on whether a record
                                         matches; the specific query element is
                                         ignored during the primary search for
@@ -684,10 +684,10 @@ paths:
                                         the logic defines the way in which each
                                         will be interpreted.
 
-                                        * SHOULD is equivalent to boolean OR
-                                        logic. * MUST is eqivalent to boolean
-                                        AND logic. * MUST_NOT is equivalent to
-                                        boolean NOT logic. * OPTIONAL does not
+                                        - SHOULD is equivalent to boolean OR
+                                        logic. - MUST is eqivalent to boolean
+                                        AND logic. - MUST_NOT is equivalent to
+                                        boolean NOT logic. - OPTIONAL does not
                                         have an effect on whether a record
                                         matches; the specific query element is
                                         ignored during the primary search for
@@ -802,10 +802,10 @@ paths:
                                         the logic defines the way in which each
                                         will be interpreted.
 
-                                        * SHOULD is equivalent to boolean OR
-                                        logic. * MUST is eqivalent to boolean
-                                        AND logic. * MUST_NOT is equivalent to
-                                        boolean NOT logic. * OPTIONAL does not
+                                        - SHOULD is equivalent to boolean OR
+                                        logic. - MUST is eqivalent to boolean
+                                        AND logic. - MUST_NOT is equivalent to
+                                        boolean NOT logic. - OPTIONAL does not
                                         have an effect on whether a record
                                         matches; the specific query element is
                                         ignored during the primary search for
@@ -936,9 +936,9 @@ paths:
                                   logic defines the way in which each will be
                                   interpreted.
 
-                                  * SHOULD is equivalent to boolean OR logic. *
-                                  MUST is eqivalent to boolean AND logic. *
-                                  MUST_NOT is equivalent to boolean NOT logic. *
+                                  - SHOULD is equivalent to boolean OR logic. -
+                                  MUST is eqivalent to boolean AND logic. -
+                                  MUST_NOT is equivalent to boolean NOT logic. -
                                   OPTIONAL does not have an effect on whether a
                                   record matches; the specific query element is
                                   ignored during the primary search for records
