@@ -1,4 +1,0 @@
-DatasetReturningQuery:
-    $ref: ./search/dataset/query/DatasetReturningQuery.yaml
-DatasetSearchResult:
-    $ref: ./search/dataset/result/DatasetSearchResult.yaml
