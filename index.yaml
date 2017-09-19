@@ -120,32 +120,36 @@ paths:
                             - null
                           nullable: true
                           default: null
-                          description: >-
+                          description: >
                             When multiple queries appear in a list, the logic
                             defines the way in which each will be interpreted.
-                            "SHOULD" is equivalent to boolean _OR_ logic. "MUST"
-                            is eqivalent to boolean _AND_ logic. "MUST_NOT" is
-                            equivalent to boolean _NOT_ logic. "OPTIONAL" does
-                            not have an effect on whether a record matches; the
+
+                            * SHOULD is equivalent to boolean OR logic. * MUST
+                            is eqivalent to boolean AND logic. * MUST_NOT is
+                            equivalent to boolean NOT logic. * OPTIONAL does not
+                            have an effect on whether a record matches; the
                             specific query element is ignored during the primary
-                            search for records in scope. However, "OPTIONAL"
+                            search for records in scope. However, OPTIONAL
                             queries are executed on subsequent steps such as
-                            extractions and data statistics gathering. When
-                            logic is set to a null value, it is interpreted as
-                            "SHOULD".
+                            extractions and data statistics gathering.
+
+                            When multiple queries exist with SHOULD logic, a
+                            minimum of 1 must match in order for the overall
+                            query to match. When logic is set to a null value,
+                            it is interpreted as SHOULD.
                         simple:
                           type: string
                           nullable: true
                           default: null
-                          description: >-
+                          description: >
                             A string that is run against all fields in this
                             object and their children. Strings are tokenized on
                             whitespace unless surrounded by quotes. For example,
-                            _GaN "band gap"_ tokenizes to _GaN_ and _band gap_
+                            `GaN "band gap"` tokenizes to [`GaN`, `band gap`]
                             where each token must match the entire phrase in a
                             record. Tokens are executed with boolean OR logic.
-                            Therefore, _GaN "band gap"_ matches records that
-                            contain _GaN_ or _band gap_. Since simple filters
+                            Therefore, `GaN "band gap"` matches records that
+                            contain `GaN` or `band gap`. Since simple filters
                             are, in this way, extremely inclusive operations, it
                             is typically recommended that relevancy scoring be
                             turned on for the query so that the records that
@@ -166,34 +170,39 @@ paths:
                                   - null
                                 nullable: true
                                 default: null
-                                description: >-
+                                description: >
                                   When multiple queries appear in a list, the
                                   logic defines the way in which each will be
-                                  interpreted. "SHOULD" is equivalent to boolean
-                                  _OR_ logic. "MUST" is eqivalent to boolean
-                                  _AND_ logic. "MUST_NOT" is equivalent to
-                                  boolean _NOT_ logic. "OPTIONAL" does not have
-                                  an effect on whether a record matches; the
-                                  specific query element is ignored during the
-                                  primary search for records in scope. However,
-                                  "OPTIONAL" queries are executed on subsequent
-                                  steps such as extractions and data statistics
-                                  gathering. When logic is set to a null value,
-                                  it is interpreted as "SHOULD".
+                                  interpreted.
+
+                                  * SHOULD is equivalent to boolean OR logic. *
+                                  MUST is eqivalent to boolean AND logic. *
+                                  MUST_NOT is equivalent to boolean NOT logic. *
+                                  OPTIONAL does not have an effect on whether a
+                                  record matches; the specific query element is
+                                  ignored during the primary search for records
+                                  in scope. However, OPTIONAL queries are
+                                  executed on subsequent steps such as
+                                  extractions and data statistics gathering.
+
+                                  When multiple queries exist with SHOULD logic,
+                                  a minimum of 1 must match in order for the
+                                  overall query to match. When logic is set to a
+                                  null value, it is interpreted as SHOULD.
                               simple:
                                 type: string
                                 nullable: true
                                 default: null
-                                description: >-
+                                description: >
                                   A string that is run against all fields in
                                   this object and their children. Strings are
                                   tokenized on whitespace unless surrounded by
-                                  quotes. For example, _GaN "band gap"_
-                                  tokenizes to _GaN_ and _band gap_ where each
+                                  quotes. For example, `GaN "band gap"`
+                                  tokenizes to [`GaN`, `band gap`] where each
                                   token must match the entire phrase in a
                                   record. Tokens are executed with boolean OR
-                                  logic. Therefore, _GaN "band gap"_ matches
-                                  records that contain _GaN_ or _band gap_.
+                                  logic. Therefore, `GaN "band gap"` matches
+                                  records that contain `GaN` or `band gap`.
                                   Since simple filters are, in this way,
                                   extremely inclusive operations, it is
                                   typically recommended that relevancy scoring
@@ -218,22 +227,28 @@ paths:
                                         - null
                                       nullable: true
                                       default: null
-                                      description: >-
+                                      description: >
                                         When multiple queries appear in a list,
                                         the logic defines the way in which each
-                                        will be interpreted. "SHOULD" is
-                                        equivalent to boolean _OR_ logic. "MUST"
-                                        is eqivalent to boolean _AND_ logic.
-                                        "MUST_NOT" is equivalent to boolean
-                                        _NOT_ logic. "OPTIONAL" does not have an
-                                        effect on whether a record matches; the
-                                        specific query element is ignored during
-                                        the primary search for records in scope.
-                                        However, "OPTIONAL" queries are executed
-                                        on subsequent steps such as extractions
-                                        and data statistics gathering. When
-                                        logic is set to a null value, it is
-                                        interpreted as "SHOULD".
+                                        will be interpreted.
+
+                                        * SHOULD is equivalent to boolean OR
+                                        logic. * MUST is eqivalent to boolean
+                                        AND logic. * MUST_NOT is equivalent to
+                                        boolean NOT logic. * OPTIONAL does not
+                                        have an effect on whether a record
+                                        matches; the specific query element is
+                                        ignored during the primary search for
+                                        records in scope. However, OPTIONAL
+                                        queries are executed on subsequent steps
+                                        such as extractions and data statistics
+                                        gathering.
+
+                                        When multiple queries exist with SHOULD
+                                        logic, a minimum of 1 must match in
+                                        order for the overall query to match.
+                                        When logic is set to a null value, it is
+                                        interpreted as SHOULD.
                                     exists:
                                       type: boolean
                                       nullable: true
@@ -306,8 +321,7 @@ paths:
                                       description: >-
                                         Nested filters. Filters can nest as
                                         deeply as needed in order to create
-                                        complex combinations of boolean logical
-                                        operations.
+                                        complex combinations of boolean logic.
                                 nullable: true
                                 default: null
                                 description: Queries against the ID of a dataset.
@@ -329,22 +343,28 @@ paths:
                                         - null
                                       nullable: true
                                       default: null
-                                      description: >-
+                                      description: >
                                         When multiple queries appear in a list,
                                         the logic defines the way in which each
-                                        will be interpreted. "SHOULD" is
-                                        equivalent to boolean _OR_ logic. "MUST"
-                                        is eqivalent to boolean _AND_ logic.
-                                        "MUST_NOT" is equivalent to boolean
-                                        _NOT_ logic. "OPTIONAL" does not have an
-                                        effect on whether a record matches; the
-                                        specific query element is ignored during
-                                        the primary search for records in scope.
-                                        However, "OPTIONAL" queries are executed
-                                        on subsequent steps such as extractions
-                                        and data statistics gathering. When
-                                        logic is set to a null value, it is
-                                        interpreted as "SHOULD".
+                                        will be interpreted.
+
+                                        * SHOULD is equivalent to boolean OR
+                                        logic. * MUST is eqivalent to boolean
+                                        AND logic. * MUST_NOT is equivalent to
+                                        boolean NOT logic. * OPTIONAL does not
+                                        have an effect on whether a record
+                                        matches; the specific query element is
+                                        ignored during the primary search for
+                                        records in scope. However, OPTIONAL
+                                        queries are executed on subsequent steps
+                                        such as extractions and data statistics
+                                        gathering.
+
+                                        When multiple queries exist with SHOULD
+                                        logic, a minimum of 1 must match in
+                                        order for the overall query to match.
+                                        When logic is set to a null value, it is
+                                        interpreted as SHOULD.
                                     exists:
                                       type: boolean
                                       nullable: true
@@ -373,8 +393,7 @@ paths:
                                       description: >-
                                         Nested boolean filters. Filters can nest
                                         as deeply as needed in order to create
-                                        complex combinations of boolean logical
-                                        operations.
+                                        complex combinations of boolean logic.
                                   examples:
                                     simple:
                                       value:
@@ -428,22 +447,28 @@ paths:
                                         - null
                                       nullable: true
                                       default: null
-                                      description: >-
+                                      description: >
                                         When multiple queries appear in a list,
                                         the logic defines the way in which each
-                                        will be interpreted. "SHOULD" is
-                                        equivalent to boolean _OR_ logic. "MUST"
-                                        is eqivalent to boolean _AND_ logic.
-                                        "MUST_NOT" is equivalent to boolean
-                                        _NOT_ logic. "OPTIONAL" does not have an
-                                        effect on whether a record matches; the
-                                        specific query element is ignored during
-                                        the primary search for records in scope.
-                                        However, "OPTIONAL" queries are executed
-                                        on subsequent steps such as extractions
-                                        and data statistics gathering. When
-                                        logic is set to a null value, it is
-                                        interpreted as "SHOULD".
+                                        will be interpreted.
+
+                                        * SHOULD is equivalent to boolean OR
+                                        logic. * MUST is eqivalent to boolean
+                                        AND logic. * MUST_NOT is equivalent to
+                                        boolean NOT logic. * OPTIONAL does not
+                                        have an effect on whether a record
+                                        matches; the specific query element is
+                                        ignored during the primary search for
+                                        records in scope. However, OPTIONAL
+                                        queries are executed on subsequent steps
+                                        such as extractions and data statistics
+                                        gathering.
+
+                                        When multiple queries exist with SHOULD
+                                        logic, a minimum of 1 must match in
+                                        order for the overall query to match.
+                                        When logic is set to a null value, it is
+                                        interpreted as SHOULD.
                                     exists:
                                       type: boolean
                                       nullable: true
@@ -516,8 +541,7 @@ paths:
                                       description: >-
                                         Nested filters. Filters can nest as
                                         deeply as needed in order to create
-                                        complex combinations of boolean logical
-                                        operations.
+                                        complex combinations of boolean logic.
                                 nullable: true
                                 default: null
                                 description: Queries against the name of a dataset.
@@ -539,22 +563,28 @@ paths:
                                         - null
                                       nullable: true
                                       default: null
-                                      description: >-
+                                      description: >
                                         When multiple queries appear in a list,
                                         the logic defines the way in which each
-                                        will be interpreted. "SHOULD" is
-                                        equivalent to boolean _OR_ logic. "MUST"
-                                        is eqivalent to boolean _AND_ logic.
-                                        "MUST_NOT" is equivalent to boolean
-                                        _NOT_ logic. "OPTIONAL" does not have an
-                                        effect on whether a record matches; the
-                                        specific query element is ignored during
-                                        the primary search for records in scope.
-                                        However, "OPTIONAL" queries are executed
-                                        on subsequent steps such as extractions
-                                        and data statistics gathering. When
-                                        logic is set to a null value, it is
-                                        interpreted as "SHOULD".
+                                        will be interpreted.
+
+                                        * SHOULD is equivalent to boolean OR
+                                        logic. * MUST is eqivalent to boolean
+                                        AND logic. * MUST_NOT is equivalent to
+                                        boolean NOT logic. * OPTIONAL does not
+                                        have an effect on whether a record
+                                        matches; the specific query element is
+                                        ignored during the primary search for
+                                        records in scope. However, OPTIONAL
+                                        queries are executed on subsequent steps
+                                        such as extractions and data statistics
+                                        gathering.
+
+                                        When multiple queries exist with SHOULD
+                                        logic, a minimum of 1 must match in
+                                        order for the overall query to match.
+                                        When logic is set to a null value, it is
+                                        interpreted as SHOULD.
                                     exists:
                                       type: boolean
                                       nullable: true
@@ -627,8 +657,7 @@ paths:
                                       description: >-
                                         Nested filters. Filters can nest as
                                         deeply as needed in order to create
-                                        complex combinations of boolean logical
-                                        operations.
+                                        complex combinations of boolean logic.
                                 nullable: true
                                 default: null
                                 description: Queries against the description of a dataset.
@@ -650,22 +679,28 @@ paths:
                                         - null
                                       nullable: true
                                       default: null
-                                      description: >-
+                                      description: >
                                         When multiple queries appear in a list,
                                         the logic defines the way in which each
-                                        will be interpreted. "SHOULD" is
-                                        equivalent to boolean _OR_ logic. "MUST"
-                                        is eqivalent to boolean _AND_ logic.
-                                        "MUST_NOT" is equivalent to boolean
-                                        _NOT_ logic. "OPTIONAL" does not have an
-                                        effect on whether a record matches; the
-                                        specific query element is ignored during
-                                        the primary search for records in scope.
-                                        However, "OPTIONAL" queries are executed
-                                        on subsequent steps such as extractions
-                                        and data statistics gathering. When
-                                        logic is set to a null value, it is
-                                        interpreted as "SHOULD".
+                                        will be interpreted.
+
+                                        * SHOULD is equivalent to boolean OR
+                                        logic. * MUST is eqivalent to boolean
+                                        AND logic. * MUST_NOT is equivalent to
+                                        boolean NOT logic. * OPTIONAL does not
+                                        have an effect on whether a record
+                                        matches; the specific query element is
+                                        ignored during the primary search for
+                                        records in scope. However, OPTIONAL
+                                        queries are executed on subsequent steps
+                                        such as extractions and data statistics
+                                        gathering.
+
+                                        When multiple queries exist with SHOULD
+                                        logic, a minimum of 1 must match in
+                                        order for the overall query to match.
+                                        When logic is set to a null value, it is
+                                        interpreted as SHOULD.
                                     exists:
                                       type: boolean
                                       nullable: true
@@ -738,8 +773,7 @@ paths:
                                       description: >-
                                         Nested filters. Filters can nest as
                                         deeply as needed in order to create
-                                        complex combinations of boolean logical
-                                        operations.
+                                        complex combinations of boolean logic.
                                 nullable: true
                                 default: null
                                 description: >-
@@ -763,22 +797,28 @@ paths:
                                         - null
                                       nullable: true
                                       default: null
-                                      description: >-
+                                      description: >
                                         When multiple queries appear in a list,
                                         the logic defines the way in which each
-                                        will be interpreted. "SHOULD" is
-                                        equivalent to boolean _OR_ logic. "MUST"
-                                        is eqivalent to boolean _AND_ logic.
-                                        "MUST_NOT" is equivalent to boolean
-                                        _NOT_ logic. "OPTIONAL" does not have an
-                                        effect on whether a record matches; the
-                                        specific query element is ignored during
-                                        the primary search for records in scope.
-                                        However, "OPTIONAL" queries are executed
-                                        on subsequent steps such as extractions
-                                        and data statistics gathering. When
-                                        logic is set to a null value, it is
-                                        interpreted as "SHOULD".
+                                        will be interpreted.
+
+                                        * SHOULD is equivalent to boolean OR
+                                        logic. * MUST is eqivalent to boolean
+                                        AND logic. * MUST_NOT is equivalent to
+                                        boolean NOT logic. * OPTIONAL does not
+                                        have an effect on whether a record
+                                        matches; the specific query element is
+                                        ignored during the primary search for
+                                        records in scope. However, OPTIONAL
+                                        queries are executed on subsequent steps
+                                        such as extractions and data statistics
+                                        gathering.
+
+                                        When multiple queries exist with SHOULD
+                                        logic, a minimum of 1 must match in
+                                        order for the overall query to match.
+                                        When logic is set to a null value, it is
+                                        interpreted as SHOULD.
                                     exists:
                                       type: boolean
                                       nullable: true
@@ -851,8 +891,7 @@ paths:
                                       description: >-
                                         Nested filters. Filters can nest as
                                         deeply as needed in order to create
-                                        complex combinations of boolean logical
-                                        operations.
+                                        complex combinations of boolean logic.
                                 nullable: true
                                 default: null
                                 description: >-
@@ -870,7 +909,7 @@ paths:
                                 description: >-
                                   Nested dataset queries. Queries can nest as
                                   deeply as needed in order to create complex
-                                  combinations of boolean logical operations.
+                                  combinations of boolean logic.
                           nullable: true
                           default: null
                           description: >-
@@ -892,20 +931,25 @@ paths:
                                   - null
                                 nullable: true
                                 default: null
-                                description: >-
+                                description: >
                                   When multiple queries appear in a list, the
                                   logic defines the way in which each will be
-                                  interpreted. "SHOULD" is equivalent to boolean
-                                  _OR_ logic. "MUST" is eqivalent to boolean
-                                  _AND_ logic. "MUST_NOT" is equivalent to
-                                  boolean _NOT_ logic. "OPTIONAL" does not have
-                                  an effect on whether a record matches; the
-                                  specific query element is ignored during the
-                                  primary search for records in scope. However,
-                                  "OPTIONAL" queries are executed on subsequent
-                                  steps such as extractions and data statistics
-                                  gathering. When logic is set to a null value,
-                                  it is interpreted as "SHOULD".
+                                  interpreted.
+
+                                  * SHOULD is equivalent to boolean OR logic. *
+                                  MUST is eqivalent to boolean AND logic. *
+                                  MUST_NOT is equivalent to boolean NOT logic. *
+                                  OPTIONAL does not have an effect on whether a
+                                  record matches; the specific query element is
+                                  ignored during the primary search for records
+                                  in scope. However, OPTIONAL queries are
+                                  executed on subsequent steps such as
+                                  extractions and data statistics gathering.
+
+                                  When multiple queries exist with SHOULD logic,
+                                  a minimum of 1 must match in order for the
+                                  overall query to match. When logic is set to a
+                                  null value, it is interpreted as SHOULD.
                           nullable: true
                           default: null
                           description: >-
@@ -921,7 +965,7 @@ paths:
                           description: >-
                             Nested data queries. Queries can nest as deeply as
                             needed in order to create complex combinations of
-                            boolean logical operations.
+                            boolean logic.
                     nullable: true
                     default: null
                     description: >-

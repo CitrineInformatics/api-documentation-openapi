@@ -54,4 +54,4 @@ properties:
             description: DatasetQuery type. This is a recursive definition.
         nullable: true
         default: null
-        description: Nested dataset queries. Queries can nest as deeply as needed in order to create complex combinations of boolean logical operations.
+        description: Nested dataset queries. Queries can nest as deeply as needed in order to create complex combinations of boolean logic.
