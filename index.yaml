@@ -154,6 +154,11 @@ paths:
                             is typically recommended that relevancy scoring be
                             turned on for the query so that the records that
                             match the most values are ranked the highest.
+
+                            Simple queries execute against all fields in the
+                            object in which they are defined as well as all
+                            fields in all child objects. Boolean OR logic is
+                            applied between all of these queries.
                         dataset:
                           type: array
                           items:
@@ -209,6 +214,11 @@ paths:
                                   be turned on for the query so that the records
                                   that match the most values are ranked the
                                   highest.
+
+                                  Simple queries execute against all fields in
+                                  the object in which they are defined as well
+                                  as all fields in all child objects. Boolean OR
+                                  logic is applied between all of these queries.
                               id:
                                 type: array
                                 items:
