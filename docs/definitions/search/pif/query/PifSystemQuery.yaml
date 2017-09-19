@@ -3,3 +3,11 @@ description: A query aginst the content of a PIF system.
 properties:
     logic:
         $ref: ../../core/query/logic.yaml
+    simple:
+        $ref: ../../core/query/simple.yaml
+    extractAs:
+        $ref: extractAs.yaml
+    extractAll:
+        $ref: extractAll.yaml
+    extractWhenMissing:
+        $ref: extractWhenMissing.yaml

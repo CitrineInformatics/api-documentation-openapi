@@ -366,44 +366,9 @@ paths:
                                 type: array
                                 items:
                                   type: object
-                                  description: >
+                                  description: >-
                                     A filter against the value of a
                                     boolean-typed field.
-
-
-                                    Filter for a value equal to true.
-                                    ```javascript {
-                                        "equal": true
-                                    } ```
-
-
-                                    Filter for a value that exists.
-                                    ```javascript {
-                                        "exists": true
-                                    } ```
-
-
-                                    Filter for a value that either does not
-                                    exist or exists with a value of false.
-                                    ```javascript {
-                                        "logic": "MUST_NOT",
-                                        "equal": true
-                                    } ```
-
-
-                                    Filter for a value that either does not
-                                    exist or exists with a value of true (this
-                                    demonstrates nesting of filters - the same
-                                    filter could be generated in a similar way
-                                    to the previous example). The default logic
-                                    between the two filters is SHOULD.
-                                    ```javascript {
-                                        "filter": [{
-                                            "exists": false
-                                        },{
-                                            "equal": true
-                                        }]
-                                    } ```
                                   properties:
                                     logic:
                                       type: string
@@ -1027,6 +992,72 @@ paths:
                                   When multiple queries exist with SHOULD logic,
                                   a minimum of 1 must match in order for the
                                   overall query to match.
+                              simple:
+                                type: string
+                                x-nullable: true
+                                default: null
+                                description: >
+                                  A simple query that is run against all fields
+                                  that contain string values. This query is run
+                                  against all fields in the current object, in
+                                  the children of this object, in the children's
+                                  children, and so on. Boolean OR logic is
+                                  applied between all of these queries.
+
+
+                                  Query strings are tokenized on whitespace
+                                  unless surrounded by quotes. For example, `GaN
+                                  "band gap"` tokenizes to `GaN` and `band gap`
+                                  where each token must match its entire phrase
+                                  in a record. Tokens are executed with boolean
+                                  OR logic. Therefore, `GaN "band gap"` matches
+                                  records that contain `GaN` or `band gap`.
+
+
+                                  Since simple filters are extremely inclusive
+                                  operations (only one token needs to match
+                                  against any field in this object or its
+                                  children), it is typically recommended that
+                                  relevancy scoring be turned on for the query
+                                  so that the records that match the most values
+                                  are ranked the highest.
+                              extractAs:
+                                type: string
+                                x-nullable: true
+                                default: null
+                                description: >-
+                                  If non-null, the value matched by this query
+                                  element will be extracted into a key/value map
+                                  where the key is equal to this value. If the
+                                  object that was matched is a part of a list,
+                                  only one value from that list will be
+                                  returned, even if more than one matched.
+                                  Extractions do not affect whether a record
+                                  matches an overall query; they are simply
+                                  instructions to pull out matched values from
+                                  PIFs into a map.
+                              extractAll:
+                                type: boolean
+                                x-nullable: true
+                                default: null
+                                description: >
+                                  When extractAs is configured for a field and a
+                                  match is made against an object in a list,
+                                  only that object is extracted. When extractAll
+                                  is set to true, the list that contained that
+                                  matched object is extracted. Note that the
+                                  _entire_ list is extracted, not just the
+                                  elements that matched. When this value is
+                                  null, it is interpreted as false.
+                              extractWhenMissing:
+                                x-nullable: true
+                                default: null
+                                description: >-
+                                  When extractAs is configured for a field but
+                                  that query element does not match in a record,
+                                  then this value will be placed into the
+                                  extracted value map under the key specified by
+                                  extractAs. This value can be of any type.
                           x-nullable: true
                           default: null
                           description: >-

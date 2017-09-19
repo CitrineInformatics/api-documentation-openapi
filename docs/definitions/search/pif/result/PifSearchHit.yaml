@@ -1,0 +1,41 @@
+type: object
+description: A single PIF that matched a query run against Citrination.
+properties:
+    score:
+        type: number
+        format: double
+        x-nullable: true
+        default: null
+        description: The relevancy score for the PIF against the executed query.
+    id:
+        type: string
+        x-nullable: true
+        default: null
+        description: The full ID of the PIF in the format datasetId/datasetVersion/pifUID.
+    dataset:
+        type: string
+        x-nullable: true
+        default: null
+        description: The ID of the dataset that contains this PIF.
+    datasetVersion:
+        type: number
+        format: long
+        x-nullable: true
+        default: null
+        description: The version of the dataset that contains this PIF.
+    system:
+        $ref: ../../../../pif/system/System.yaml
+    extracted:
+        type: object
+        x-nullable: true
+        default: null
+        additionalProperties: true
+        description: A key/value map that contains the extracted fields from the query. When query elements match that contain extractAs, the matched objects will be present in this map under the key specified by extractAs.
+    extractedPath:
+        type: objects
+        x-nullable: true
+        default: null
+        additionalProperties: true
+        description: A key/value map that is a peer to the extracted field. This map contains the same key set, but the values are JSON pointers that reference the part of the PIF from which the value in extracted was matched.
+    updatedAt:
+        $ref: ../../core/result/updatedAt.yaml

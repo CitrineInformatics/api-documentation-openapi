@@ -1,0 +1,32 @@
+type: object
+description: A query that returns information about PIFs.
+allOf:
+    - $ref: ../../core/query/BaseReturningQuery.yaml
+    - properties:
+        query:
+            type: array
+            items:
+                $ref: ../../core/query/DataQuery.yaml
+            x-nullable: true
+            default: null
+            description: Queries against the content of datasets and/or PIF records.
+        returnSystem:
+            type: boolean
+            x-nullable: true
+            default: null
+            description: Whether to return the PIF system that matched. If can be useful to set this to false in order to reduce payload size when the actual PIF record is not needed in a results set (for example, when only the IDs are needed or when important information is already being extracted using extractAs keys). When set to null, this value is interpreted as true.
+        addLatex:
+            type: boolean
+            x-nullable: true
+            default: null
+            description: Whether to inject LaTeX formatting into results. This only applies to certain fields in the PIF that support conversion to LaTeX, such as chemical formulae. If set to false, this has no effect on LaTeX already present in the record; that existing markup will remain. When set to null, this value is interpreted as false.
+        returnExtractedPath:
+            type: boolean
+            x-nullable: true
+            default: null
+            description: Whether to return the JSON pointer to extracted values. When extractAs is configured for parts of the query, the matched elements are saved in a key/value map in each search hit. A peer to that map stores the same set of keys but with values that are JSON pointers to the location in the PIF from which that element was extracted. It can be useful to turn off this feature to reduce payload size when paths are not needed. When set to null, this value is interpreted as true.
+        unwrapSingleValueExtractions:
+            type: boolean
+            x-nullable: true
+            default: null
+            description: When values are extracted with extractAll set to true, even object lists with length one will be extracted as a list. This option unwraps lists of length one so that the element within the list is extracted, rather than the entire list. When set to null, this value is interpreted as false.

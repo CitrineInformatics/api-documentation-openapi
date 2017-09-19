@@ -1,44 +1,5 @@
 type: object
-description: >
-    A filter against the value of a boolean-typed field.
-
-
-    Filter for a value equal to true.
-    ```javascript
-    {
-        "equal": true
-    }
-    ```
-
-
-    Filter for a value that exists.
-    ```javascript
-    {
-        "exists": true
-    }
-    ```
-
-
-    Filter for a value that either does not exist or exists with a value of false.
-    ```javascript
-    {
-        "logic": "MUST_NOT",
-        "equal": true
-    }
-    ```
-
-
-    Filter for a value that either does not exist or exists with a value of true (this demonstrates nesting of filters - the same filter could be generated in a similar way to the previous example). The default logic between the two filters is SHOULD.
-    ```javascript
-    {
-        "filter": [{
-            "exists": false
-        },{
-            "equal": true
-        }]
-    }
-    ```
-
+description: A filter against the value of a boolean-typed field.
 properties:
     logic:
         $ref: logic.yaml

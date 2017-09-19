@@ -1,0 +1,5 @@
+type: boolean
+x-nullable: true
+default: null
+description: >
+    When extractAs is configured for a field and a match is made against an object in a list, only that object is extracted. When extractAll is set to true, the list that contained that matched object is extracted. Note that the _entire_ list is extracted, not just the elements that matched. When this value is null, it is interpreted as false.

@@ -1,0 +1,4 @@
+type: string
+x-nullable: true
+default: null
+description: If non-null, the value matched by this query element will be extracted into a key/value map where the key is equal to this value. If the object that was matched is a part of a list, only one value from that list will be returned, even if more than one matched. Extractions do not affect whether a record matches an overall query; they are simply instructions to pull out matched values from PIFs into a map.

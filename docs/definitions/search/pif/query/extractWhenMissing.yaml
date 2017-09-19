@@ -1,0 +1,3 @@
+x-nullable: true
+default: null
+description: When extractAs is configured for a field but that query element does not match in a record, then this value will be placed into the extracted value map under the key specified by extractAs. This value can be of any type.
