@@ -1029,7 +1029,7 @@ paths:
                 - dataset:
                     - owner:
                         - equal: Joe Owner
-                    - description:
+                      description:
                         - equal: a phrase in the dataset description
       responses:
         '200':
