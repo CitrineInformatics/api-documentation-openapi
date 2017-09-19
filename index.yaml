@@ -32,7 +32,7 @@ paths:
       description: >-
         Search for datasets by the metadata for that dataset or the content of
         the files and PIFs that it contains.
-      operationId: datasets-search
+      operationId: search-datasets
       tags:
         - search
       parameters:
@@ -913,6 +913,7 @@ paths:
           description: A search result with datasets that matched the input query.
           schema:
             properties:
+              type: object
               results:
                 type: object
                 description: The result of a single query for datasets on Citrination.

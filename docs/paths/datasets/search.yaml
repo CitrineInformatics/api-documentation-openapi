@@ -1,6 +1,6 @@
 post:
     description: Search for datasets by the metadata for that dataset or the content of the files and PIFs that it contains.
-    operationId: datasets-search
+    operationId: search-datasets
     tags:
         - search
     parameters:
@@ -15,5 +15,6 @@ post:
             description: A search result with datasets that matched the input query.
             schema:
                 properties:
-                    results: 
+                    type: object
+                    results:
                         $ref: ../../definitions/search/dataset/result/DatasetSearchResult.yaml
