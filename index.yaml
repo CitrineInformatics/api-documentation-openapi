@@ -1019,30 +1019,18 @@ paths:
                       against PIF content, then this will return the number of
                       PIFs in each dataset that matched that query.
           x-examples:
-            - summary: Search by name
-              description: >-
-                Search for datasets where the name contains either of the two
-                input query phrases (the default logic between elements in a
-                list is SHOULD).
-              value:
-                - data:
-                    - dataset:
-                        - name:
-                            - filter:
-                                - equal: first name
-                                - equal: second name
-            - summary: Search by owner and dataset description
-              description: >-
-                Search for datasets by the name of the owner and the description
-                of the dataset. The queries against both fields must match in
-                order for the a dataset to hit.
-              value:
-                - data:
-                    - dataset:
-                        - owner:
-                            - equal: Joe Owner
-                        - description:
-                            - equal: a phrase in the dataset description
+            summary: Search by owner and dataset description
+            description: >-
+              Search for datasets by the name of the owner and the description
+              of the dataset. The queries against both fields must match in
+              order for the a dataset to hit.
+            value:
+              - data:
+                  - dataset:
+                      - owner:
+                          - equal: Joe Owner
+                      - description:
+                          - equal: a phrase in the dataset description
       responses:
         '200':
           description: A search result with datasets that matched the input query.
