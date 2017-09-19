@@ -12,27 +12,3 @@ properties:
         description: True to match true values. False to match false values.
     filter:
         $ref: nested.yaml
-x-examples:
-    simple:
-        value:
-            equal: true
-        summary: Test equality
-        description: A simple test that a value is equal to true.
-    exists:
-        value:
-            exists: false
-        summary: Test existence
-        description: Test that the field does not exist.
-    notTrue:
-        value:
-            logic: MUST_NOT
-            equal: true
-        summary: Applying logic
-        description: Test that the field is not equal to true. This will be satisfied when the field does not exist or when it does exist but is equal to false.
-    nested:
-        value:
-            filter:
-                - equal: false
-                - exists: false
-        summary: Nested filters
-        description: Match when it is true that the field has a value of false or when the field does not exist (the default logic is SHOULD between the two query objects).
