@@ -297,7 +297,10 @@ paths:
                                     filter:
                                       type: array
                                       items:
-                                        $ref: Filter.yaml
+                                        type: object
+                                        description: >-
+                                          Filter type. This is a recursive
+                                          definition.
                                       nullable: true
                                       default: null
                                       description: >-
@@ -361,7 +364,10 @@ paths:
                                     filter:
                                       type: array
                                       items:
-                                        $ref: BooleanFilter.yaml
+                                        type: object
+                                        description: >-
+                                          BooleanFilter type. This is a recursive
+                                          definition.
                                       nullable: true
                                       default: null
                                       description: >-
@@ -471,7 +477,10 @@ paths:
                                     filter:
                                       type: array
                                       items:
-                                        $ref: Filter.yaml
+                                        type: object
+                                        description: >-
+                                          Filter type. This is a recursive
+                                          definition.
                                       nullable: true
                                       default: null
                                       description: >-
@@ -579,7 +588,10 @@ paths:
                                     filter:
                                       type: array
                                       items:
-                                        $ref: Filter.yaml
+                                        type: object
+                                        description: >-
+                                          Filter type. This is a recursive
+                                          definition.
                                       nullable: true
                                       default: null
                                       description: >-
@@ -687,7 +699,10 @@ paths:
                                     filter:
                                       type: array
                                       items:
-                                        $ref: Filter.yaml
+                                        type: object
+                                        description: >-
+                                          Filter type. This is a recursive
+                                          definition.
                                       nullable: true
                                       default: null
                                       description: >-
@@ -797,7 +812,10 @@ paths:
                                     filter:
                                       type: array
                                       items:
-                                        $ref: Filter.yaml
+                                        type: object
+                                        description: >-
+                                          Filter type. This is a recursive
+                                          definition.
                                       nullable: true
                                       default: null
                                       description: >-
@@ -813,7 +831,10 @@ paths:
                               query:
                                 type: array
                                 items:
-                                  $ref: DatasetQuery.yaml
+                                  type: object
+                                  description: >-
+                                    DatasetQuery type. This is a recursive
+                                    definition.
                                 nullable: true
                                 default: null
                                 description: >-
@@ -863,7 +884,8 @@ paths:
                         query:
                           type: array
                           items:
-                            $ref: DataQuery.yaml
+                            type: object
+                            description: DataQuery type. This is a recursive definition.
                           nullable: true
                           default: null
                           description: >-
@@ -1236,7 +1258,8 @@ definitions:
                             filter:
                               type: array
                               items:
-                                $ref: Filter.yaml
+                                type: object
+                                description: Filter type. This is a recursive definition.
                               nullable: true
                               default: null
                               description: >-
@@ -1295,7 +1318,10 @@ definitions:
                             filter:
                               type: array
                               items:
-                                $ref: BooleanFilter.yaml
+                                type: object
+                                description: >-
+                                  BooleanFilter type. This is a recursive
+                                  definition.
                               nullable: true
                               default: null
                               description: >-
@@ -1392,7 +1418,8 @@ definitions:
                             filter:
                               type: array
                               items:
-                                $ref: Filter.yaml
+                                type: object
+                                description: Filter type. This is a recursive definition.
                               nullable: true
                               default: null
                               description: >-
@@ -1489,7 +1516,8 @@ definitions:
                             filter:
                               type: array
                               items:
-                                $ref: Filter.yaml
+                                type: object
+                                description: Filter type. This is a recursive definition.
                               nullable: true
                               default: null
                               description: >-
@@ -1586,7 +1614,8 @@ definitions:
                             filter:
                               type: array
                               items:
-                                $ref: Filter.yaml
+                                type: object
+                                description: Filter type. This is a recursive definition.
                               nullable: true
                               default: null
                               description: >-
@@ -1683,7 +1712,8 @@ definitions:
                             filter:
                               type: array
                               items:
-                                $ref: Filter.yaml
+                                type: object
+                                description: Filter type. This is a recursive definition.
                               nullable: true
                               default: null
                               description: >-
@@ -1698,7 +1728,8 @@ definitions:
                       query:
                         type: array
                         items:
-                          $ref: DatasetQuery.yaml
+                          type: object
+                          description: DatasetQuery type. This is a recursive definition.
                         nullable: true
                         default: null
                         description: >-
@@ -1742,7 +1773,8 @@ definitions:
                 query:
                   type: array
                   items:
-                    $ref: DataQuery.yaml
+                    type: object
+                    description: DataQuery type. This is a recursive definition.
                   nullable: true
                   default: null
                   description: >-

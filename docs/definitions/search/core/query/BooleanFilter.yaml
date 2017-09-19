@@ -13,7 +13,8 @@ properties:
     filter:
         type: array
         items:
-            $ref: BooleanFilter.yaml
+            type: object
+            description: BooleanFilter type. This is a recursive definition.
         nullable: true
         default: null
         description: Nested boolean filters. Filters can nest as deeply as needed in order to create complex combinations of boolean logical operations.

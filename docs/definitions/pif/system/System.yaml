@@ -65,7 +65,8 @@ properties:
     subSystems:
         type: array
         items:
-            $ref: System.yaml
+            type: object
+            description: System type. This is a recursive definition.
         nullable: true
         default: null
         description: Any sub-systems of this system.
