@@ -9,21 +9,15 @@ properties:
         type: array
         items:
             $ref: ../../dataset/query/DatasetQuery.yaml
-        nullable: true
+        x-nullable: true
         default: null
         description: A list of queries to run against the content of datasets.
     system:
         type: array
         items:
             $ref: ../../pif/query/PifSystemQuery.yaml
-        nullable: true
+        x-nullable: true
         default: null
         description: A list of queries to run against the content of PIFs.
     query:
-        type: array
-        items:
-            type: object
-            description: DataQuery type. This is a recursive definition.
-        nullable: true
-        default: null
-        description: Nested data queries. Queries can nest as deeply as needed in order to create complex combinations of boolean logic.
+        $ref: nested.yaml

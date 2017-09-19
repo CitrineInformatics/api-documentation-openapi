@@ -5,7 +5,7 @@ enum:
 - MUST_NOT
 - OPTIONAL
 - null
-nullable: true
+x-nullable: true
 default: null
 description: >
     When multiple queries appear in a list, the logic defines the way in which each will be interpreted.
@@ -19,6 +19,6 @@ description: >
     - OPTIONAL does not have an effect on whether a record matches; the specific query element is ignored during the primary search for records in scope. However, OPTIONAL queries are executed on subsequent steps such as extractions and data statistics gathering.
 
     - null is interpreted as SHOULD.
-    
+
 
     When multiple queries exist with SHOULD logic, a minimum of 1 must match in order for the overall query to match.

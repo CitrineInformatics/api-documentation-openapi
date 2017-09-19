@@ -16,50 +16,50 @@ properties:
         description: Internal system type for this object.
     uid:
         type: string
-        nullable: true
+        x-nullable: true
         default: null
         description: An ID for this system that is unique within the dataset that contains it on Citrination.
     names:
         type: array
         items:
             type: string
-        nullable: true
+        x-nullable: true
         default: null
         description: Common names of the system.
     ids:
         type: array
         items:
             $ref: ../core/Id.yaml
-        nullable: true
+        x-nullable: true
         default: null
         description: Any identifiers (named labels) that apply to the system.
     classifications:
         type: array
         items:
             $ref: ../core/Classification.yaml
-        nullable: true
+        x-nullable: true
         default: null
         description: Any classifications (unambiguous categories) that apply to the system.
     source:
-        nullable: true
+        x-nullable: true
         default: null
         $ref: ../core/Source.yaml
     quantity:
-        nullable: true
+        x-nullable: true
         default: null
         $ref: ../core/Quantity.yaml
     properties:
         type: array
         items:
             $ref: ../core/Property.yaml
-        nullable: true
+        x-nullable: true
         default: null
         description: Observations made on the system.
     preparation:
         type: array
         items:
             $ref: ../core/ProcessStep.yaml
-        nullable: true
+        x-nullable: true
         default: null
         description: An ordered list of steps used to produce the system.
     subSystems:
@@ -67,28 +67,28 @@ properties:
         items:
             type: object
             description: System type. This is a recursive definition.
-        nullable: true
+        x-nullable: true
         default: null
         description: Any sub-systems of this system.
     references:
         type: array
         items:
             $ref: ../core/Reference.yaml
-        nullable: true
+        x-nullable: true
         default: null
         description: Published references for this sytem.
     contacts:
         type: array
         items:
             $ref: ../core/Person.yaml
-        nullable: true
+        x-nullable: true
         default: null
         description: People to contact for information about the system.
     licenses:
         type: array
         items:
             $ref: ../core/License.yaml
-        nullable: true
+        x-nullable: true
         default: null
         description: Licenses that apply to the data in this record.
     tags:

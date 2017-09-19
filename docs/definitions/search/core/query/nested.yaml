@@ -1,0 +1,7 @@
+type: array
+items:
+    type: object
+    description: The type of the parent object. This is a recursive definition.
+x-nullable: true
+default: null
+description: Nested query elements can be added as deeply as needed in order to create complex combinations of boolean logic.

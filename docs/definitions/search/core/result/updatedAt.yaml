@@ -1,4 +1,4 @@
 type: string
-nullable: true
+x-nullable: true
 default: null
 description: The date and time that the dataset record was last updated.

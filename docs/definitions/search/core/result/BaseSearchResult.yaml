@@ -4,18 +4,18 @@ properties:
     took:
         type: number
         format: int64
-        nullable: true
+        x-nullable: true
         default: null
         description: The number of milliseconds that the query took to execute on the Citrination server. This does _not_ include the latency in the request being sent to Citrination or returned to the local machine.
     totalNumHits:
         type: number
         format: int64
-        nullable: true
+        x-nullable: true
         default: null
         description: The total number of hits against the query that was executed. The number of hits returned from the server may be significantly less than this due to the pagination of results.
     maxScore:
         type: number
         format: double
-        nullable: true
+        x-nullable: true
         default: null
         description: The maximum score for all hits against the query that was executed (not simple the max score of the hits in the current paginated set of results).

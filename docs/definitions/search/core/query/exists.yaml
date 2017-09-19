@@ -1,4 +1,4 @@
 type: boolean
-nullable: true
+x-nullable: true
 default: null
 description: When set to true, the field must exist and have a non-null value. When set to false, the field must not exist or, if it does exist, must have a null value.

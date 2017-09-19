@@ -1,5 +1,5 @@
 type: string
-nullable: true
+x-nullable: true
 default: null
 description: >
     A string that is run against all fields in this object and their children. Strings are tokenized on whitespace unless surrounded by quotes. For example, `GaN "band gap"` tokenizes to `GaN` and `band gap` where each token must match its entire phrase in a record. Tokens are executed with boolean OR logic. Therefore, `GaN "band gap"` matches records that contain `GaN` or `band gap`. Since simple filters are, in this way, extremely inclusive operations, it is typically recommended that relevancy scoring be turned on for the query so that the records that match the most values are ranked the highest.

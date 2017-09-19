@@ -7,17 +7,11 @@ properties:
         $ref: exists.yaml
     equal:
         type: boolean
-        nullable: true
+        x-nullable: true
         default: null
         description: True to match true values. False to match false values.
     filter:
-        type: array
-        items:
-            type: object
-            description: BooleanFilter type. This is a recursive definition.
-        nullable: true
-        default: null
-        description: Nested boolean filters. Filters can nest as deeply as needed in order to create complex combinations of boolean logic.
+        $ref: nested.yaml
 x-examples:
     simple:
         value:

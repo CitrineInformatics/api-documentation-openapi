@@ -9,49 +9,43 @@ properties:
         type: array
         items:
             $ref: ../../core/query/Filter.yaml
-        nullable: true
+        x-nullable: true
         default: null
         description: Queries against the ID of a dataset.
     isFeatured:
         type: array
         items:
             $ref: ../../core/query/BooleanFilter.yaml
-        nullable: true
+        x-nullable: true
         default: null
         description: Queries against the isFeatured field of a dataset.
     name:
         type: array
         items:
             $ref: ../../core/query/Filter.yaml
-        nullable: true
+        x-nullable: true
         default: null
         description: Queries against the name of a dataset.
     description:
         type: array
         items:
             $ref: ../../core/query/Filter.yaml
-        nullable: true
+        x-nullable: true
         default: null
         description: Queries against the description of a dataset.
     owner:
         type: array
         items:
             $ref: ../../core/query/Filter.yaml
-        nullable: true
+        x-nullable: true
         default: null
         description: Queries against the name of the owner of a dataset.
     email:
         type: array
         items:
             $ref: ../../core/query/Filter.yaml
-        nullable: true
+        x-nullable: true
         default: null
         description: Queries against the email address of the owner of a dataset.
     query:
-        type: array
-        items:
-            type: object
-            description: DatasetQuery type. This is a recursive definition.
-        nullable: true
-        default: null
-        description: Nested dataset queries. Queries can nest as deeply as needed in order to create complex combinations of boolean logic.
+        $ref: ../../core/query/nested.yaml

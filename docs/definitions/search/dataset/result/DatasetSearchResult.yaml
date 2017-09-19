@@ -7,6 +7,6 @@ allOf:
             type: array
             items:
                 $ref: DatasetSearchHit.yaml
-            nullable: true
+            x-nullable: true
             default: null
             description: The current set of paginated hits against the query that was executed.

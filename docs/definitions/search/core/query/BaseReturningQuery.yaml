@@ -4,33 +4,33 @@ properties:
     fromIndex:
         type: number
         format: integer
-        nullable: true
+        x-nullable: true
         default: null
         description: The index of the first record to return. This is used for pagination through results.
     size:
         type: number
         format: integer
-        nullable: true
+        x-nullable: true
         default: null
         description: The number of records to return. This is used for pagination through results. The number of hits that are returned will never be greater than this number, but may be smaller if there are fewer records in the scope of the query or if the maximum number of records that the server will allow to be returned is exceeded (this is typically 100).
     randomResults:
         type: boolean
-        nullable: true
+        x-nullable: true
         default: null
         description: Whether a random set of results should be returned. If not specified, the default value is false.
     randomSeed:
         type: number
         format: int32
-        nullable: true
+        x-nullable: true
         default: null
         description: The seed to the pseudo-random number generator used to generate random results. If not specified, a value based on the current time will be used. This should be used when paginating through results; if not specified, a different random seed will be generated for each request and there may be duplicate records between sets of results.
     scoreRelevance:
         type: boolean
-        nullable: true
+        x-nullable: true
         default: null
         description: Whether to score relevance in queries. If not specified, the relevancy score is not tracked.
     returnMaxScore:
         type: boolean
-        nullable: true
+        x-nullable: true
         default: null
         description: Whether to return the maximum score over all hits in scope, not just the results that are returned. This only has meaning when scoreRelevance is set to true. If not specified, the default value of this settings is false.
