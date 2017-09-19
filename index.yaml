@@ -912,8 +912,8 @@ paths:
         '200':
           description: A search result with datasets that matched the input query.
           schema:
+            type: object
             properties:
-              type: object
               results:
                 type: object
                 description: The result of a single query for datasets on Citrination.
