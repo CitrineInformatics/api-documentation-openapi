@@ -18,23 +18,23 @@ properties:
         nullable: true
         default: null
         description: Nested boolean filters. Filters can nest as deeply as needed in order to create complex combinations of boolean logical operations.
-    examples:
-        simple:
-            value:
-                equal: true
-            summary: A simple test that a value is equal to true.
-        exists:
-            value:
-                exists: false
-            summary: Test that the field does not exist.
-        notTrue:
-            value:
-                logic: MUST_NOT
-                equal: true
-            summary: Test that the field is not equal to true. This will be satisfied when the field does not exist or when it does exist but is equal to false.
-        nested:
-            value:
-                filter:
-                    - equal: false
-                    - exists: false
-            summary: Match when it is true that the field has a value of false or when the field does not exist (the default logic is SHOULD between the two query objects).
+examples:
+    simple:
+        value:
+            equal: true
+        summary: A simple test that a value is equal to true.
+    exists:
+        value:
+            exists: false
+        summary: Test that the field does not exist.
+    notTrue:
+        value:
+            logic: MUST_NOT
+            equal: true
+        summary: Test that the field is not equal to true. This will be satisfied when the field does not exist or when it does exist but is equal to false.
+    nested:
+        value:
+            filter:
+                - equal: false
+                - exists: false
+        summary: Match when it is true that the field has a value of false or when the field does not exist (the default logic is SHOULD between the two query objects).
