@@ -2428,7 +2428,7 @@ paths:
                                 be present in this map under the key specified
                                 by extractAs.
                             extractedPath:
-                              type: objects
+                              type: object
                               x-nullable: true
                               default: null
                               additionalProperties: true
