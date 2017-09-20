@@ -1204,4 +1204,1250 @@ paths:
                         description: >-
                           The current set of paginated hits against the query
                           that was executed.
+  /pifs/search:
+    post:
+      description: >-
+        Search for PIFs by their content or by the metadata of the dataset in
+        which they are contained.
+      operationId: search-pifs
+      tags:
+        - search
+      parameters:
+        - name: query
+          in: body
+          description: A query for PIFs and options for that query.
+          required: true
+          schema:
+            type: object
+            description: A query that returns information about PIFs.
+            allOf:
+              - type: object
+                description: Base type for all queries against Citrination.
+                properties:
+                  fromIndex:
+                    type: number
+                    format: integer
+                    x-nullable: true
+                    default: null
+                    description: >-
+                      The index of the first record to return. This is used for
+                      pagination through results.
+                  size:
+                    type: number
+                    format: integer
+                    x-nullable: true
+                    default: null
+                    description: >-
+                      The number of records to return. This is used for
+                      pagination through results. The number of hits that are
+                      returned will never be greater than this number, but may
+                      be smaller if there are fewer records in the scope of the
+                      query or if the maximum number of records that the server
+                      will allow to be returned is exceeded (this is typically
+                      100).
+                  randomResults:
+                    type: boolean
+                    x-nullable: true
+                    default: null
+                    description: >-
+                      Whether a random set of results should be returned. If not
+                      specified, the default value is false.
+                  randomSeed:
+                    type: number
+                    format: int32
+                    x-nullable: true
+                    default: null
+                    description: >-
+                      The seed to the pseudo-random number generator used to
+                      generate random results. If not specified, a value based
+                      on the current time will be used. This should be used when
+                      paginating through results; if not specified, a different
+                      random seed will be generated for each request and there
+                      may be duplicate records between sets of results.
+                  scoreRelevance:
+                    type: boolean
+                    x-nullable: true
+                    default: null
+                    description: >-
+                      Whether to score relevance in queries. If not specified,
+                      the relevancy score is not tracked.
+                  returnMaxScore:
+                    type: boolean
+                    x-nullable: true
+                    default: null
+                    description: >-
+                      Whether to return the maximum score over all hits in
+                      scope, not just the results that are returned. This only
+                      has meaning when scoreRelevance is set to true. If not
+                      specified, the default value of this settings is false.
+              - properties:
+                  query:
+                    type: array
+                    items:
+                      type: object
+                      description: A query against dataset metadata and/or PIFs
+                      properties:
+                        logic:
+                          type: string
+                          enum:
+                            - SHOULD
+                            - MUST
+                            - MUST_NOT
+                            - OPTIONAL
+                            - null
+                          x-nullable: true
+                          default: null
+                          description: >
+                            When multiple queries appear in a list, the logic
+                            defines the way in which each will be interpreted.
+
+                            - SHOULD is equivalent to boolean OR logic.
+
+                            - MUST is eqivalent to boolean AND logic.
+
+                            - MUST_NOT is equivalent to boolean NOT logic.
+
+                            - OPTIONAL does not have an effect on whether a
+                            record matches; the specific query element is
+                            ignored during the primary search for records in
+                            scope. However, OPTIONAL queries are executed on
+                            subsequent steps such as extractions and data
+                            statistics gathering.
+
+                            - null is interpreted as SHOULD.
+
+
+                            When multiple queries exist with SHOULD logic, a
+                            minimum of 1 must match in order for the overall
+                            query to match.
+                        simple:
+                          type: string
+                          x-nullable: true
+                          default: null
+                          description: >
+                            A simple query that is run against all fields that
+                            contain string values. This query is run against all
+                            fields in the current object, in the children of
+                            this object, in the children's children, and so on.
+                            Boolean OR logic is applied between all of these
+                            queries.
+
+
+                            Query strings are tokenized on whitespace unless
+                            surrounded by quotes. For example, `GaN "band gap"`
+                            tokenizes to `GaN` and `band gap` where each token
+                            must match its entire phrase in a record. Tokens are
+                            executed with boolean OR logic. Therefore, `GaN
+                            "band gap"` matches records that contain `GaN` or
+                            `band gap`.
+
+
+                            Since simple filters are extremely inclusive
+                            operations (only one token needs to match against
+                            any field in this object or its children), it is
+                            typically recommended that relevancy scoring be
+                            turned on for the query so that the records that
+                            match the most values are ranked the highest.
+                        dataset:
+                          type: array
+                          items:
+                            type: object
+                            description: A query against a Dataset.
+                            properties:
+                              logic:
+                                type: string
+                                enum:
+                                  - SHOULD
+                                  - MUST
+                                  - MUST_NOT
+                                  - OPTIONAL
+                                  - null
+                                x-nullable: true
+                                default: null
+                                description: >
+                                  When multiple queries appear in a list, the
+                                  logic defines the way in which each will be
+                                  interpreted.
+
+                                  - SHOULD is equivalent to boolean OR logic.
+
+                                  - MUST is eqivalent to boolean AND logic.
+
+                                  - MUST_NOT is equivalent to boolean NOT logic.
+
+                                  - OPTIONAL does not have an effect on whether
+                                  a record matches; the specific query element
+                                  is ignored during the primary search for
+                                  records in scope. However, OPTIONAL queries
+                                  are executed on subsequent steps such as
+                                  extractions and data statistics gathering.
+
+                                  - null is interpreted as SHOULD.
+
+
+                                  When multiple queries exist with SHOULD logic,
+                                  a minimum of 1 must match in order for the
+                                  overall query to match.
+                              simple:
+                                type: string
+                                x-nullable: true
+                                default: null
+                                description: >
+                                  A simple query that is run against all fields
+                                  that contain string values. This query is run
+                                  against all fields in the current object, in
+                                  the children of this object, in the children's
+                                  children, and so on. Boolean OR logic is
+                                  applied between all of these queries.
+
+
+                                  Query strings are tokenized on whitespace
+                                  unless surrounded by quotes. For example, `GaN
+                                  "band gap"` tokenizes to `GaN` and `band gap`
+                                  where each token must match its entire phrase
+                                  in a record. Tokens are executed with boolean
+                                  OR logic. Therefore, `GaN "band gap"` matches
+                                  records that contain `GaN` or `band gap`.
+
+
+                                  Since simple filters are extremely inclusive
+                                  operations (only one token needs to match
+                                  against any field in this object or its
+                                  children), it is typically recommended that
+                                  relevancy scoring be turned on for the query
+                                  so that the records that match the most values
+                                  are ranked the highest.
+                              id:
+                                type: array
+                                items:
+                                  type: object
+                                  description: >-
+                                    An equality or range filter against a single
+                                    field.
+                                  properties:
+                                    logic:
+                                      type: string
+                                      enum:
+                                        - SHOULD
+                                        - MUST
+                                        - MUST_NOT
+                                        - OPTIONAL
+                                        - null
+                                      x-nullable: true
+                                      default: null
+                                      description: >
+                                        When multiple queries appear in a list,
+                                        the logic defines the way in which each
+                                        will be interpreted.
+
+                                        - SHOULD is equivalent to boolean OR
+                                        logic.
+
+                                        - MUST is eqivalent to boolean AND
+                                        logic.
+
+                                        - MUST_NOT is equivalent to boolean NOT
+                                        logic.
+
+                                        - OPTIONAL does not have an effect on
+                                        whether a record matches; the specific
+                                        query element is ignored during the
+                                        primary search for records in scope.
+                                        However, OPTIONAL queries are executed
+                                        on subsequent steps such as extractions
+                                        and data statistics gathering.
+
+                                        - null is interpreted as SHOULD.
+
+
+                                        When multiple queries exist with SHOULD
+                                        logic, a minimum of 1 must match in
+                                        order for the overall query to match.
+                                    exists:
+                                      type: boolean
+                                      x-nullable: true
+                                      default: null
+                                      description: >-
+                                        When set to true, the field must exist
+                                        and have a non-null value. When set to
+                                        false, the field must not exist or, if
+                                        it does exist, must have a null value.
+                                    equal:
+                                      type: string
+                                      x-nullable: true
+                                      default: null
+                                      description: >-
+                                        The string the match. This is executed
+                                        as a phrase query meaning that the exact
+                                        phrase in this string must be present in
+                                        a record to match.
+                                    min:
+                                      type: string
+                                      x-nullable: true
+                                      default: null
+                                      description: >-
+                                        If the input value is non-numeric, or
+                                        the field being searched does not
+                                        support numbers, then this is the
+                                        lexographical minimum of values to
+                                        match. If the input value is numeric and
+                                        the field being searched supports
+                                        numbers, then this is the minimum
+                                        numeric value to match.
+                                    max:
+                                      type: string
+                                      x-nullable: true
+                                      default: null
+                                      description: >-
+                                        If the input value is non-numeric, or
+                                        the field being searched does not
+                                        support numbers, then this is the
+                                        lexographical maximum of values to
+                                        match. If the input value is numeric and
+                                        the field being searched supports
+                                        numbers, then this is the maximum
+                                        numeric value to match.
+                                    exact:
+                                      type: boolean
+                                      x-nullable: true
+                                      default: null
+                                      description: >-
+                                        When the value in the in _equal_ field
+                                        must match exactly the entire value in
+                                        the field being searched. For example,
+                                        with _equal_ set to "gap" and _exact_
+                                        set to false, the filter will match
+                                        against a field that contains "band
+                                        gap". However, with _equal_ set to "gap"
+                                        and _exact_ set to false, the filter
+                                        will not match "band gap"; it will only
+                                        match against a field that contains only
+                                        the word "gap".
+                                    filter:
+                                      type: array
+                                      items:
+                                        type: object
+                                        description: >-
+                                          The type of the parent object. This is a
+                                          recursive definition.
+                                      x-nullable: true
+                                      default: null
+                                      description: >-
+                                        Nested query elements can be added as
+                                        deeply as needed in order to create
+                                        complex combinations of boolean logic.
+                                x-nullable: true
+                                default: null
+                                description: Queries against the ID of a dataset.
+                              isFeatured:
+                                type: array
+                                items:
+                                  type: object
+                                  description: >-
+                                    A filter against the value of a
+                                    boolean-typed field.
+                                  properties:
+                                    logic:
+                                      type: string
+                                      enum:
+                                        - SHOULD
+                                        - MUST
+                                        - MUST_NOT
+                                        - OPTIONAL
+                                        - null
+                                      x-nullable: true
+                                      default: null
+                                      description: >
+                                        When multiple queries appear in a list,
+                                        the logic defines the way in which each
+                                        will be interpreted.
+
+                                        - SHOULD is equivalent to boolean OR
+                                        logic.
+
+                                        - MUST is eqivalent to boolean AND
+                                        logic.
+
+                                        - MUST_NOT is equivalent to boolean NOT
+                                        logic.
+
+                                        - OPTIONAL does not have an effect on
+                                        whether a record matches; the specific
+                                        query element is ignored during the
+                                        primary search for records in scope.
+                                        However, OPTIONAL queries are executed
+                                        on subsequent steps such as extractions
+                                        and data statistics gathering.
+
+                                        - null is interpreted as SHOULD.
+
+
+                                        When multiple queries exist with SHOULD
+                                        logic, a minimum of 1 must match in
+                                        order for the overall query to match.
+                                    exists:
+                                      type: boolean
+                                      x-nullable: true
+                                      default: null
+                                      description: >-
+                                        When set to true, the field must exist
+                                        and have a non-null value. When set to
+                                        false, the field must not exist or, if
+                                        it does exist, must have a null value.
+                                    equal:
+                                      type: boolean
+                                      x-nullable: true
+                                      default: null
+                                      description: >-
+                                        True to match true values. False to
+                                        match false values.
+                                    filter:
+                                      type: array
+                                      items:
+                                        type: object
+                                        description: >-
+                                          The type of the parent object. This is a
+                                          recursive definition.
+                                      x-nullable: true
+                                      default: null
+                                      description: >-
+                                        Nested query elements can be added as
+                                        deeply as needed in order to create
+                                        complex combinations of boolean logic.
+                                x-nullable: true
+                                default: null
+                                description: >-
+                                  Queries against the isFeatured field of a
+                                  dataset.
+                              name:
+                                type: array
+                                items:
+                                  type: object
+                                  description: >-
+                                    An equality or range filter against a single
+                                    field.
+                                  properties:
+                                    logic:
+                                      type: string
+                                      enum:
+                                        - SHOULD
+                                        - MUST
+                                        - MUST_NOT
+                                        - OPTIONAL
+                                        - null
+                                      x-nullable: true
+                                      default: null
+                                      description: >
+                                        When multiple queries appear in a list,
+                                        the logic defines the way in which each
+                                        will be interpreted.
+
+                                        - SHOULD is equivalent to boolean OR
+                                        logic.
+
+                                        - MUST is eqivalent to boolean AND
+                                        logic.
+
+                                        - MUST_NOT is equivalent to boolean NOT
+                                        logic.
+
+                                        - OPTIONAL does not have an effect on
+                                        whether a record matches; the specific
+                                        query element is ignored during the
+                                        primary search for records in scope.
+                                        However, OPTIONAL queries are executed
+                                        on subsequent steps such as extractions
+                                        and data statistics gathering.
+
+                                        - null is interpreted as SHOULD.
+
+
+                                        When multiple queries exist with SHOULD
+                                        logic, a minimum of 1 must match in
+                                        order for the overall query to match.
+                                    exists:
+                                      type: boolean
+                                      x-nullable: true
+                                      default: null
+                                      description: >-
+                                        When set to true, the field must exist
+                                        and have a non-null value. When set to
+                                        false, the field must not exist or, if
+                                        it does exist, must have a null value.
+                                    equal:
+                                      type: string
+                                      x-nullable: true
+                                      default: null
+                                      description: >-
+                                        The string the match. This is executed
+                                        as a phrase query meaning that the exact
+                                        phrase in this string must be present in
+                                        a record to match.
+                                    min:
+                                      type: string
+                                      x-nullable: true
+                                      default: null
+                                      description: >-
+                                        If the input value is non-numeric, or
+                                        the field being searched does not
+                                        support numbers, then this is the
+                                        lexographical minimum of values to
+                                        match. If the input value is numeric and
+                                        the field being searched supports
+                                        numbers, then this is the minimum
+                                        numeric value to match.
+                                    max:
+                                      type: string
+                                      x-nullable: true
+                                      default: null
+                                      description: >-
+                                        If the input value is non-numeric, or
+                                        the field being searched does not
+                                        support numbers, then this is the
+                                        lexographical maximum of values to
+                                        match. If the input value is numeric and
+                                        the field being searched supports
+                                        numbers, then this is the maximum
+                                        numeric value to match.
+                                    exact:
+                                      type: boolean
+                                      x-nullable: true
+                                      default: null
+                                      description: >-
+                                        When the value in the in _equal_ field
+                                        must match exactly the entire value in
+                                        the field being searched. For example,
+                                        with _equal_ set to "gap" and _exact_
+                                        set to false, the filter will match
+                                        against a field that contains "band
+                                        gap". However, with _equal_ set to "gap"
+                                        and _exact_ set to false, the filter
+                                        will not match "band gap"; it will only
+                                        match against a field that contains only
+                                        the word "gap".
+                                    filter:
+                                      type: array
+                                      items:
+                                        type: object
+                                        description: >-
+                                          The type of the parent object. This is a
+                                          recursive definition.
+                                      x-nullable: true
+                                      default: null
+                                      description: >-
+                                        Nested query elements can be added as
+                                        deeply as needed in order to create
+                                        complex combinations of boolean logic.
+                                x-nullable: true
+                                default: null
+                                description: Queries against the name of a dataset.
+                              description:
+                                type: array
+                                items:
+                                  type: object
+                                  description: >-
+                                    An equality or range filter against a single
+                                    field.
+                                  properties:
+                                    logic:
+                                      type: string
+                                      enum:
+                                        - SHOULD
+                                        - MUST
+                                        - MUST_NOT
+                                        - OPTIONAL
+                                        - null
+                                      x-nullable: true
+                                      default: null
+                                      description: >
+                                        When multiple queries appear in a list,
+                                        the logic defines the way in which each
+                                        will be interpreted.
+
+                                        - SHOULD is equivalent to boolean OR
+                                        logic.
+
+                                        - MUST is eqivalent to boolean AND
+                                        logic.
+
+                                        - MUST_NOT is equivalent to boolean NOT
+                                        logic.
+
+                                        - OPTIONAL does not have an effect on
+                                        whether a record matches; the specific
+                                        query element is ignored during the
+                                        primary search for records in scope.
+                                        However, OPTIONAL queries are executed
+                                        on subsequent steps such as extractions
+                                        and data statistics gathering.
+
+                                        - null is interpreted as SHOULD.
+
+
+                                        When multiple queries exist with SHOULD
+                                        logic, a minimum of 1 must match in
+                                        order for the overall query to match.
+                                    exists:
+                                      type: boolean
+                                      x-nullable: true
+                                      default: null
+                                      description: >-
+                                        When set to true, the field must exist
+                                        and have a non-null value. When set to
+                                        false, the field must not exist or, if
+                                        it does exist, must have a null value.
+                                    equal:
+                                      type: string
+                                      x-nullable: true
+                                      default: null
+                                      description: >-
+                                        The string the match. This is executed
+                                        as a phrase query meaning that the exact
+                                        phrase in this string must be present in
+                                        a record to match.
+                                    min:
+                                      type: string
+                                      x-nullable: true
+                                      default: null
+                                      description: >-
+                                        If the input value is non-numeric, or
+                                        the field being searched does not
+                                        support numbers, then this is the
+                                        lexographical minimum of values to
+                                        match. If the input value is numeric and
+                                        the field being searched supports
+                                        numbers, then this is the minimum
+                                        numeric value to match.
+                                    max:
+                                      type: string
+                                      x-nullable: true
+                                      default: null
+                                      description: >-
+                                        If the input value is non-numeric, or
+                                        the field being searched does not
+                                        support numbers, then this is the
+                                        lexographical maximum of values to
+                                        match. If the input value is numeric and
+                                        the field being searched supports
+                                        numbers, then this is the maximum
+                                        numeric value to match.
+                                    exact:
+                                      type: boolean
+                                      x-nullable: true
+                                      default: null
+                                      description: >-
+                                        When the value in the in _equal_ field
+                                        must match exactly the entire value in
+                                        the field being searched. For example,
+                                        with _equal_ set to "gap" and _exact_
+                                        set to false, the filter will match
+                                        against a field that contains "band
+                                        gap". However, with _equal_ set to "gap"
+                                        and _exact_ set to false, the filter
+                                        will not match "band gap"; it will only
+                                        match against a field that contains only
+                                        the word "gap".
+                                    filter:
+                                      type: array
+                                      items:
+                                        type: object
+                                        description: >-
+                                          The type of the parent object. This is a
+                                          recursive definition.
+                                      x-nullable: true
+                                      default: null
+                                      description: >-
+                                        Nested query elements can be added as
+                                        deeply as needed in order to create
+                                        complex combinations of boolean logic.
+                                x-nullable: true
+                                default: null
+                                description: Queries against the description of a dataset.
+                              owner:
+                                type: array
+                                items:
+                                  type: object
+                                  description: >-
+                                    An equality or range filter against a single
+                                    field.
+                                  properties:
+                                    logic:
+                                      type: string
+                                      enum:
+                                        - SHOULD
+                                        - MUST
+                                        - MUST_NOT
+                                        - OPTIONAL
+                                        - null
+                                      x-nullable: true
+                                      default: null
+                                      description: >
+                                        When multiple queries appear in a list,
+                                        the logic defines the way in which each
+                                        will be interpreted.
+
+                                        - SHOULD is equivalent to boolean OR
+                                        logic.
+
+                                        - MUST is eqivalent to boolean AND
+                                        logic.
+
+                                        - MUST_NOT is equivalent to boolean NOT
+                                        logic.
+
+                                        - OPTIONAL does not have an effect on
+                                        whether a record matches; the specific
+                                        query element is ignored during the
+                                        primary search for records in scope.
+                                        However, OPTIONAL queries are executed
+                                        on subsequent steps such as extractions
+                                        and data statistics gathering.
+
+                                        - null is interpreted as SHOULD.
+
+
+                                        When multiple queries exist with SHOULD
+                                        logic, a minimum of 1 must match in
+                                        order for the overall query to match.
+                                    exists:
+                                      type: boolean
+                                      x-nullable: true
+                                      default: null
+                                      description: >-
+                                        When set to true, the field must exist
+                                        and have a non-null value. When set to
+                                        false, the field must not exist or, if
+                                        it does exist, must have a null value.
+                                    equal:
+                                      type: string
+                                      x-nullable: true
+                                      default: null
+                                      description: >-
+                                        The string the match. This is executed
+                                        as a phrase query meaning that the exact
+                                        phrase in this string must be present in
+                                        a record to match.
+                                    min:
+                                      type: string
+                                      x-nullable: true
+                                      default: null
+                                      description: >-
+                                        If the input value is non-numeric, or
+                                        the field being searched does not
+                                        support numbers, then this is the
+                                        lexographical minimum of values to
+                                        match. If the input value is numeric and
+                                        the field being searched supports
+                                        numbers, then this is the minimum
+                                        numeric value to match.
+                                    max:
+                                      type: string
+                                      x-nullable: true
+                                      default: null
+                                      description: >-
+                                        If the input value is non-numeric, or
+                                        the field being searched does not
+                                        support numbers, then this is the
+                                        lexographical maximum of values to
+                                        match. If the input value is numeric and
+                                        the field being searched supports
+                                        numbers, then this is the maximum
+                                        numeric value to match.
+                                    exact:
+                                      type: boolean
+                                      x-nullable: true
+                                      default: null
+                                      description: >-
+                                        When the value in the in _equal_ field
+                                        must match exactly the entire value in
+                                        the field being searched. For example,
+                                        with _equal_ set to "gap" and _exact_
+                                        set to false, the filter will match
+                                        against a field that contains "band
+                                        gap". However, with _equal_ set to "gap"
+                                        and _exact_ set to false, the filter
+                                        will not match "band gap"; it will only
+                                        match against a field that contains only
+                                        the word "gap".
+                                    filter:
+                                      type: array
+                                      items:
+                                        type: object
+                                        description: >-
+                                          The type of the parent object. This is a
+                                          recursive definition.
+                                      x-nullable: true
+                                      default: null
+                                      description: >-
+                                        Nested query elements can be added as
+                                        deeply as needed in order to create
+                                        complex combinations of boolean logic.
+                                x-nullable: true
+                                default: null
+                                description: >-
+                                  Queries against the name of the owner of a
+                                  dataset.
+                              email:
+                                type: array
+                                items:
+                                  type: object
+                                  description: >-
+                                    An equality or range filter against a single
+                                    field.
+                                  properties:
+                                    logic:
+                                      type: string
+                                      enum:
+                                        - SHOULD
+                                        - MUST
+                                        - MUST_NOT
+                                        - OPTIONAL
+                                        - null
+                                      x-nullable: true
+                                      default: null
+                                      description: >
+                                        When multiple queries appear in a list,
+                                        the logic defines the way in which each
+                                        will be interpreted.
+
+                                        - SHOULD is equivalent to boolean OR
+                                        logic.
+
+                                        - MUST is eqivalent to boolean AND
+                                        logic.
+
+                                        - MUST_NOT is equivalent to boolean NOT
+                                        logic.
+
+                                        - OPTIONAL does not have an effect on
+                                        whether a record matches; the specific
+                                        query element is ignored during the
+                                        primary search for records in scope.
+                                        However, OPTIONAL queries are executed
+                                        on subsequent steps such as extractions
+                                        and data statistics gathering.
+
+                                        - null is interpreted as SHOULD.
+
+
+                                        When multiple queries exist with SHOULD
+                                        logic, a minimum of 1 must match in
+                                        order for the overall query to match.
+                                    exists:
+                                      type: boolean
+                                      x-nullable: true
+                                      default: null
+                                      description: >-
+                                        When set to true, the field must exist
+                                        and have a non-null value. When set to
+                                        false, the field must not exist or, if
+                                        it does exist, must have a null value.
+                                    equal:
+                                      type: string
+                                      x-nullable: true
+                                      default: null
+                                      description: >-
+                                        The string the match. This is executed
+                                        as a phrase query meaning that the exact
+                                        phrase in this string must be present in
+                                        a record to match.
+                                    min:
+                                      type: string
+                                      x-nullable: true
+                                      default: null
+                                      description: >-
+                                        If the input value is non-numeric, or
+                                        the field being searched does not
+                                        support numbers, then this is the
+                                        lexographical minimum of values to
+                                        match. If the input value is numeric and
+                                        the field being searched supports
+                                        numbers, then this is the minimum
+                                        numeric value to match.
+                                    max:
+                                      type: string
+                                      x-nullable: true
+                                      default: null
+                                      description: >-
+                                        If the input value is non-numeric, or
+                                        the field being searched does not
+                                        support numbers, then this is the
+                                        lexographical maximum of values to
+                                        match. If the input value is numeric and
+                                        the field being searched supports
+                                        numbers, then this is the maximum
+                                        numeric value to match.
+                                    exact:
+                                      type: boolean
+                                      x-nullable: true
+                                      default: null
+                                      description: >-
+                                        When the value in the in _equal_ field
+                                        must match exactly the entire value in
+                                        the field being searched. For example,
+                                        with _equal_ set to "gap" and _exact_
+                                        set to false, the filter will match
+                                        against a field that contains "band
+                                        gap". However, with _equal_ set to "gap"
+                                        and _exact_ set to false, the filter
+                                        will not match "band gap"; it will only
+                                        match against a field that contains only
+                                        the word "gap".
+                                    filter:
+                                      type: array
+                                      items:
+                                        type: object
+                                        description: >-
+                                          The type of the parent object. This is a
+                                          recursive definition.
+                                      x-nullable: true
+                                      default: null
+                                      description: >-
+                                        Nested query elements can be added as
+                                        deeply as needed in order to create
+                                        complex combinations of boolean logic.
+                                x-nullable: true
+                                default: null
+                                description: >-
+                                  Queries against the email address of the owner
+                                  of a dataset.
+                              query:
+                                type: array
+                                items:
+                                  type: object
+                                  description: >-
+                                    The type of the parent object. This is a
+                                    recursive definition.
+                                x-nullable: true
+                                default: null
+                                description: >-
+                                  Nested query elements can be added as deeply
+                                  as needed in order to create complex
+                                  combinations of boolean logic.
+                          x-nullable: true
+                          default: null
+                          description: >-
+                            A list of queries to run against the content of
+                            datasets.
+                        system:
+                          type: array
+                          items:
+                            type: object
+                            description: A query aginst the content of a PIF system.
+                            properties:
+                              logic:
+                                type: string
+                                enum:
+                                  - SHOULD
+                                  - MUST
+                                  - MUST_NOT
+                                  - OPTIONAL
+                                  - null
+                                x-nullable: true
+                                default: null
+                                description: >
+                                  When multiple queries appear in a list, the
+                                  logic defines the way in which each will be
+                                  interpreted.
+
+                                  - SHOULD is equivalent to boolean OR logic.
+
+                                  - MUST is eqivalent to boolean AND logic.
+
+                                  - MUST_NOT is equivalent to boolean NOT logic.
+
+                                  - OPTIONAL does not have an effect on whether
+                                  a record matches; the specific query element
+                                  is ignored during the primary search for
+                                  records in scope. However, OPTIONAL queries
+                                  are executed on subsequent steps such as
+                                  extractions and data statistics gathering.
+
+                                  - null is interpreted as SHOULD.
+
+
+                                  When multiple queries exist with SHOULD logic,
+                                  a minimum of 1 must match in order for the
+                                  overall query to match.
+                              simple:
+                                type: string
+                                x-nullable: true
+                                default: null
+                                description: >
+                                  A simple query that is run against all fields
+                                  that contain string values. This query is run
+                                  against all fields in the current object, in
+                                  the children of this object, in the children's
+                                  children, and so on. Boolean OR logic is
+                                  applied between all of these queries.
+
+
+                                  Query strings are tokenized on whitespace
+                                  unless surrounded by quotes. For example, `GaN
+                                  "band gap"` tokenizes to `GaN` and `band gap`
+                                  where each token must match its entire phrase
+                                  in a record. Tokens are executed with boolean
+                                  OR logic. Therefore, `GaN "band gap"` matches
+                                  records that contain `GaN` or `band gap`.
+
+
+                                  Since simple filters are extremely inclusive
+                                  operations (only one token needs to match
+                                  against any field in this object or its
+                                  children), it is typically recommended that
+                                  relevancy scoring be turned on for the query
+                                  so that the records that match the most values
+                                  are ranked the highest.
+                              extractAs:
+                                type: string
+                                x-nullable: true
+                                default: null
+                                description: >-
+                                  If non-null, the value matched by this query
+                                  element will be extracted into a key/value map
+                                  where the key is equal to this value. If the
+                                  object that was matched is a part of a list,
+                                  only one value from that list will be
+                                  returned, even if more than one matched.
+                                  Extractions do not affect whether a record
+                                  matches an overall query; they are simply
+                                  instructions to pull out matched values from
+                                  PIFs into a map.
+                              extractAll:
+                                type: boolean
+                                x-nullable: true
+                                default: null
+                                description: >
+                                  When extractAs is configured for a field and a
+                                  match is made against an object in a list,
+                                  only that object is extracted. When extractAll
+                                  is set to true, the list that contained that
+                                  matched object is extracted. Note that the
+                                  _entire_ list is extracted, not just the
+                                  elements that matched. When this value is
+                                  null, it is interpreted as false.
+                              extractWhenMissing:
+                                x-nullable: true
+                                default: null
+                                description: >-
+                                  When extractAs is configured for a field but
+                                  that query element does not match in a record,
+                                  then this value will be placed into the
+                                  extracted value map under the key specified by
+                                  extractAs. This value can be of any type.
+                          x-nullable: true
+                          default: null
+                          description: >-
+                            A list of queries to run against the content of
+                            PIFs.
+                        query:
+                          type: array
+                          items:
+                            type: object
+                            description: >-
+                              The type of the parent object. This is a recursive
+                              definition.
+                          x-nullable: true
+                          default: null
+                          description: >-
+                            Nested query elements can be added as deeply as
+                            needed in order to create complex combinations of
+                            boolean logic.
+                    x-nullable: true
+                    default: null
+                    description: >-
+                      Queries against the content of datasets and/or PIF
+                      records.
+                  returnSystem:
+                    type: boolean
+                    x-nullable: true
+                    default: null
+                    description: >-
+                      Whether to return the PIF system that matched. If can be
+                      useful to set this to false in order to reduce payload
+                      size when the actual PIF record is not needed in a results
+                      set (for example, when only the IDs are needed or when
+                      important information is already being extracted using
+                      extractAs keys). When set to null, this value is
+                      interpreted as true.
+                  addLatex:
+                    type: boolean
+                    x-nullable: true
+                    default: null
+                    description: >-
+                      Whether to inject LaTeX formatting into results. This only
+                      applies to certain fields in the PIF that support
+                      conversion to LaTeX, such as chemical formulae. If set to
+                      false, this has no effect on LaTeX already present in the
+                      record; that existing markup will remain. When set to
+                      null, this value is interpreted as false.
+                  returnExtractedPath:
+                    type: boolean
+                    x-nullable: true
+                    default: null
+                    description: >-
+                      Whether to return the JSON pointer to extracted values.
+                      When extractAs is configured for parts of the query, the
+                      matched elements are saved in a key/value map in each
+                      search hit. A peer to that map stores the same set of keys
+                      but with values that are JSON pointers to the location in
+                      the PIF from which that element was extracted. It can be
+                      useful to turn off this feature to reduce payload size
+                      when paths are not needed. When set to null, this value is
+                      interpreted as true.
+                  unwrapSingleValueExtractions:
+                    type: boolean
+                    x-nullable: true
+                    default: null
+                    description: >-
+                      When values are extracted with extractAll set to true,
+                      even object lists with length one will be extracted as a
+                      list. This option unwraps lists of length one so that the
+                      element within the list is extracted, rather than the
+                      entire list. When set to null, this value is interpreted
+                      as false.
+      responses:
+        '200':
+          description: A search result with PIF systems that matched the input query.
+          schema:
+            type: object
+            properties:
+              results:
+                type: object
+                description: The result of a single query for PIF systems on Citrination.
+                allOf:
+                  - type: object
+                    description: The base type for all search results against Citrination.
+                    properties:
+                      took:
+                        type: number
+                        format: int64
+                        x-nullable: true
+                        default: null
+                        description: >-
+                          The number of milliseconds that the query took to
+                          execute on the Citrination server. This does _not_
+                          include the latency in the request being sent to
+                          Citrination or returned to the local machine.
+                      totalNumHits:
+                        type: number
+                        format: int64
+                        x-nullable: true
+                        default: null
+                        description: >-
+                          The total number of hits against the query that was
+                          executed. The number of hits returned from the server
+                          may be significantly less than this due to the
+                          pagination of results.
+                      maxScore:
+                        type: number
+                        format: double
+                        x-nullable: true
+                        default: null
+                        description: >-
+                          The maximum score for all hits against the query that
+                          was executed (not simple the max score of the hits in
+                          the current paginated set of results).
+                  - properties:
+                      hits:
+                        type: array
+                        items:
+                          type: object
+                          description: >-
+                            A single PIF that matched a query run against
+                            Citrination.
+                          properties:
+                            score:
+                              type: number
+                              format: double
+                              x-nullable: true
+                              default: null
+                              description: >-
+                                The relevancy score for the PIF against the
+                                executed query.
+                            id:
+                              type: string
+                              x-nullable: true
+                              default: null
+                              description: >-
+                                The full ID of the PIF in the format
+                                datasetId/datasetVersion/pifUID.
+                            dataset:
+                              type: string
+                              x-nullable: true
+                              default: null
+                              description: The ID of the dataset that contains this PIF.
+                            datasetVersion:
+                              type: number
+                              format: long
+                              x-nullable: true
+                              default: null
+                              description: >-
+                                The version of the dataset that contains this
+                                PIF.
+                            system:
+                              type: object
+                              description: A generic representation of a physical system.
+                              discriminator:
+                                propertyName: type
+                                mapping:
+                                  system: System
+                                  system.chemical: ChemicalSystem
+                              required:
+                                - type
+                              properties:
+                                type:
+                                  type: string
+                                  enum:
+                                    - system
+                                    - system.chemical
+                                  description: Internal system type for this object.
+                                uid:
+                                  type: string
+                                  x-nullable: true
+                                  default: null
+                                  description: >-
+                                    An ID for this system that is unique within
+                                    the dataset that contains it on Citrination.
+                                tags:
+                                  type: array
+                                  items:
+                                    type: string
+                                  x-nullable: true
+                                  default: null
+                                  description: Any number of tags to apply to the object.
+                            extracted:
+                              type: object
+                              x-nullable: true
+                              default: null
+                              additionalProperties: true
+                              description: >-
+                                A key/value map that contains the extracted
+                                fields from the query. When query elements match
+                                that contain extractAs, the matched objects will
+                                be present in this map under the key specified
+                                by extractAs.
+                            extractedPath:
+                              type: objects
+                              x-nullable: true
+                              default: null
+                              additionalProperties: true
+                              description: >-
+                                A key/value map that is a peer to the extracted
+                                field. This map contains the same key set, but
+                                the values are JSON pointers that reference the
+                                part of the PIF from which the value in
+                                extracted was matched.
+                            updatedAt:
+                              type: string
+                              x-nullable: true
+                              default: null
+                              description: >-
+                                The date and time that the dataset record was
+                                last updated.
+                        x-nullable: true
+                        default: null
+                        description: >-
+                          The current set of paginated hits against the query
+                          that was executed.
 

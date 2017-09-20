@@ -1,2 +1,4 @@
 '/datasets/search':
     $ref: ./datasets/search.yaml
+'/pifs/search':
+    $ref: ./pifs/search.yaml

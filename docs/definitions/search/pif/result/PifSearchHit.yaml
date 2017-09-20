@@ -24,7 +24,7 @@ properties:
         default: null
         description: The version of the dataset that contains this PIF.
     system:
-        $ref: ../../../../pif/system/System.yaml
+        $ref: ../../../pif/system/System.yaml
     extracted:
         type: object
         x-nullable: true

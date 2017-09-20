@@ -9,7 +9,7 @@ post:
           description: A query for PIFs and options for that query.
           required: true
           schema:
-              $ref: ../../definitions/search/pifs/query/PifReturningQuery.yaml
+              $ref: ../../definitions/search/pif/query/PifSystemReturningQuery.yaml
     responses:
         '200':
             description: A search result with PIF systems that matched the input query.
