@@ -2432,6 +2432,9 @@ paths:
                               x-nullable: true
                               default: null
                               additionalProperties: true
+                              patternProperties:
+                                '.{1,}':
+                                  type: string
                               description: >-
                                 A key/value map that is a peer to the extracted
                                 field. This map contains the same key set, but
