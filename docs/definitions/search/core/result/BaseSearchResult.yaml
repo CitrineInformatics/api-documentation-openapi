@@ -18,4 +18,4 @@ properties:
         format: double
         x-nullable: true
         default: null
-        description: The maximum score for all hits against the query that was executed (not simple the max score of the hits in the current paginated set of results).
+        description: The maximum score for all hits against the query that was executed (not simply the max score of the hits in the current paginated set of results).

@@ -1,4 +1,4 @@
-'/datasets/search':
+'/search/dataset':
     $ref: ./datasets/search.yaml
-'/pifs/search':
+'/search/pif_search':
     $ref: ./pifs/search.yaml

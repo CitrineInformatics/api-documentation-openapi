@@ -1,0 +1,10 @@
+type: object
+description: Sort to apply using the extractAs key set for a query element.
+properties:
+    key:
+        type: string
+        x-nullable: true
+        default: null
+        description: The extractAs key that appears in the query that corresponds to the value to sort on.
+    order:
+        $ref: sortOrder.yaml
