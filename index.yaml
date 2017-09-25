@@ -128,7 +128,7 @@ paths:
                           Whether to sort a field in ascending or descending
                           order. This operates in lexographical or numeric modes
                           depending on the value in a field. When a field
-                          contains mixed types across recrods, it is always
+                          contains mixed types across record, it is always
                           assumed that a numeric value is less than a
                           non-numeric (string) value. Currently, lexographical
                           sorting is only supported through the first 10
@@ -1355,7 +1355,7 @@ paths:
                           Whether to sort a field in ascending or descending
                           order. This operates in lexographical or numeric modes
                           depending on the value in a field. When a field
-                          contains mixed types across recrods, it is always
+                          contains mixed types across record, it is always
                           assumed that a numeric value is less than a
                           non-numeric (string) value. Currently, lexographical
                           sorting is only supported through the first 10
