@@ -114,8 +114,8 @@ paths:
                         x-nullable: true
                         default: null
                         description: >-
-                          The extractAs key that appears in the query that
-                          corresponds to the value to sort on.
+                          The extractAs key that appears in the query element
+                          that corresponds to the value to sort on.
                       order:
                         type: string
                         enum:
@@ -1341,8 +1341,8 @@ paths:
                         x-nullable: true
                         default: null
                         description: >-
-                          The extractAs key that appears in the query that
-                          corresponds to the value to sort on.
+                          The extractAs key that appears in the query element
+                          that corresponds to the value to sort on.
                       order:
                         type: string
                         enum:
