@@ -1,4 +1,6 @@
 type: object
+x-nullable: true
+default: null
 description: Sort to apply using the extractAs key set for a query element.
 properties:
     key:
