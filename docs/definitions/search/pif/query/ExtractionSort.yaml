@@ -7,4 +7,4 @@ properties:
         default: null
         description: The extractAs key that appears in the query element that corresponds to the value to sort on.
     order:
-        $ref: sortOrder.yaml
+        $ref: ../../core/query/sortOrder.yaml

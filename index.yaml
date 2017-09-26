@@ -103,56 +103,6 @@ paths:
                       scope, not just the results that are returned. This only
                       has meaning when scoreRelevance is set to true. If not
                       specified, the default value of this settings is false.
-                  extractionSort:
-                    type: object
-                    description: >-
-                      Sort to apply using the extractAs key set for a query
-                      element.
-                    properties:
-                      key:
-                        type: string
-                        x-nullable: true
-                        default: null
-                        description: >-
-                          The extractAs key that appears in the query element
-                          that corresponds to the value to sort on.
-                      order:
-                        type: string
-                        enum:
-                          - ASCENDING
-                          - DESCENDING
-                          - null
-                        x-nullable: true
-                        default: null
-                        description: >
-                          Whether to sort a field in ascending or descending
-                          order. This operates in lexographical or numeric modes
-                          depending on the value in a field. When a field
-                          contains mixed types across record, it is always
-                          assumed that a numeric value is less than a
-                          non-numeric (string) value. Currently, lexographical
-                          sorting is only supported through the first 10
-                          characters of a string.
-
-
-                          The system will handle sorting across mixed units so
-                          long as they are suported. For example, if a field
-                          contains a temperature value reported in K in some
-                          records, but degrees C in others, then the system will
-                          handle returning a record with 50 K before 10 degrees
-                          C when sorting in ascending order.
-
-
-                          In the case that a field is being sorted on that
-                          contains some supported units and some unsupported
-                          ones, then the supported values will always appear
-                          before the unsupported ones, regardless of whether
-                          sorting in ascending or descending order. For example,
-                          if a field contains temperature values where some are
-                          reported in K, others in degrees C, and finally others
-                          in some unknown set of units, then the values reported
-                          in K and degrees C will always appear before the
-                          unrecognized units when sorting on that field.
               - properties:
                   query:
                     type: array
@@ -1330,56 +1280,6 @@ paths:
                       scope, not just the results that are returned. This only
                       has meaning when scoreRelevance is set to true. If not
                       specified, the default value of this settings is false.
-                  extractionSort:
-                    type: object
-                    description: >-
-                      Sort to apply using the extractAs key set for a query
-                      element.
-                    properties:
-                      key:
-                        type: string
-                        x-nullable: true
-                        default: null
-                        description: >-
-                          The extractAs key that appears in the query element
-                          that corresponds to the value to sort on.
-                      order:
-                        type: string
-                        enum:
-                          - ASCENDING
-                          - DESCENDING
-                          - null
-                        x-nullable: true
-                        default: null
-                        description: >
-                          Whether to sort a field in ascending or descending
-                          order. This operates in lexographical or numeric modes
-                          depending on the value in a field. When a field
-                          contains mixed types across record, it is always
-                          assumed that a numeric value is less than a
-                          non-numeric (string) value. Currently, lexographical
-                          sorting is only supported through the first 10
-                          characters of a string.
-
-
-                          The system will handle sorting across mixed units so
-                          long as they are suported. For example, if a field
-                          contains a temperature value reported in K in some
-                          records, but degrees C in others, then the system will
-                          handle returning a record with 50 K before 10 degrees
-                          C when sorting in ascending order.
-
-
-                          In the case that a field is being sorted on that
-                          contains some supported units and some unsupported
-                          ones, then the supported values will always appear
-                          before the unsupported ones, regardless of whether
-                          sorting in ascending or descending order. For example,
-                          if a field contains temperature values where some are
-                          reported in K, others in degrees C, and finally others
-                          in some unknown set of units, then the values reported
-                          in K and degrees C will always appear before the
-                          unrecognized units when sorting on that field.
               - properties:
                   query:
                     type: array
@@ -2406,6 +2306,56 @@ paths:
                       element within the list is extracted, rather than the
                       entire list. When set to null, this value is interpreted
                       as false.
+                  extractionSort:
+                    type: object
+                    description: >-
+                      Sort to apply using the extractAs key set for a query
+                      element.
+                    properties:
+                      key:
+                        type: string
+                        x-nullable: true
+                        default: null
+                        description: >-
+                          The extractAs key that appears in the query element
+                          that corresponds to the value to sort on.
+                      order:
+                        type: string
+                        enum:
+                          - ASCENDING
+                          - DESCENDING
+                          - null
+                        x-nullable: true
+                        default: null
+                        description: >
+                          Whether to sort a field in ascending or descending
+                          order. This operates in lexographical or numeric modes
+                          depending on the value in a field. When a field
+                          contains mixed types across record, it is always
+                          assumed that a numeric value is less than a
+                          non-numeric (string) value. Currently, lexographical
+                          sorting is only supported through the first 10
+                          characters of a string.
+
+
+                          The system will handle sorting across mixed units so
+                          long as they are suported. For example, if a field
+                          contains a temperature value reported in K in some
+                          records, but degrees C in others, then the system will
+                          handle returning a record with 50 K before 10 degrees
+                          C when sorting in ascending order.
+
+
+                          In the case that a field is being sorted on that
+                          contains some supported units and some unsupported
+                          ones, then the supported values will always appear
+                          before the unsupported ones, regardless of whether
+                          sorting in ascending or descending order. For example,
+                          if a field contains temperature values where some are
+                          reported in K, others in degrees C, and finally others
+                          in some unknown set of units, then the values reported
+                          in K and degrees C will always appear before the
+                          unrecognized units when sorting on that field.
       responses:
         '200':
           description: A search result with PIF systems that matched the input query.

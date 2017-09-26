@@ -34,5 +34,3 @@ properties:
         x-nullable: true
         default: null
         description: Whether to return the maximum score over all hits in scope, not just the results that are returned. This only has meaning when scoreRelevance is set to true. If not specified, the default value of this settings is false.
-    extractionSort:
-        $ref: ExtractionSort.yaml
