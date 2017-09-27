@@ -12,6 +12,8 @@ properties:
         x-nullable: true
         default: null
         description: Queries against the ID of a dataset.
+    updatedAt:
+        $ref: ../../core/query/updatedAt.yaml
     isFeatured:
         type: array
         items:

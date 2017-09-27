@@ -1,0 +1,7 @@
+type: array
+items:
+    $ref: Filter.yaml
+x-nullable: true
+default: null
+description: >
+    Filters against the date and time that the record was last updated. Each string in the filters should be in a typical DateTime format. See [https://www.w3.org/TR/NOTE-datetime](https://www.w3.org/TR/NOTE-datetime) for examples.

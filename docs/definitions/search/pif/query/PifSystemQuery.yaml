@@ -11,3 +11,5 @@ properties:
         $ref: extractAll.yaml
     extractWhenMissing:
         $ref: extractWhenMissing.yaml
+    updatedAt:
+        $ref: ../../core/query/updatedAt.yaml
