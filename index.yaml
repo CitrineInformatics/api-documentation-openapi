@@ -2843,8 +2843,8 @@ paths:
                         default: null
                         description: >
                           Whether to sort a field in ascending or descending
-                          order. This operates in lexographical or numeric modes
-                          depending on the value in a field. When a field
+                          order. This operates in lexicographical or numeric
+                          modes depending on the value in a field. When a field
                           contains mixed types across records, it is always
                           assumed that a numeric value is less than a
                           non-numeric (string) value. Currently, lexographical

@@ -6,7 +6,7 @@ enum:
 x-nullable: true
 default: null
 description: >
-    Whether to sort a field in ascending or descending order. This operates in lexographical or numeric modes depending on the value in a field. When a field contains mixed types across records, it is always assumed that a numeric value is less than a non-numeric (string) value. Currently, lexographical sorting is only supported through the first 10 characters of a string.
+    Whether to sort a field in ascending or descending order. This operates in lexicographical or numeric modes depending on the value in a field. When a field contains mixed types across records, it is always assumed that a numeric value is less than a non-numeric (string) value. Currently, lexographical sorting is only supported through the first 10 characters of a string.
 
 
     The system will handle sorting across mixed units so long as they are suported. For example, if a field contains a temperature value reported in K in some records, but degrees C in others, then the system will handle returning a record with 50 K before 10 degrees C when sorting in ascending order.
