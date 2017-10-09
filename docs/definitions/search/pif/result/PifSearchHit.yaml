@@ -29,7 +29,8 @@ properties:
         type: object
         x-nullable: true
         default: null
-        additionalProperties: true
+        additionalProperties:
+            type: object
         description: A key/value map that contains the extracted fields from the query. When query elements match that contain extractAs, the matched objects will be present in this map under the key specified by extractAs.
     extractedPath:
         type: object
