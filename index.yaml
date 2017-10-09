@@ -2984,8 +2984,7 @@ paths:
                               type: object
                               x-nullable: true
                               default: null
-                              additionalProperties:
-                                type: object
+                              additionalProperties: true
                               description: >-
                                 A key/value map that contains the extracted
                                 fields from the query. When query elements match
