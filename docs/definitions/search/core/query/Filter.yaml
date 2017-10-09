@@ -14,12 +14,12 @@ properties:
         type: string
         x-nullable: true
         default: null
-        description: If the input value is non-numeric, or the field being searched does not support numbers, then this is the lexographical minimum of values to match. If the input value is numeric and the field being searched supports numbers, then this is the minimum numeric value to match.
+        description: If the input value is non-numeric, or the field being searched does not support numbers, then this is the lexicographical minimum of values to match. If the input value is numeric and the field being searched supports numbers, then this is the minimum numeric value to match.
     max:
         type: string
         x-nullable: true
         default: null
-        description: If the input value is non-numeric, or the field being searched does not support numbers, then this is the lexographical maximum of values to match. If the input value is numeric and the field being searched supports numbers, then this is the maximum numeric value to match.
+        description: If the input value is non-numeric, or the field being searched does not support numbers, then this is the lexicographical maximum of values to match. If the input value is numeric and the field being searched supports numbers, then this is the maximum numeric value to match.
     exact:
         type: boolean
         x-nullable: true
