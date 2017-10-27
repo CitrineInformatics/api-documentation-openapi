@@ -1,0 +1,9 @@
+type: object
+x-nullable: true
+default: null
+description: Query against the value of a single field.
+allOf:
+    - $ref: BaseFieldQuery.yaml
+    - properties:
+        filter:
+            $ref: ../../../core/query/Filter.yaml

@@ -1,0 +1,24 @@
+type: object
+description: Base class for all queries against object fields.
+properties:
+    logic:
+        $ref: ../../../core/query/logic.yaml
+    simple:
+        $ref: ../../../core/query/simple.yaml
+    extractAs:
+        $ref: extractAs.yaml
+    extractAll:
+        $ref: extractAll.yaml
+    extractWhenMissing:
+        $ref: extractWhenMissing.yaml
+    tags:
+        type: array
+        items:
+            $ref: FieldQuery.yaml
+        x-nullable: true
+        default: null
+        description: Queries against the tags stored for an object.
+    length:
+        $ref: length.yaml
+    offset:
+        $ref: offset.yaml

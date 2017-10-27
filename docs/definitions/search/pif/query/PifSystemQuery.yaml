@@ -1,15 +1,16 @@
 type: object
+x-nullable: true
+default: null
 description: A query aginst the content of a PIF system.
-properties:
-    logic:
-        $ref: ../../core/query/logic.yaml
-    simple:
-        $ref: ../../core/query/simple.yaml
-    extractAs:
-        $ref: extractAs.yaml
-    extractAll:
-        $ref: extractAll.yaml
-    extractWhenMissing:
-        $ref: extractWhenMissing.yaml
-    updatedAt:
-        $ref: ../../core/query/updatedAt.yaml
+allOf:
+    - $ref: core/BaseObjectQuery.yaml
+    - properties:
+        uid:
+            type: array
+            item:
+                $ref: ../../core/query/Filter.yaml
+            x-nullable: true
+            default: null
+            description: Filters against the UID of the system.
+        updatedAt:
+            $ref: ../../core/query/updatedAt.yaml

@@ -30,5 +30,3 @@ allOf:
             x-nullable: true
             default: null
             description: When values are extracted with extractAll set to true, even object lists with length one will be extracted as a list. This option unwraps lists of length one so that the element within the list is extracted, rather than the entire list. When set to null, this value is interpreted as false.
-        extractionSort:
-            $ref: ExtractionSort.yaml

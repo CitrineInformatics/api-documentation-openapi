@@ -1,0 +1,17 @@
+type: object
+description: Base class for all queries against simple fields.
+properties:
+    logic:
+        $ref: ../../../core/query/logic.yaml
+    simple:
+        $ref: ../../../core/query/simple.yaml
+    extractAs:
+        $ref: extractAs.yaml
+    extractAll:
+        $ref: extractAll.yaml
+    extractWhenMissing:
+        $ref: extractWhenMissing.yaml
+    length:
+        $ref: length.yaml
+    offset:
+        $ref: offset.yaml
