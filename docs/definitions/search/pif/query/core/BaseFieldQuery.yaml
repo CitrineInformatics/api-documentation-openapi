@@ -11,7 +11,3 @@ properties:
         $ref: extractAll.yaml
     extractWhenMissing:
         $ref: extractWhenMissing.yaml
-    length:
-        $ref: length.yaml
-    offset:
-        $ref: offset.yaml
