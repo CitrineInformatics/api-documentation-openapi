@@ -7,10 +7,82 @@ allOf:
     - properties:
         uid:
             type: array
-            item:
+            items:
                 $ref: ../../core/query/Filter.yaml
             x-nullable: true
             default: null
             description: Filters against the UID of the system.
         updatedAt:
             $ref: ../../core/query/updatedAt.yaml
+        names:
+            type: array
+            items:
+                $ref: core/FieldQuery.yaml
+            x-nullable: true
+            default: null
+            description: Queries against the name of the system.
+        ids:
+            type: array
+            items:
+                $ref: core/IdQuery.yaml
+            x-nullable: true
+            default: null
+            description: Queries against the IDs of the system.
+        classifications:
+            type: array
+            items:
+                $ref: core/ClassificationQuery.yaml
+            x-nullable: true
+            default: null
+            description: Queries against the classifications of the system.
+        source:
+            type: array
+            items:
+                $ref: core/SourceQuery.yaml
+            x-nullable: true
+            default: null
+            description: Queries against the source of the system.
+        quantity:
+            type: array
+            items:
+                $ref: core/QuantityQuery.yaml
+            x-nullable: true
+            default: null
+            description: Queries against the quantity of the system.
+        chemicalFormula:
+            type: array
+            items:
+                $ref: chemical/ChemicalFieldQuery.yaml
+            x-nullable: true
+            default: null
+            description: Queries against the chemical formula of the system.
+        composition:
+            type: array
+            items:
+                $ref: chemical/Composition.yaml
+            x-nullable: true
+            default: null
+            description: Queries against the chemical composition of the system.
+        properties:
+            type: array
+            items:
+                $ref: core/PropertyQuery.yaml
+            x-nullable: true
+            default: null
+            description: Queries against the measured properties of the system.
+        preparation:
+            type: array
+            items:
+                $ref: core/ProcessStepQuery.yaml
+            x-nullable: true
+            default: null
+            description: Queries against the process steps used to create of the system.
+        references:
+            type: array
+            items:
+                $ref: core/ReferenceQuery.yaml
+            x-nullable: true
+            default: null
+            description: Queries against the publication information of the system.
+        subSystems:
+            $ref: ../../core/query/nested.yaml

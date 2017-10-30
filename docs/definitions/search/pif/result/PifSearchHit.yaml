@@ -24,7 +24,10 @@ properties:
         default: null
         description: The version of the dataset that contains this PIF.
     system:
-        $ref: ../../../pif/system/System.yaml
+        type: object
+        x-nullable: true
+        default: null
+        description: The structure of PIF system objects is defined at https://citrine.io/pif.
     extracted:
         type: object
         x-nullable: true

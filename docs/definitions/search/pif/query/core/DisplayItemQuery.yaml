@@ -1,0 +1,28 @@
+type: object
+x-nullable: true
+default: null
+description: A query aginst a display item in a publication.
+allOf:
+    - $ref: core/BaseObjectQuery.yaml
+    - properties:
+        number:
+            type: array
+            items:
+                $ref: FieldQuery.yaml
+            x-nullable: true
+            default: null
+            description: Queries aginst the number of the display item in the publication.
+        title:
+            type: array
+            items:
+                $ref: FieldQuery.yaml
+            x-nullable: true
+            default: null
+            description: Queries aginst the title of the display item.
+        caption:
+            type: array
+            items:
+                $ref: FieldQuery.yaml
+            x-nullable: true
+            default: null
+            description: Queries aginst the caption of the display item.

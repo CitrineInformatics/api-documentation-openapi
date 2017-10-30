@@ -1,0 +1,21 @@
+type: object
+x-nullable: true
+default: null
+description: A query aginst the pages of a reference.
+allOf:
+    - $ref: core/BaseObjectQuery.yaml
+    - properties:
+        start:
+            type: array
+            items:
+                $ref: FieldQuery.yaml
+            x-nullable: true
+            default: null
+            description: Queries aginst the first page of a reference.
+        end:
+            type: array
+            items:
+                $ref: FieldQuery.yaml
+            x-nullable: true
+            default: null
+            description: Queries aginst the last page of a reference.

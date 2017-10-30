@@ -1,0 +1,35 @@
+type: object
+x-nullable: true
+default: null
+description: A query aginst the name of a person.
+allOf:
+    - $ref: core/BaseObjectQuery.yaml
+    - properties:
+        given:
+            type: array
+            items:
+                $ref: FieldQuery.yaml
+            x-nullable: true
+            default: null
+            description: Queries aginst the given (first) name of a person.
+        family:
+            type: array
+            items:
+                $ref: FieldQuery.yaml
+            x-nullable: true
+            default: null
+            description: Queries aginst the family (last) name of a person.
+        title:
+            type: array
+            items:
+                $ref: FieldQuery.yaml
+            x-nullable: true
+            default: null
+            description: Queries aginst the title of a person (e.g. Dr., Mr., Mrs., etc.)
+        suffix:
+            type: array
+            items:
+                $ref: FieldQuery.yaml
+            x-nullable: true
+            default: null
+            description: Queries aginst the suffix of a person.

@@ -1,6 +1,0 @@
-type: array
-items:
-    type: string
-x-nullable: true
-default: null
-description: Any number of tags to apply to the object.

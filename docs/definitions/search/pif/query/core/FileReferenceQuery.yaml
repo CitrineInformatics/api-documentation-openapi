@@ -1,0 +1,35 @@
+type: object
+x-nullable: true
+default: null
+description: A query aginst a reference to a file.
+allOf:
+    - $ref: core/BaseObjectQuery.yaml
+    - properties:
+        relativePath:
+            type: array
+            items:
+                $ref: FieldQuery.yaml
+            x-nullable: true
+            default: null
+            description: Queries aginst the relative path of the file.
+        mimeType:
+            type: array
+            items:
+                $ref: FieldQuery.yaml
+            x-nullable: true
+            default: null
+            description: Queries aginst the mime type path of the file.
+        sha256:
+            type: array
+            items:
+                $ref: FieldQuery.yaml
+            x-nullable: true
+            default: null
+            description: Queries aginst the SHA256 hash of the file.
+        md5:
+            type: array
+            items:
+                $ref: FieldQuery.yaml
+            x-nullable: true
+            default: null
+            description: Queries aginst the MD5 hash of the file.
