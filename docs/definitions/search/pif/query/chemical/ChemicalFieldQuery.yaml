@@ -1,0 +1,9 @@
+type: object
+x-nullable: true
+default: null
+description: Query against the value of a field that contains chemical information.
+allOf:
+    - $ref: ../core/BaseFieldQuery.yaml
+    - properties:
+        filter:
+            $ref: ChemicalFilter.yaml

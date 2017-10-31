@@ -1,9 +1,9 @@
 type: object
 x-nullable: true
 default: null
-description: A query aginst the ID of a system.
+description: A query against the ID of a system.
 allOf:
-    - $ref: core/BaseObjectQuery.yaml
+    - $ref: BaseObjectQuery.yaml
     - properties:
         name:
             type: array
@@ -11,11 +11,11 @@ allOf:
                 $ref: FieldQuery.yaml
             x-nullable: true
             default: null
-            description: Queries aginst the name of the ID.
+            description: Queries against the name of the ID.
         value:
             type: array
             items:
                 $ref: FieldQuery.yaml
             x-nullable: true
             default: null
-            description: Queries aginst the value of the ID.
+            description: Queries against the value of the ID.

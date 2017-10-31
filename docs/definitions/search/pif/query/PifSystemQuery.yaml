@@ -1,7 +1,7 @@
 type: object
 x-nullable: true
 default: null
-description: A query aginst the content of a PIF system.
+description: A query against the content of a PIF system.
 allOf:
     - $ref: core/BaseObjectQuery.yaml
     - properties:
@@ -59,7 +59,7 @@ allOf:
         composition:
             type: array
             items:
-                $ref: chemical/Composition.yaml
+                $ref: chemical/CompositionQuery.yaml
             x-nullable: true
             default: null
             description: Queries against the chemical composition of the system.

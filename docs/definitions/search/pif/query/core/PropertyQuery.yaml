@@ -1,0 +1,21 @@
+type: object
+x-nullable: true
+default: null
+description: A query aginst a measured property of a system.
+allOf:
+    - $ref: ValueQuery.yaml
+    - properties:
+        conditions:
+            type: array
+            items:
+                $ref: ValueQuery.yaml
+            x-nullable: true
+            default: null
+            description: Queries against conditions of the property.
+        dataType:
+            type: array
+            items:
+                $ref: FieldQuery.yaml
+            x-nullable: true
+            default: null
+            description: Queries against the data type of the property.

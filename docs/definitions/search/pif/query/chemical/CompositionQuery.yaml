@@ -1,0 +1,42 @@
+type: object
+x-nullable: true
+default: null
+description: A query against a composition in a chemical system.
+allOf:
+    - $ref: ../core/BaseObjectQuery.yaml
+    - properties:
+        element:
+            type: array
+            items:
+                $ref: ChemicalFieldQuery.yaml
+            x-nullable: true
+            default: null
+            description: Queries against the given (first) name of a person.
+        actualWeightPercent:
+            type: array
+            items:
+                $ref: ../core/FieldQuery.yaml
+            x-nullable: true
+            default: null
+            description: Queries against the actual (measured) weight percent of the element.
+        actualAtomicPercent:
+            type: array
+            items:
+                $ref: ../core/FieldQuery.yaml
+            x-nullable: true
+            default: null
+            description: Queries against the actual (measured) atomic percent of the element.
+        idealWeightPercent:
+            type: array
+            items:
+                $ref: ../core/FieldQuery.yaml
+            x-nullable: true
+            default: null
+            description: Queries against the ideal (theoretical) weight percent of the element.
+        idealAtomicPercent:
+            type: array
+            items:
+                $ref: ../core/FieldQuery.yaml
+            x-nullable: true
+            default: null
+            description: Queries against the ideal (theoretical) atomic percent of the element.

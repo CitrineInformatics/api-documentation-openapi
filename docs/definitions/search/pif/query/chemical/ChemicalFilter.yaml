@@ -1,0 +1,29 @@
+type: object
+description: An equality filter against a field that contains chemical information.
+properties:
+    logic:
+        $ref: ../../../core/query/logic.yaml
+    exists:
+        $ref: ../../../core/query/exists.yaml
+    equal:
+        type: string
+        x-nullable: true
+        default: null
+        description: The string the match. This is executed as a phrase query meaning that the exact phrase in this string must be present in a record to match.
+    element:
+        type: boolean
+        x-nullable: true
+        default: null
+        description: Whether the value in the _equal_ field should match against the elements in a formula. During indexing of data, chemical formula-containing fields are also saved as a list of elements. If set to true, then the value in the _equal_ field is treated as a single element and searched for in the list of elements. For example, a query for "equal"="Fe" would match a record that contained "Fe2O3". When this field has a null value it is interpreted as false.
+    partial:
+        type: boolean
+        x-nullable: true
+        default: null
+        description: Whether the value in the _equal_ field should match against partial components a formula. During indexing of data, chemical formula-containing fields are also saved as a series of sub-formulas with 2 or 3 elements. If set to true, then the value in the _equal_ field is also searched against these partial formula. For example, a query for "equal"="LiO2" or "equal"="oxide" would match a record that contained "LiCoO2". When this field has a null value it is interpreted as false.
+    exact:
+        type: boolean
+        x-nullable: true
+        default: null
+        description: When the value in the in _equal_ field must match exactly the entire value in the field being searched. For example, with _equal_ set to "gap" and _exact_ set to false, the filter will match against a field that contains "band gap". However, with _equal_ set to "gap" and _exact_ set to false, the filter will not match "band gap"; it will only match against a field that contains only the word "gap".
+    filter:
+        $ref: ../../../core/query/nested.yaml

@@ -1,9 +1,9 @@
 type: object
 x-nullable: true
 default: null
-description: A query aginst the classifications of a system.
+description: A query against the classifications of a system.
 allOf:
-    - $ref: core/BaseObjectQuery.yaml
+    - $ref: BaseObjectQuery.yaml
     - properties:
         name:
             type: array
@@ -11,7 +11,7 @@ allOf:
                 $ref: FieldQuery.yaml
             x-nullable: true
             default: null
-            description: Queries aginst the name of the classification.
+            description: Queries against the name of the classification.
         value:
             type: array
             items:

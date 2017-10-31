@@ -1,0 +1,21 @@
+type: object
+x-nullable: true
+default: null
+description: A query against a single process step in the preparation of a material.
+allOf:
+    - $ref: BaseObjectQuery.yaml
+    - properties:
+        name:
+            type: array
+            items:
+                $ref: FieldQuery.yaml
+            x-nullable: true
+            default: null
+            description: Queries against the name of the process step.
+        details:
+            type: array
+            items:
+                $ref: ValueQuery.yaml
+            x-nullable: true
+            default: null
+            description: Queries against the details of the process step.

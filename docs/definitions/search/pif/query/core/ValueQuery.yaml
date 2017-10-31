@@ -1,0 +1,35 @@
+type: object
+x-nullable: true
+default: null
+description: A query aginst the name, value, and units of a value.
+allOf:
+    - $ref: BaseObjectQuery.yaml
+    - properties:
+        name:
+            type: array
+            items:
+                $ref: FieldQuery.yaml
+            x-nullable: true
+            default: null
+            description: Queries against the name of the value.
+        value:
+            type: array
+            items:
+                $ref: FieldQuery.yaml
+            x-nullable: true
+            default: null
+            description: Queries against the actual value. This searches the scalars, vectors, and matrices fields within a PIF record.
+        file:
+            type: array
+            items:
+                $ref: FileReferenceQuery.yaml
+            x-nullable: true
+            default: null
+            description: Queries against the file reference of the value.
+        units:
+            type: array
+            items:
+                $ref: FieldQuery.yaml
+            x-nullable: true
+            default: null
+            description: Queries against the units of the value. When possible, units will be automatically normalized (along with the _value_ field). This allows for searching across mixed sets of units stored for a value in different records. If the value that is stored can be directly converted to this set of units, that conversion is automatically applied. For example, a query for a value in units of eV might match a record with a value stored in units of J; the value that is returned from the query would be converted to eV.

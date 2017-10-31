@@ -1,0 +1,49 @@
+type: object
+x-nullable: true
+default: null
+description: A query aginst the quantity of a system.
+allOf:
+    - $ref: BaseObjectQuery.yaml
+    - properties:
+        actualMassPercent:
+            type: array
+            items:
+                $ref: FieldQuery.yaml
+            x-nullable: true
+            default: null
+            description: Queries against the actual (measured) mass percent of this component of a system.
+        actualVolumePercent:
+            type: array
+            items:
+                $ref: FieldQuery.yaml
+            x-nullable: true
+            default: null
+            description: Queries against the actual (measured) volume percent of this component of a system.
+        actualNumberPercent:
+            type: array
+            items:
+                $ref: FieldQuery.yaml
+            x-nullable: true
+            default: null
+            description: Queries against the actual (measured) number percent of this component of a system.
+        idealMassPercent:
+            type: array
+            items:
+                $ref: FieldQuery.yaml
+            x-nullable: true
+            default: null
+            description: Queries against the ideal (theoretical) mass percent of this component of a system.
+        idealVolumePercent:
+            type: array
+            items:
+                $ref: FieldQuery.yaml
+            x-nullable: true
+            default: null
+            description: Queries against the ideal (theoretical) volume percent of this component of a system.
+        idealNumberPercent:
+            type: array
+            items:
+                $ref: FieldQuery.yaml
+            x-nullable: true
+            default: null
+            description: Queries against the ideal (theoretical) number percent of this component of a system.

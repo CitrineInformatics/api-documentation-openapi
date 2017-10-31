@@ -1,0 +1,21 @@
+type: object
+x-nullable: true
+default: null
+description: A query against the source of a system.
+allOf:
+    - $ref: BaseObjectQuery.yaml
+    - properties:
+        producer:
+            type: array
+            items:
+                $ref: FieldQuery.yaml
+            x-nullable: true
+            default: null
+            description: Queries against the name of the producer of the system.
+        url:
+            type: array
+            items:
+                $ref: FieldQuery.yaml
+            x-nullable: true
+            default: null
+            description: Queries against the url of the source of the system.

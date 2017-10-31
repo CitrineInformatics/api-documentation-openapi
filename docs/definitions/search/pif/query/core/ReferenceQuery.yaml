@@ -1,0 +1,121 @@
+type: object
+x-nullable: true
+default: null
+description: A query against a reference of a system.
+allOf:
+    - $ref: BaseObjectQuery.yaml
+    - properties:
+        doi:
+            type: array
+            items:
+                $ref: FieldQuery.yaml
+            x-nullable: true
+            default: null
+            description: Queries against the DOI of the reference.
+        isbn:
+            type: array
+            items:
+                $ref: FieldQuery.yaml
+            x-nullable: true
+            default: null
+            description: Queries against the ISBN of the reference.
+        issn:
+            type: array
+            items:
+                $ref: FieldQuery.yaml
+            x-nullable: true
+            default: null
+            description: Queries against the ISSN of the reference.
+        url:
+            type: array
+            items:
+                $ref: FieldQuery.yaml
+            x-nullable: true
+            default: null
+            description: Queries against the url of the reference.
+        title:
+            type: array
+            items:
+                $ref: FieldQuery.yaml
+            x-nullable: true
+            default: null
+            description: Queries against the title of the reference.
+        publisher:
+            type: array
+            items:
+                $ref: FieldQuery.yaml
+            x-nullable: true
+            default: null
+            description: Queries against the name of the publisher of the reference.
+        journal:
+            type: array
+            items:
+                $ref: FieldQuery.yaml
+            x-nullable: true
+            default: null
+            description: Queries against the name of the journal of the reference.
+        volume:
+            type: array
+            items:
+                $ref: FieldQuery.yaml
+            x-nullable: true
+            default: null
+            description: Queries against the volume of the reference.
+        issue:
+            type: array
+            items:
+                $ref: FieldQuery.yaml
+            x-nullable: true
+            default: null
+            description: Queries against the issue of the reference.
+        year:
+            type: array
+            items:
+                $ref: FieldQuery.yaml
+            x-nullable: true
+            default: null
+            description: Queries against the publication year of the reference.
+        figure:
+            type: array
+            items:
+                $ref: DisplayItemQuery.yaml
+            x-nullable: true
+            default: null
+            description: Queries against the figure of the reference.
+        table:
+            type: array
+            items:
+                $ref: DisplayItemQuery.yaml
+            x-nullable: true
+            default: null
+            description: Queries against the table of the reference.
+        pages:
+            type: array
+            items:
+                $ref: PagesQuery.yaml
+            x-nullable: true
+            default: null
+            description: Queries against the pages of the reference.
+        authors:
+            type: array
+            items:
+                $ref: NameQuery.yaml
+            x-nullable: true
+            default: null
+            description: Queries against the authors of the reference.
+        editors:
+            type: array
+            items:
+                $ref: NameQuery.yaml
+            x-nullable: true
+            default: null
+            description: Queries against the editors of the reference.
+        affiliations:
+            type: array
+            items:
+                $ref: FieldQuery.yaml
+            x-nullable: true
+            default: null
+            description: Queries against the affiliations of the authors of the reference.
+        references:
+            $ref: ../../../core/query/nested.yaml
